@@ -1,89 +1,147 @@
 # iCrack - Professional Mobile Phone Repair Website
 
-A premium, fully responsive website for iCrack mobile phone repair services, built with Next.js 14, React, Tailwind CSS, and Framer Motion.
+A premium, fully responsive website for iCrack mobile phone repair services, built with Next.js 14, React, Tailwind CSS, and Framer Motion. This is a production-ready website with complete booking flows, shopping cart, and all supporting pages.
 
-## Features
+## 🚀 Features
 
-- 🎨 Modern, premium design with custom color palette
-- 📱 Fully responsive across all devices
-- ✨ Smooth animations and micro-interactions
-- 🚀 Next.js 14 App Router
-- 🎯 SEO-optimized
-- 📊 Device-first booking journey
-- 🔄 Step-by-step animated selection flow
+### Core Functionality
+- 🎨 **Modern, Premium Design** - Custom white and pink color palette with smooth animations
+- 📱 **Fully Responsive** - Mobile-first design optimized for all devices
+- ✨ **Smooth Animations** - Framer Motion animations throughout
+- 🚀 **Next.js 14 App Router** - Latest Next.js features with server components
+- 🎯 **SEO-Optimized** - Meta tags, structured data, and semantic HTML
+- 📊 **Device-First Booking Journey** - Intuitive step-by-step selection flow
+- 🛒 **Shopping Cart** - Full cart functionality with Klarna integration
+- 🔍 **Search Functionality** - Search across repairs, brands, and products
 
-## Tech Stack
+### Repair Services
+- **Battery Replacement** - Original (premium) and Standard options with 24-month warranty
+- **Screen Repair** - 12-month warranty for iPhone screens
+- **Back Glass Repair** - Back glass only or full housing replacement options
+- **Camera Repair** - Front, rear, and lens options
+- **Water Damage Repair** - Expert restoration service
+- **Charging Port Repair** - Fast charging port fixes
+- **And More** - Comprehensive repair services for all device types
 
-- **Next.js 14** (App Router)
-- **React 18**
-- **TypeScript**
-- **Tailwind CSS**
-- **Framer Motion**
-- **Lucide React** (Icons)
+### Device Support
+- 📱 **Phones** - iPhone, Samsung, Google Pixel, OnePlus, Xiaomi, Huawei, Oppo
+- 📱 **Tablets** - iPad, Samsung Galaxy Tab, and more
+- 💻 **Laptops** - MacBook, Dell, HP, Lenovo, and more
 
-## Getting Started
+### Pages & Sections
+- **Home** - Hero section, device categories, services, trust badges
+- **Repairs** - Complete repair overview with categories
+- **Device-Specific Pages** - iPhone, Samsung, Google repair pages
+- **Repair Detail Pages** - Individual repair service pages with pricing
+- **Booking Flow** - Multi-step booking (Brand → Device → Repair → Service → Details)
+- **Refurbished Phones** - iPhone refurbished section with buy options
+- **Accessories** - Device accessories (excluding cases/screen protectors)
+- **Business** - Business services and partnerships
+- **About** - About iCrack
+- **Contact** - Contact form, map, and store information
+- **FAQ** - Comprehensive FAQ section
+- **Warranty** - Warranty information and terms
+- **Terms & Privacy** - Legal pages
+- **Student Discount** - 10% student discount information
+- **Offers & Deals** - Current promotions
+- **News & Blog** - Content pages
+- **Delivery & Returns** - Shipping and return policy
+- **Environment** - Environmental commitment
+- **Sitemap** - Complete site structure
+
+## 🛠 Tech Stack
+
+- **Next.js 14.2.5** (App Router)
+- **React 18.3.1**
+- **TypeScript 5.5.4**
+- **Tailwind CSS 3.4.7**
+- **Framer Motion 11.3.19** (Animations)
+- **Lucide React 0.427.0** (Icons)
+
+## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+ or 20+
 - npm or yarn
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository:
+```bash
+git clone https://github.com/pradeepannagarasu/icrack.git
+cd icrack
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Run the development server:
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+## 🏗 Project Structure
 
 ```
 iCrack/
-├── app/
-│   ├── layout.tsx          # Root layout with Header/Footer
-│   ├── page.tsx            # Home page
-│   └── globals.css         # Global styles
-├── components/
-│   ├── layout/
-│   │   ├── Header.tsx      # Sticky animated header
-│   │   └── Footer.tsx      # Footer with links
-│   └── home/
-│       ├── DeviceSelector.tsx
-│       ├── ServiceCard.tsx
-│       └── TrustBadge.tsx
-├── data/
-│   ├── brands.json         # Device brands and models
-│   └── repairs.json        # Repair types and details
-└── public/                 # Static assets
+├── app/                          # Next.js App Router pages
+│   ├── layout.tsx               # Root layout with Header/Footer
+│   ├── page.tsx                 # Home page
+│   ├── globals.css              # Global styles
+│   ├── repairs/                 # Repair pages
+│   │   ├── page.tsx             # Repairs overview
+│   │   ├── [repair-type]/       # Individual repair pages
+│   │   ├── iphone/              # iPhone-specific pages
+│   │   ├── samsung/             # Samsung-specific pages
+│   │   ├── google/              # Google Pixel pages
+│   │   ├── phones/              # General phone repairs
+│   │   ├── tablets/             # Tablet repairs
+│   │   └── laptops/             # Laptop repairs
+│   ├── book/                    # Booking flow
+│   ├── refurbished/             # Refurbished phones
+│   ├── cart/                    # Shopping cart
+│   ├── contact/                 # Contact page
+│   ├── about/                   # About page
+│   ├── business/                # Business page
+│   ├── faq/                     # FAQ page
+│   └── ...                      # All other pages
+├── components/                   # React components
+│   ├── layout/                   # Header, Footer, Navigation
+│   ├── home/                    # Home page components
+│   ├── repairs/                 # Repair-related components
+│   ├── booking/                 # Booking flow components
+│   ├── cart/                    # Shopping cart components
+│   ├── animations/              # Animation components
+│   └── ui/                      # Reusable UI components
+├── data/                        # JSON data files
+│   ├── brands.json              # Device brands and models
+│   ├── repairs.json             # Repair types and details
+│   ├── pricing.json             # Pricing information
+│   ├── locations.json           # Store locations
+│   └── refurbished-iphones.json # Refurbished phone data
+├── lib/                         # Utility functions
+│   ├── pricing.ts               # Pricing calculations
+│   ├── deviceImages.ts          # Image path utilities
+│   ├── animations.ts            # Animation variants
+│   ├── cart.ts                  # Cart utilities
+│   └── categoryFilters.ts       # Device category filters
+├── public/                      # Static assets
+│   └── images/                  # Images and logos
+├── types/                       # TypeScript type definitions
+└── .github/workflows/           # CI/CD pipelines
 ```
 
-## Pages
-
-- **Home** - Hero, device selector, services, trust badges, CTA
-- **Repairs** - Overview of all repair services
-- **Device Selector** - Brand → Model → Repair flow
-- **Repair Detail** - Individual repair service pages
-- **Accessories** - Phone accessories
-- **Business** - Business/partner services
-- **About** - About iCrack
-- **Contact** - Contact information and form
-- **Booking** - Repair booking flow
-- **FAQ** - Frequently asked questions
-- **Locations** - Store locations
-
-## Design System
+## 🎨 Design System
 
 ### Colors
-- **Primary**: Blue tones (#0ea5e9)
-- **Accent**: Red tones (#ef4444)
-- **Neutral**: Gray scale
+- **Primary**: Pink (#ec4899) - Main brand color
+- **Accent**: Pink shades for highlights
+- **Neutral**: Gray scale for text and backgrounds
 
 ### Typography
 - **Display**: Poppins (headings)
@@ -91,8 +149,25 @@ iCrack/
 
 ### Spacing
 - Custom spacing scale with larger border radii (xl, 2xl, 3xl)
+- Mobile-optimized padding and margins
 
-## Development
+## 🔧 Development
+
+### Available Scripts
+
+```bash
+# Development server
+npm run dev
+
+# Production build
+npm run build
+
+# Start production server
+npm start
+
+# Run linter
+npm run lint
+```
 
 ### Build for Production
 
@@ -101,13 +176,80 @@ npm run build
 npm start
 ```
 
-### Linting
+## 🧪 CI/CD
 
-```bash
-npm run lint
-```
+The project includes GitHub Actions CI/CD pipeline (`.github/workflows/ci.yml`) that:
 
-## License
+- ✅ Runs on Node.js 18.x and 20.x
+- ✅ Installs dependencies
+- ✅ Runs linter
+- ✅ Builds the project
+- ✅ Verifies build output
+- ✅ Ready for deployment
+
+The pipeline runs automatically on:
+- Push to `main` or `master` branch
+- Pull requests to `main` or `master` branch
+
+## 📋 Key Features Implemented
+
+### Booking System
+- Multi-step booking flow (Brand → Device → Repair → Service → Details)
+- Progress indicator
+- Service selection (Visit Shop / Mail-in / Call-out)
+- Booking confirmation page
+
+### Shopping Cart
+- Add repairs and refurbished phones to cart
+- Quantity management
+- Email collection for order updates
+- Klarna payment integration (UI ready)
+
+### Repair Options
+- **Battery**: Original (premium) and Standard options
+- **Back Glass**: Back glass only or full housing replacement
+- **Camera**: Front, rear, or lens options
+- Device-specific pricing
+
+### Warranty System
+- iPhone Screen: 12-month warranty
+- iPhone Battery: 24-month warranty
+- Other repairs: 12-month warranty
+
+### Contact & Support
+- Contact form with email integration
+- Store location map (Google Maps embed)
+- Phone: 02081275250
+- Email: Phonesnmacs40@gmail.com
+- Address: 40a Notting Hill Gate, London W11 3HX
+
+## 🌐 Deployment
+
+The project is ready for deployment on:
+- **Vercel** (Recommended for Next.js)
+- **Netlify**
+- **AWS Amplify**
+- **Any Node.js hosting**
+
+### Environment Variables
+
+No environment variables required for basic functionality. For production, you may want to add:
+- Email service API keys (for contact forms)
+- Payment gateway keys (Stripe/SumUp/Klarna)
+- Analytics keys
+
+## 📝 License
 
 Private project for iCrack brand.
 
+## 👥 Contributing
+
+This is a private project. For issues or feature requests, please contact the repository owner.
+
+## 📞 Support
+
+For support, email Phonesnmacs40@gmail.com or call 02081275250.
+
+---
+
+Built with ❤️ for iCrack
