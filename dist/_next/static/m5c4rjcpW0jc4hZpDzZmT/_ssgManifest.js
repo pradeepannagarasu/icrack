@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Frefurbished\u002F[id]","\u002Frepairs\u002F[repair-type]","\u002Frepairs\u002Fiphone\u002F[model]","\u002Frepairs\u002Flaptops\u002F[model]","\u002Frepairs\u002Fphones\u002F[model]","\u002Frepairs\u002Ftablets\u002F[model]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
