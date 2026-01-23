@@ -60,7 +60,7 @@ export default function DeviceSelector({ category }: DeviceSelectorProps = {} as
                         transition={{ duration: 0.3 }}
                       >
                         <Image
-                          src={getBrandImage(brand.id)}
+                          src={getBrandImage(brand.id, category)}
                           alt={brand.name}
                           width={80}
                           height={80}

@@ -41,7 +41,7 @@ export default function BrandStep({ onSelect, category }: BrandStepProps) {
             <div className="flex flex-col items-center space-y-3">
               <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center overflow-hidden">
                 <Image
-                  src={getBrandImage(brand.id)}
+                  src={getBrandImage(brand.id, category)}
                   alt={brand.name}
                   width={80}
                   height={80}

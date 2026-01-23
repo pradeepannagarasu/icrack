@@ -45,8 +45,21 @@ const repairImageFallback = "/images/mobile.png";
 
 /**
  * Get brand image URL
+ * @param brandId - The brand ID
+ * @param category - Optional category to determine if tablet/laptop images should be used
  */
-export function getBrandImage(brandId: string): string {
+export function getBrandImage(brandId: string, category?: "phones" | "tablets" | "laptops"): string {
+  // If category is tablets, use tablet image
+  if (category === "tablets") {
+    return categoryImages.tablets;
+  }
+  
+  // If category is laptops, use laptop image
+  if (category === "laptops") {
+    return categoryImages.laptops;
+  }
+  
+  // Default to brand-specific phone image
   const imageFile = brandImageMap[brandId.toLowerCase()] || brandImageMap.other;
   // Handle filenames with spaces by encoding
   const encodedFile = imageFile.includes(" ") ? encodeURIComponent(imageFile) : imageFile;

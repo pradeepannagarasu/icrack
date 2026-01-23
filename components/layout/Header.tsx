@@ -73,9 +73,9 @@ export default function Header() {
               <Image
                 src="/images/icrack_logo.png"
                 alt="iCrack Logo"
-                width={160}
-                height={44}
-                className="h-10 w-auto object-contain"
+                width={200}
+                height={55}
+                className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
                 priority
               />
               <span className="ml-2 text-xl sm:text-2xl font-display font-bold tracking-tight text-primary-600">
