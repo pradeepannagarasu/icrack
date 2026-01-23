@@ -7,6 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { getBrandImage, getModelImage } from "@/lib/deviceImages";
 import { DeviceCategory, getBrandsByCategory, getModelsByCategory, isModelInCategory } from "@/lib/categoryFilters";
+import { Brand } from "@/types";
+import brandsData from "@/data/brands.json";
 
 interface DeviceSelectorProps {
   category?: DeviceCategory;
@@ -16,7 +18,7 @@ export default function DeviceSelector({ category }: DeviceSelectorProps = {} as
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   
   // Get filtered brands based on category
-  const brands = category ? getBrandsByCategory(category) : require("@/data/brands.json").brands;
+  const brands: Brand[] = category ? getBrandsByCategory(category) : brandsData.brands as Brand[];
 
   return (
     <div className="max-w-4xl mx-auto">

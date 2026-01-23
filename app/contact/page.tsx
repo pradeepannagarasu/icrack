@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
@@ -43,7 +43,7 @@ const locations = [
   },
 ];
 
-export default function ContactPage() {
+function ContactPageContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
   const product = searchParams.get("product");
@@ -327,6 +327,21 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={
+      <div className="pt-20 lg:pt-[176px] min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-neutral-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <ContactPageContent />
+    </Suspense>
   );
 }
 

@@ -6,7 +6,6 @@ import { GraduationCap, Percent, CheckCircle2, Mail } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { fadeInUp } from "@/lib/animations";
 import BackLink from "@/components/ui/BackLink";
-import Link from "next/link";
 
 const benefits = [
   {
