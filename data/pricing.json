@@ -1,0 +1,147 @@
+{
+  "repairs": {
+    "screen": {
+      "basePrice": 79,
+      "devices": {
+        "iphone-8": { "price": 79, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-se": { "price": 79, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
+        "iphone-7": { "price": 75, "save": 85, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-15-pro": { "price": 199, "save": 150, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
+        "iphone-15": { "price": 149, "save": 120, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Blue", "Green", "Yellow", "Pink"] },
+        "iphone-14-pro": { "price": 179, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Deep Purple", "Gold", "Silver", "Space Black"] },
+        "iphone-14": { "price": 129, "save": 100, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Blue", "Purple", "Midnight", "Starlight", "Red"] },
+        "iphone-13-pro": { "price": 169, "save": 130, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Graphite", "Gold", "Silver", "Sierra Blue", "Alpine Green"] },
+        "iphone-13": { "price": 119, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Pink", "Blue", "Midnight", "Starlight", "Red"] },
+        "iphone-12": { "price": 99, "save": 80, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
+        "iphone-11": { "price": 89, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Green", "Yellow", "Purple", "Red", "White"] }
+      }
+    },
+    "back-cover": {
+      "basePrice": 79,
+      "devices": {
+        "iphone-8": {
+          "glass": { "price": 79, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 109, "warranty": "12 months", "time": "Up to 90 minutes" }
+        },
+        "iphone-se": {
+          "glass": { "price": 79, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 109, "warranty": "12 months", "time": "Up to 90 minutes" }
+        },
+        "iphone-7": {
+          "glass": { "price": 75, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 105, "warranty": "12 months", "time": "Up to 90 minutes" }
+        },
+        "iphone-15-pro": {
+          "glass": { "price": 149, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 189, "warranty": "12 months", "time": "Up to 90 minutes" }
+        },
+        "iphone-15": {
+          "glass": { "price": 129, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 169, "warranty": "12 months", "time": "Up to 90 minutes" }
+        }
+      }
+    },
+    "battery": {
+      "basePrice": 35,
+      "devices": {
+        "iphone-8": {
+          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 35, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-se": {
+          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 35, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-7": {
+          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 35, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-15-pro": {
+          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-15": {
+          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-14-pro": {
+          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-14": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-13-pro": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-13": {
+          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-12": {
+          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-11": {
+          "original": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 39, "warranty": "24 months", "time": "Up to 60 minutes" }
+        }
+      }
+    },
+    "charging-port": {
+      "basePrice": 29,
+      "devices": {
+        "iphone-8": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Space Grey", "Silver", "Gold"] },
+        "iphone-se": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
+        "iphone-7": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-15-pro": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-15": { "price": 35, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+      }
+    },
+    "camera": {
+      "basePrice": 49,
+      "devices": {
+        "iphone-8": {
+          "front": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "lens": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-se": {
+          "front": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "lens": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-7": {
+          "front": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "lens": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-15-pro": {
+          "front": { "price": 59, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "lens": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        }
+      }
+    },
+    "earpiece": {
+      "basePrice": 29,
+      "devices": {
+        "iphone-8": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-7": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-se": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-15-pro": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-15": { "price": 35, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+      }
+    },
+    "water-damage": {
+      "basePrice": 99,
+      "devices": {
+        "iphone-8": { "price": 99, "warranty": "6 months", "time": "2-4 hours" },
+        "iphone-se": { "price": 99, "warranty": "6 months", "time": "2-4 hours" },
+        "iphone-15-pro": { "price": 149, "warranty": "6 months", "time": "2-4 hours" }
+      }
+    }
+  }
+}

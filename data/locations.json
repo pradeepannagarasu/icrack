@@ -1,0 +1,81 @@
+{
+  "locations": [
+    {
+      "id": "downtown",
+      "name": "Downtown Store",
+      "address": "123 Main Street, Downtown",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10001",
+      "phone": "+1 (234) 567-8901",
+      "hours": {
+        "monday": "9:00 AM - 7:00 PM",
+        "tuesday": "9:00 AM - 7:00 PM",
+        "wednesday": "9:00 AM - 7:00 PM",
+        "thursday": "9:00 AM - 7:00 PM",
+        "friday": "9:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 6:00 PM",
+        "sunday": "11:00 AM - 5:00 PM"
+      },
+      "services": ["walk-in", "appointment", "express"]
+    },
+    {
+      "id": "mall",
+      "name": "Shopping Mall",
+      "address": "456 Mall Drive, Suite 200",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zip": "90001",
+      "phone": "+1 (234) 567-8902",
+      "hours": {
+        "monday": "10:00 AM - 9:00 PM",
+        "tuesday": "10:00 AM - 9:00 PM",
+        "wednesday": "10:00 AM - 9:00 PM",
+        "thursday": "10:00 AM - 9:00 PM",
+        "friday": "10:00 AM - 9:00 PM",
+        "saturday": "10:00 AM - 9:00 PM",
+        "sunday": "11:00 AM - 7:00 PM"
+      },
+      "services": ["walk-in", "appointment"]
+    },
+    {
+      "id": "airport",
+      "name": "Airport Location",
+      "address": "Terminal 3, Gate 15",
+      "city": "Chicago",
+      "state": "IL",
+      "zip": "60601",
+      "phone": "+1 (234) 567-8903",
+      "hours": {
+        "monday": "6:00 AM - 10:00 PM",
+        "tuesday": "6:00 AM - 10:00 PM",
+        "wednesday": "6:00 AM - 10:00 PM",
+        "thursday": "6:00 AM - 10:00 PM",
+        "friday": "6:00 AM - 10:00 PM",
+        "saturday": "6:00 AM - 10:00 PM",
+        "sunday": "6:00 AM - 10:00 PM"
+      },
+      "services": ["express", "appointment"]
+    },
+    {
+      "id": "online",
+      "name": "Online/Shipping",
+      "address": "Mail-in Service",
+      "city": "N/A",
+      "state": "N/A",
+      "zip": "N/A",
+      "phone": "+1 (234) 567-8900",
+      "hours": {
+        "monday": "24/7",
+        "tuesday": "24/7",
+        "wednesday": "24/7",
+        "thursday": "24/7",
+        "friday": "24/7",
+        "saturday": "24/7",
+        "sunday": "24/7"
+      },
+      "services": ["shipping", "mail-in"]
+    }
+  ]
+}
+

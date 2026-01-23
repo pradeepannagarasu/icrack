@@ -1,0 +1,133 @@
+{
+  "repairTypes": [
+    {
+      "id": "screen",
+      "name": "Screen Repair",
+      "description": "Professional screen replacement service",
+      "commonIssues": [
+        "Cracked screen",
+        "Black screen",
+        "Touch not working",
+        "Display lines or spots"
+      ],
+      "warranty": "12 months",
+      "duration": "60-120 mins"
+    },
+    {
+      "id": "battery",
+      "name": "Battery Replacement",
+      "description": "Replace your old battery with a new one",
+      "commonIssues": [
+        "Battery drains quickly",
+        "Phone won't charge",
+        "Battery swelling",
+        "Random shutdowns"
+      ],
+      "warranty": "24 months",
+      "duration": "60 mins"
+    },
+    {
+      "id": "water-damage",
+      "name": "Water Damage Repair",
+      "description": "Expert water damage restoration",
+      "commonIssues": [
+        "Phone got wet",
+        "No power after water exposure",
+        "Screen flickering",
+        "Speaker not working"
+      ],
+      "warranty": "6 months",
+      "duration": "120-240 mins"
+    },
+    {
+      "id": "charging-port",
+      "name": "Charging Port Repair",
+      "description": "Fix charging and connectivity issues",
+      "commonIssues": [
+        "Won't charge",
+        "Loose charging cable",
+        "Charging port dirty",
+        "USB-C port damaged"
+      ],
+      "warranty": "12 months",
+      "duration": "60 mins"
+    },
+    {
+      "id": "camera",
+      "name": "Camera Repair",
+      "description": "Front or rear camera replacement",
+      "commonIssues": [
+        "Blurry photos",
+        "Camera not working",
+        "Cracked camera lens",
+        "Black screen on camera"
+      ],
+      "warranty": "12 months",
+      "duration": "60 mins"
+    },
+    {
+      "id": "back-glass",
+      "name": "Back Glass Repair",
+      "description": "Replace cracked or damaged back glass",
+      "commonIssues": [
+        "Cracked back",
+        "Back glass shattered",
+        "Scratches on back"
+      ],
+      "warranty": "12 months",
+      "duration": "60-120 mins"
+    },
+    {
+      "id": "speaker",
+      "name": "Speaker Repair",
+      "description": "Fix audio and speaker issues",
+      "commonIssues": [
+        "No sound",
+        "Distorted audio",
+        "Speaker crackling",
+        "Earpiece not working"
+      ],
+      "warranty": "12 months",
+      "duration": "60 mins"
+    },
+    {
+      "id": "home-button",
+      "name": "Home Button Repair",
+      "description": "Fix or replace home button",
+      "commonIssues": [
+        "Home button not working",
+        "Touch ID not working",
+        "Button stuck"
+      ],
+      "warranty": "12 months",
+      "duration": "60 mins"
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics",
+      "description": "Comprehensive device diagnostics. Identify issues and get repair recommendations.",
+      "commonIssues": [
+        "Device not working",
+        "Unknown issues",
+        "Need assessment",
+        "Performance problems"
+      ],
+      "warranty": "N/A",
+      "duration": "30 mins"
+    },
+    {
+      "id": "software",
+      "name": "Software Issues",
+      "description": "Resolve software problems, updates, and system errors. Expert troubleshooting service.",
+      "commonIssues": [
+        "Software crashes",
+        "Update issues",
+        "System errors",
+        "Performance problems"
+      ],
+      "warranty": "3 months",
+      "duration": "60-120 mins"
+    }
+  ]
+}
+

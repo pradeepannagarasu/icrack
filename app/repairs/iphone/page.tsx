@@ -1,0 +1,139 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import brandsData from "@/data/brands.json";
+import ScrollReveal from "@/components/animations/ScrollReveal";
+import { fadeInUp } from "@/lib/animations";
+import { getModelImage } from "@/lib/deviceImages";
+import BackLink from "@/components/ui/BackLink";
+
+const iphoneModels = brandsData.brands
+  .find((b) => b.id === "apple")
+  ?.models.filter((m) => m.id.includes("iphone")) || [];
+
+export default function iPhoneRepairsPage() {
+  return (
+    <div className="pt-20 lg:pt-[176px]">
+      {/* Back Link */}
+      <section className="bg-white border-b border-neutral-200 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <BackLink href="/repairs" label="Back to repairs" />
+        </div>
+      </section>
+
+      {/* Hero Section */}
+      <section className="bg-white py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-900 mb-6">
+              iPhone Repairs
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-3xl mx-auto">
+              Expert iPhone repairs with 12-month warranty on all screen replacements and 24-month warranty on battery replacements. Fast, professional service from qualified technicians using quality parts.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Device Selector */}
+      <section className="py-12 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-4">
+              Select Your iPhone
+            </h2>
+            <p className="text-lg text-neutral-600">
+              Choose your iPhone model to see available repair options
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+            {iphoneModels.map((model, index) => (
+              <ScrollReveal key={model.id} delay={index * 0.05}>
+                <Link href={`/repairs/iphone/${model.id}`}>
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-white rounded-2xl p-6 border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all text-center group"
+                  >
+                    <div className="relative h-32 bg-white rounded-xl flex items-center justify-center mb-4 overflow-hidden">
+                      <Image
+                        src={getModelImage("apple", model.id)}
+                        alt={model.name}
+                        width={200}
+                        height={200}
+                        className="object-contain w-full h-full p-4 group-hover:scale-110 transition-transform duration-300"
+                        style={{ maxWidth: "100%", maxHeight: "100%" }}
+                        unoptimized
+                      />
+                    </div>
+                    <h3 className="font-semibold text-neutral-900 text-sm group-hover:text-primary-600 transition-colors">
+                      {model.name}
+                    </h3>
+                  </motion.div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Section */}
+      <section className="py-12 lg:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-4">
+              Why Choose us?
+            </h2>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              "UK's leading high-street technology repair service.",
+              "Highly qualified technicians.",
+              "Use the highest quality parts that are quality controlled.",
+              "All our iPhone screen replacements come with a 12-month warranty, and battery replacements include a 24-month warranty.",
+              "Highly rated on Trustpilot by our customers.",
+              "iPhone express repair service: We ensure your iPhone is fixed and back to working order in no time. Most repairs take between 30 minutes and 1 hour.",
+            ].map((point, index) => (
+              <ScrollReveal key={index} delay={index * 0.1}>
+                <div className="bg-neutral-50 rounded-xl p-6">
+                  <p className="text-neutral-700 text-sm leading-relaxed">{point}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-12 lg:py-16 bg-gradient-to-r from-primary-600 to-accent-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+              Ready to Repair Your iPhone?
+            </h2>
+            <p className="text-lg text-white/90 mb-8">
+              Select your iPhone model above or book an appointment directly
+            </p>
+            <Link
+              href="/book"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-neutral-100 transition-all hover:shadow-xl"
+            >
+              <span>Book Appointment</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+    </div>
+  );
+}
+

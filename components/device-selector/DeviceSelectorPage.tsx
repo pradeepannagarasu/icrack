@@ -1,0 +1,229 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { Brand, Model, RepairType } from "@/types";
+import brandsData from "@/data/brands.json";
+import repairsData from "@/data/repairs.json";
+import ProgressIndicator from "./ProgressIndicator";
+import BrandStep from "./steps/BrandStep";
+import ModelStep from "./steps/ModelStep";
+import RepairStep from "./steps/RepairStep";
+import BookingStep from "./steps/BookingStep";
+
+type Step = "brand" | "model" | "repair" | "book";
+
+const steps: { id: Step; label: string }[] = [
+  { id: "brand", label: "Brand" },
+  { id: "model", label: "Model" },
+  { id: "repair", label: "Repair" },
+  { id: "book", label: "Book" },
+];
+
+export default function DeviceSelectorPage() {
+  const router = useRouter();
+  const [currentStep, setCurrentStep] = useState<Step>("brand");
+  const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
+  const [selectedModel, setSelectedModel] = useState<Model | null>(null);
+  const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
+
+  const brands = brandsData.brands as Brand[];
+  const repairs = repairsData.repairTypes as RepairType[];
+
+  const handleBrandSelect = (brand: Brand) => {
+    setSelectedBrand(brand);
+    setSelectedModel(null);
+    setSelectedRepair(null);
+    setCurrentStep("model");
+  };
+
+  const handleModelSelect = (model: Model) => {
+    setSelectedModel(model);
+    setSelectedRepair(null);
+    // Navigate directly to the repair page for this device
+    // Determine category based on brand or model
+    let category = "phones"; // default
+    
+    if (selectedBrand) {
+      if (selectedBrand.id === "apple") {
+        if (model.id.includes("ipad")) {
+          category = "tablets";
+        } else if (model.id.includes("iphone")) {
+          category = "iphone";
+        } else if (model.id.includes("macbook") || model.id.includes("mac")) {
+          category = "laptops";
+        }
+      } else if (selectedBrand.id === "samsung") {
+        if (model.id.includes("tab")) {
+          category = "tablets";
+        } else {
+          category = "phones";
+        }
+      } else if (model.id.includes("tab") || model.id.includes("ipad")) {
+        category = "tablets";
+      } else if (model.id.includes("macbook") || model.id.includes("mac") || model.id.includes("xps") || model.id.includes("spectre") || model.id.includes("thinkpad") || model.id.includes("yoga") || model.id.includes("inspiron") || model.id.includes("envy") || model.id.includes("pavilion") || model.id.includes("elitebook") || model.id.includes("ideapad") || model.id.includes("latitude")) {
+        category = "laptops";
+      } else {
+        category = "phones";
+      }
+    }
+    
+    router.push(`/repairs/${category}/${model.id}`);
+  };
+
+  const handleRepairSelect = (repair: RepairType) => {
+    setSelectedRepair(repair);
+    setCurrentStep("book");
+  };
+
+  const handleBook = () => {
+    // Navigate to booking page with pre-filled data
+    const params = new URLSearchParams();
+    if (selectedBrand) params.set("brand", selectedBrand.id);
+    if (selectedModel) params.set("model", selectedModel.id);
+    if (selectedRepair) params.set("repair", selectedRepair.id);
+    router.push(`/book?${params.toString()}`);
+  };
+
+  const handleBack = () => {
+    switch (currentStep) {
+      case "model":
+        setCurrentStep("brand");
+        setSelectedBrand(null);
+        break;
+      case "repair":
+        setCurrentStep("model");
+        setSelectedModel(null);
+        break;
+      case "book":
+        setCurrentStep("repair");
+        setSelectedRepair(null);
+        break;
+    }
+  };
+
+  const canGoBack = currentStep !== "brand";
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50 flex flex-col">
+      {/* Progress Indicator */}
+      <div className="pt-8 pb-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <ProgressIndicator
+            steps={steps}
+            currentStep={currentStep}
+            selectedBrand={selectedBrand?.name}
+            selectedModel={selectedModel?.name}
+            selectedRepair={selectedRepair?.name}
+          />
+        </div>
+      </div>
+
+      {/* Main Content - Centered */}
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
+        <div className="w-full max-w-4xl">
+          <AnimatePresence mode="wait">
+            {currentStep === "brand" && (
+              <motion.div
+                key="brand"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <BrandStep
+                  brands={brands}
+                  onSelect={handleBrandSelect}
+                  selectedBrand={selectedBrand}
+                />
+              </motion.div>
+            )}
+
+            {currentStep === "model" && selectedBrand && (
+              <motion.div
+                key="model"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <ModelStep
+                  brand={selectedBrand}
+                  onSelect={handleModelSelect}
+                  selectedModel={selectedModel}
+                />
+              </motion.div>
+            )}
+
+            {currentStep === "repair" && selectedBrand && selectedModel && (
+              <motion.div
+                key="repair"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <RepairStep
+                  repairs={repairs}
+                  onSelect={handleRepairSelect}
+                  selectedRepair={selectedRepair}
+                />
+              </motion.div>
+            )}
+
+            {currentStep === "book" &&
+              selectedBrand &&
+              selectedModel &&
+              selectedRepair && (
+                <motion.div
+                  key="book"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  <BookingStep
+                    brand={selectedBrand}
+                    model={selectedModel}
+                    repair={selectedRepair}
+                    onBook={handleBook}
+                  />
+                </motion.div>
+              )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Back Button */}
+      {canGoBack && (
+        <div className="pb-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              onClick={handleBack}
+              className="flex items-center space-x-2 text-neutral-600 hover:text-primary-600 font-medium transition-colors px-4 py-2 rounded-lg hover:bg-neutral-100"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              <span>Back</span>
+            </motion.button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
