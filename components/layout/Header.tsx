@@ -78,7 +78,7 @@ export default function Header() {
                 className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
                 priority
               />
-              <span className="ml-2 text-xl sm:text-2xl font-display font-bold tracking-tight text-primary-600">
+              <span className="ml-3 text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight text-primary-600">
                 iCrack
               </span>
             </motion.div>
