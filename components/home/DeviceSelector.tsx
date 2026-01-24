@@ -41,7 +41,7 @@ export default function DeviceSelector({ category }: DeviceSelectorProps = {} as
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-6">
                 {brands.map((brand, index) => (
                   <motion.button
                     key={brand.id}
@@ -51,25 +51,25 @@ export default function DeviceSelector({ category }: DeviceSelectorProps = {} as
                     whileHover={{ scale: 1.05, y: -6 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedBrand(brand.id)}
-                    className="p-6 bg-white hover:bg-primary-50 rounded-2xl border-2 border-neutral-200 hover:border-primary-200 transition-all group shadow-sm hover:shadow-lg"
+                    className="p-8 md:p-10 bg-white hover:bg-primary-50 rounded-3xl border-2 border-neutral-200 hover:border-primary-300 transition-all group shadow-md hover:shadow-xl"
                   >
-                    <div className="flex flex-col items-center space-y-3">
+                    <div className="flex flex-col items-center space-y-4">
                       <motion.div
-                        className="w-20 h-20 bg-white rounded-xl flex items-center justify-center overflow-hidden"
+                        className="w-28 h-28 md:w-32 md:h-32 bg-white rounded-2xl flex items-center justify-center overflow-hidden shadow-sm"
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.3 }}
                       >
                         <Image
                           src={getBrandImage(brand.id, category)}
                           alt={brand.name}
-                          width={80}
-                          height={80}
-                          className="object-contain w-full h-full p-2"
+                          width={128}
+                          height={128}
+                          className="object-contain w-full h-full p-3 md:p-4"
                           style={{ maxWidth: "100%", maxHeight: "100%" }}
                           unoptimized
                         />
                       </motion.div>
-                      <span className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors text-sm">
+                      <span className="font-bold text-lg md:text-xl text-neutral-900 group-hover:text-primary-600 transition-colors">
                         {brand.name}
                       </span>
                     </div>

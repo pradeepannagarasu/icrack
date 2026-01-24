@@ -28,7 +28,7 @@ export default function BrandStep({
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {brands.map((brand, index) => {
           const isSelected = selectedBrand?.id === brand.id;
           return (
@@ -40,15 +40,15 @@ export default function BrandStep({
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => onSelect(brand)}
-              className={`p-6 md:p-8 rounded-2xl border-2 transition-all ${
+              className={`p-8 md:p-10 rounded-3xl border-2 transition-all ${
                 isSelected
-                  ? "bg-primary-600 border-primary-600 shadow-lg"
-                  : "bg-white border-neutral-200 hover:border-primary-300 hover:shadow-md"
+                  ? "bg-primary-600 border-primary-600 shadow-xl"
+                  : "bg-white border-neutral-200 hover:border-primary-300 hover:shadow-xl"
               }`}
             >
               <div className="flex flex-col items-center space-y-4">
                 <motion.div
-                  className={`w-20 h-20 md:w-24 md:h-24 rounded-xl flex items-center justify-center overflow-hidden ${
+                  className={`w-28 h-28 md:w-32 md:h-32 rounded-2xl flex items-center justify-center overflow-hidden shadow-sm ${
                     isSelected ? "bg-white/20" : "bg-white"
                   }`}
                   whileHover={{ scale: 1.1 }}
@@ -57,9 +57,9 @@ export default function BrandStep({
                   <Image
                     src={getBrandImage(brand.id)}
                     alt={brand.name}
-                    width={96}
-                    height={96}
-                    className={`object-contain w-full h-full p-2 transition-opacity ${
+                    width={128}
+                    height={128}
+                    className={`object-contain w-full h-full p-3 md:p-4 transition-opacity ${
                       isSelected ? "opacity-90" : ""
                     }`}
                     style={{ maxWidth: "100%", maxHeight: "100%" }}
@@ -67,7 +67,7 @@ export default function BrandStep({
                   />
                 </motion.div>
                 <span
-                  className={`font-semibold text-base md:text-lg ${
+                  className={`font-bold text-lg md:text-xl ${
                     isSelected ? "text-white" : "text-neutral-900"
                   }`}
                 >

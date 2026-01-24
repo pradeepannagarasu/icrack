@@ -26,7 +26,7 @@ export default function BrandStep({ onSelect, category }: BrandStepProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {brands.map((brand, index) => (
           <motion.button
             key={brand.id}
@@ -36,21 +36,21 @@ export default function BrandStep({ onSelect, category }: BrandStepProps) {
             whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onSelect(brand)}
-            className="p-6 bg-white rounded-2xl border-2 border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all group"
+            className="p-8 md:p-10 bg-white rounded-3xl border-2 border-neutral-200 hover:border-primary-300 hover:shadow-xl transition-all group"
           >
-            <div className="flex flex-col items-center space-y-3">
-              <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="w-28 h-28 md:w-32 md:h-32 bg-white rounded-2xl flex items-center justify-center overflow-hidden shadow-sm">
                 <Image
                   src={getBrandImage(brand.id, category)}
                   alt={brand.name}
-                  width={80}
-                  height={80}
-                  className="object-contain w-full h-full p-2 group-hover:scale-110 transition-transform duration-300"
+                  width={128}
+                  height={128}
+                  className="object-contain w-full h-full p-3 md:p-4 group-hover:scale-110 transition-transform duration-300"
                   style={{ maxWidth: "100%", maxHeight: "100%" }}
                   unoptimized
                 />
               </div>
-              <span className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors text-center text-sm">
+              <span className="font-bold text-lg md:text-xl text-neutral-900 group-hover:text-primary-600 transition-colors text-center">
                 {brand.name}
               </span>
             </div>
