@@ -8,11 +8,12 @@ import brandsData from "@/data/brands.json";
 import repairsData from "@/data/repairs.json";
 import ProgressIndicator from "./ProgressIndicator";
 import BrandStep from "./steps/BrandStep";
+import AppleCategoryStep from "../booking/steps/AppleCategoryStep";
 import ModelStep from "./steps/ModelStep";
 import RepairStep from "./steps/RepairStep";
 import BookingStep from "./steps/BookingStep";
 
-type Step = "brand" | "model" | "repair" | "book";
+type Step = "brand" | "apple-category" | "model" | "repair" | "book";
 
 const steps: { id: Step; label: string }[] = [
   { id: "brand", label: "Brand" },
@@ -25,6 +26,7 @@ export default function DeviceSelectorPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<Step>("brand");
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
+  const [selectedAppleCategory, setSelectedAppleCategory] = useState<"phones" | "ipads" | "laptops" | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
 
@@ -33,6 +35,19 @@ export default function DeviceSelectorPage() {
 
   const handleBrandSelect = (brand: Brand) => {
     setSelectedBrand(brand);
+    setSelectedAppleCategory(null);
+    setSelectedModel(null);
+    setSelectedRepair(null);
+    // If Apple is selected, show category selection, otherwise go to model selection
+    if (brand.id === "apple") {
+      setCurrentStep("apple-category");
+    } else {
+      setCurrentStep("model");
+    }
+  };
+
+  const handleAppleCategorySelect = (appleCategory: "phones" | "ipads" | "laptops") => {
+    setSelectedAppleCategory(appleCategory);
     setSelectedModel(null);
     setSelectedRepair(null);
     setCurrentStep("model");
@@ -42,19 +57,29 @@ export default function DeviceSelectorPage() {
     setSelectedModel(model);
     setSelectedRepair(null);
     // Navigate directly to the repair page for this device
-    // Determine category based on brand or model
-    let category = "phones"; // default
-    
-    if (selectedBrand) {
-      if (selectedBrand.id === "apple") {
-        if (model.id.includes("ipad")) {
-          category = "tablets";
-        } else if (model.id.includes("iphone")) {
-          category = "iphone";
-        } else if (model.id.includes("macbook") || model.id.includes("mac")) {
-          category = "laptops";
-        }
-      } else if (selectedBrand.id === "samsung") {
+      // Determine category based on brand or model
+      let category = "phones"; // default
+      
+      if (selectedBrand) {
+        if (selectedBrand.id === "apple") {
+          // Use selected Apple category if available
+          if (selectedAppleCategory === "ipads") {
+            category = "tablets";
+          } else if (selectedAppleCategory === "phones") {
+            category = "iphone";
+          } else if (selectedAppleCategory === "laptops") {
+            category = "laptops";
+          } else {
+            // Fallback to model detection
+            if (model.id.includes("ipad")) {
+              category = "tablets";
+            } else if (model.id.includes("iphone")) {
+              category = "iphone";
+            } else if (model.id.includes("macbook") || model.id.includes("mac")) {
+              category = "laptops";
+            }
+          }
+        } else if (selectedBrand.id === "samsung") {
         if (model.id.includes("tab")) {
           category = "tablets";
         } else {
@@ -88,9 +113,20 @@ export default function DeviceSelectorPage() {
 
   const handleBack = () => {
     switch (currentStep) {
-      case "model":
+      case "apple-category":
         setCurrentStep("brand");
         setSelectedBrand(null);
+        setSelectedAppleCategory(null);
+        break;
+      case "model":
+        if (selectedBrand?.id === "apple") {
+          setCurrentStep("apple-category");
+          setSelectedAppleCategory(null);
+        } else {
+          setCurrentStep("brand");
+          setSelectedBrand(null);
+        }
+        setSelectedModel(null);
         break;
       case "repair":
         setCurrentStep("model");
@@ -140,6 +176,18 @@ export default function DeviceSelectorPage() {
               </motion.div>
             )}
 
+            {currentStep === "apple-category" && selectedBrand?.id === "apple" && (
+              <motion.div
+                key="apple-category"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <AppleCategoryStep onSelect={handleAppleCategorySelect} />
+              </motion.div>
+            )}
+
             {currentStep === "model" && selectedBrand && (
               <motion.div
                 key="model"
@@ -152,6 +200,7 @@ export default function DeviceSelectorPage() {
                   brand={selectedBrand}
                   onSelect={handleModelSelect}
                   selectedModel={selectedModel}
+                  category={selectedAppleCategory || undefined}
                 />
               </motion.div>
             )}

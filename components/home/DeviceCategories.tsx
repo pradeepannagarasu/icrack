@@ -24,10 +24,10 @@ const deviceCategories: DeviceCategory[] = [
   },
   {
     id: "tablets",
-    name: "Tablets",
+    name: "iPads",
     icon: Tablet,
     image: categoryImages.tablets,
-    description: "Expert tablet repair and screen replacement",
+    description: "Expert iPad repair and screen replacement",
   },
   {
     id: "laptops",

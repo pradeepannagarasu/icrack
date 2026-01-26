@@ -4,13 +4,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgressIndicator from "./ProgressIndicator";
 import BrandStep from "./steps/BrandStep";
+import AppleCategoryStep from "./steps/AppleCategoryStep";
 import DeviceStep from "./steps/DeviceStep";
 import RepairTypeStep from "./steps/RepairTypeStep";
 import BookingFormStep from "./steps/BookingFormStep";
 import { Brand, Model, RepairType, BookingData } from "@/types";
 import { DeviceCategory } from "@/lib/categoryFilters";
 
-export type BookingStep = "brand" | "device" | "repair" | "form";
+export type BookingStep = "brand" | "apple-category" | "device" | "repair" | "form";
 
 interface BookingFlowProps {
   initialStep?: BookingStep;
@@ -21,12 +22,14 @@ interface BookingFlowProps {
 export default function BookingFlow({ initialStep = "brand", onComplete, category }: BookingFlowProps) {
   const [currentStep, setCurrentStep] = useState<BookingStep>(initialStep);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
+  const [selectedAppleCategory, setSelectedAppleCategory] = useState<"phones" | "ipads" | "laptops" | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
   const [bookingData, setBookingData] = useState<Partial<BookingData>>({});
 
   const steps: { id: BookingStep; label: string }[] = [
     { id: "brand", label: "Brand" },
+    ...(selectedBrand?.id === "apple" ? [{ id: "apple-category" as BookingStep, label: "Device Type" }] : []),
     { id: "device", label: "Device" },
     { id: "repair", label: "Repair" },
     { id: "form", label: "Details" },
@@ -34,6 +37,19 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
 
   const handleBrandSelect = (brand: Brand) => {
     setSelectedBrand(brand);
+    setSelectedAppleCategory(null);
+    setSelectedModel(null);
+    setSelectedRepair(null);
+    // If Apple is selected, show category selection, otherwise go to device selection
+    if (brand.id === "apple") {
+      setCurrentStep("apple-category");
+    } else {
+      setCurrentStep("device");
+    }
+  };
+
+  const handleAppleCategorySelect = (appleCategory: "phones" | "ipads" | "laptops") => {
+    setSelectedAppleCategory(appleCategory);
     setSelectedModel(null);
     setSelectedRepair(null);
     setCurrentStep("device");
@@ -52,12 +68,22 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
       // Determine category based on brand or model
       deviceCategory = "iphone"; // default
       if (selectedBrand?.id === "apple") {
-        if (model.id.includes("ipad")) {
+        // Use selected Apple category if available
+        if (selectedAppleCategory === "ipads") {
           deviceCategory = "tablets";
-        } else if (model.id.includes("iphone")) {
+        } else if (selectedAppleCategory === "phones") {
           deviceCategory = "iphone";
-        } else if (model.id.includes("macbook") || model.id.includes("mac")) {
+        } else if (selectedAppleCategory === "laptops") {
           deviceCategory = "laptops";
+        } else {
+          // Fallback to model detection
+          if (model.id.includes("ipad")) {
+            deviceCategory = "tablets";
+          } else if (model.id.includes("iphone")) {
+            deviceCategory = "iphone";
+          } else if (model.id.includes("macbook") || model.id.includes("mac")) {
+            deviceCategory = "laptops";
+          }
         }
       } else if (selectedBrand?.id === "samsung") {
         if (model.id.includes("tab")) {
@@ -103,9 +129,20 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
 
   const handleBack = () => {
     switch (currentStep) {
-      case "device":
+      case "apple-category":
         setCurrentStep("brand");
         setSelectedBrand(null);
+        setSelectedAppleCategory(null);
+        break;
+      case "device":
+        if (selectedBrand?.id === "apple") {
+          setCurrentStep("apple-category");
+          setSelectedAppleCategory(null);
+        } else {
+          setCurrentStep("brand");
+          setSelectedBrand(null);
+        }
+        setSelectedModel(null);
         break;
       case "repair":
         setCurrentStep("device");
@@ -150,6 +187,18 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
             </motion.div>
           )}
 
+          {currentStep === "apple-category" && selectedBrand?.id === "apple" && (
+            <motion.div
+              key="apple-category"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AppleCategoryStep onSelect={handleAppleCategorySelect} />
+            </motion.div>
+          )}
+
           {currentStep === "device" && selectedBrand && (
             <motion.div
               key="device"
@@ -161,7 +210,7 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
               <DeviceStep
                 brand={selectedBrand}
                 onSelect={handleDeviceSelect}
-                category={category}
+                category={selectedAppleCategory || category}
               />
             </motion.div>
           )}

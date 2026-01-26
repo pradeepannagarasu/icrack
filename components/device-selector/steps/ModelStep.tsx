@@ -5,18 +5,35 @@ import { Smartphone } from "lucide-react";
 import Image from "next/image";
 import { Brand, Model } from "@/types";
 import { getModelImage } from "@/lib/deviceImages";
+import { DeviceCategory, isModelInCategory } from "@/lib/categoryFilters";
 
 interface ModelStepProps {
   brand: Brand;
   onSelect: (model: Model) => void;
   selectedModel: Model | null;
+  category?: DeviceCategory | "phones" | "ipads" | "laptops";
 }
 
 export default function ModelStep({
   brand,
   onSelect,
   selectedModel,
+  category,
 }: ModelStepProps) {
+  // Filter models by category if provided (for Apple devices)
+  const models = category 
+    ? brand.models.filter((model) => {
+        if (category === "ipads") {
+          return model.id.includes("ipad");
+        } else if (category === "phones") {
+          return model.id.includes("iphone");
+        } else if (category === "laptops") {
+          return model.id.includes("macbook") || model.id.includes("mac");
+        }
+        return isModelInCategory(model.id, category as DeviceCategory);
+      })
+    : brand.models;
+
   return (
     <div className="w-full">
       <div className="text-center mb-10">
@@ -29,7 +46,7 @@ export default function ModelStep({
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
-        {brand.models.map((model, index) => {
+        {models.map((model, index) => {
           const isSelected = selectedModel?.id === model.id;
           return (
             <motion.button
