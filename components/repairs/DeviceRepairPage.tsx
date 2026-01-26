@@ -135,7 +135,7 @@ export default function DeviceRepairPage({
 }: DeviceRepairPageProps) {
   const [selectedRepair, setSelectedRepair] = useState<string | null>(null);
   const [selectedSubType, setSelectedSubType] = useState<
-    "front" | "rear" | "lens" | "original" | "regular" | "glass" | "housing" | undefined
+    "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined
   >(undefined);
 
   // Filter repairs: For MacBooks, only show battery repairs

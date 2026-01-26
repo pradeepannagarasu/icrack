@@ -42,7 +42,7 @@ const pricing = pricingData as PricingData;
 export function getRepairPricing(
   deviceId: string,
   repairType: string,
-  subType?: "front" | "rear" | "lens" | "original" | "regular" | "glass" | "housing"
+  subType?: "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock"
 ): RepairPricing | null {
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
