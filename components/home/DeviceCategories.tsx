@@ -31,10 +31,10 @@ const deviceCategories: DeviceCategory[] = [
   },
   {
     id: "laptops",
-    name: "Laptops",
+    name: "MacBooks",
     icon: Laptop,
     image: categoryImages.laptops,
-    description: "Comprehensive laptop repair services",
+    description: "MacBook battery replacement services",
   },
 ];
 

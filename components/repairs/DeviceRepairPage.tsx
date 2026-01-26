@@ -60,7 +60,13 @@ export default function DeviceRepairPage({
     "front" | "rear" | "lens" | "original" | "regular" | "glass" | "housing" | undefined
   >(undefined);
 
-  const repairOptions = getRepairOptions(repairs);
+  // Filter repairs: For MacBooks, only show battery repairs
+  const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
+  const filteredRepairs = isMacBook 
+    ? repairs.filter((repair) => repair.id === "battery")
+    : repairs;
+
+  const repairOptions = getRepairOptions(filteredRepairs);
 
   const handleRepairSelect = (repairOption: typeof repairOptions[0]) => {
     setSelectedRepair(repairOption.id);

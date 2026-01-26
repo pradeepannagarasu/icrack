@@ -186,15 +186,6 @@ export default function ServiceSelectionContent() {
           </motion.button>
         </div>
 
-        {/* Sky Employee Link */}
-        <div className="text-center">
-          <Link
-            href="/sky-employee"
-            className="text-primary-600 hover:text-primary-700 font-semibold transition-colors"
-          >
-            Are you a Sky employee? If yes click here
-          </Link>
-        </div>
       </div>
     </div>
   );

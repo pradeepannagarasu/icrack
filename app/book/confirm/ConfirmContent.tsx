@@ -69,9 +69,14 @@ export default function ConfirmContent() {
     return `/book/service?brand=${brandId}&device=${deviceId}&repair=${repairId}${variant ? `&variant=${variant}` : ""}`;
   };
 
-  // Calculate mail-in pack cost
+  // Calculate additional costs
   const mailInPackCost = 10.00;
-  const totalCost = pricing ? pricing.price + (service === "mail" ? mailInPackCost : 0) : 0;
+  const callOutServiceCharge = 25.00;
+  const totalCost = pricing 
+    ? pricing.price + 
+      (service === "mail" ? mailInPackCost : 0) + 
+      (service === "callout" ? callOutServiceCharge : 0)
+    : 0;
 
   return (
     <div className="min-h-screen bg-white pt-20 pb-16">
@@ -287,6 +292,24 @@ export default function ConfirmContent() {
                   </div>
                   <p className="text-xl font-bold text-primary-600">
                     £{mailInPackCost.toFixed(2)}
+                  </p>
+                </div>
+              )}
+
+              {/* Call-out Service Charge (if callout service) */}
+              {service === "callout" && (
+                <div className="border-t border-neutral-300 pt-6">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex-1">
+                      <p className="font-semibold text-neutral-900 mb-1">Call-out Service:</p>
+                      <p className="text-sm text-neutral-600">
+                        We come to your doorstep - 12-24 hour service
+                      </p>
+                    </div>
+                    <Package className="w-6 h-6 text-primary-600 flex-shrink-0 ml-4" />
+                  </div>
+                  <p className="text-xl font-bold text-primary-600">
+                    £{callOutServiceCharge.toFixed(2)}
                   </p>
                 </div>
               )}
