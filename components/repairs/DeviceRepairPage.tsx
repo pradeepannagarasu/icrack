@@ -23,15 +23,91 @@ interface DeviceRepairPageProps {
 }
 
 // Map repair types from repairs.json to display options
-function getRepairOptions(repairs: RepairType[]) {
-  return repairs.map((repair) => {
-    // Map repair IDs to display options
+function getRepairOptions(repairs: RepairType[], deviceId?: string) {
+  const options: Array<{
+    id: string;
+    title: string;
+    description: string;
+    duration: string;
+    warranty: string;
+    repairId: string;
+    subType?: "original" | "regular" | "lens" | "replacement" | "port" | "dock";
+  }> = [];
+
+  repairs.forEach((repair) => {
+    // Battery: Split into two separate options
+    if (repair.id === "battery") {
+      options.push({
+        id: "battery-original",
+        title: "Original Battery Replacement",
+        description: "Premium-grade battery calibrated for maximum performance and longevity. 24-month warranty.",
+        duration: repair.duration,
+        warranty: "24 months",
+        repairId: "battery",
+        subType: "original",
+      });
+      options.push({
+        id: "battery-regular",
+        title: "Standard Battery Replacement",
+        description: "High-quality replacement battery – the best value option to keep you powered all day. 24-month warranty.",
+        duration: repair.duration,
+        warranty: "24 months",
+        repairId: "battery",
+        subType: "regular",
+      });
+      return;
+    }
+
+    // Camera: Split into two separate options
+    if (repair.id === "camera") {
+      options.push({
+        id: "camera-lens",
+        title: "Camera Lens Repair",
+        description: "Replace cracked or damaged camera lens glass. Quick and affordable repair.",
+        duration: repair.duration,
+        warranty: repair.warranty,
+        repairId: "camera",
+        subType: "lens",
+      });
+      options.push({
+        id: "camera-replacement",
+        title: "Camera Replacement",
+        description: "Full camera module replacement for front or rear camera issues.",
+        duration: repair.duration,
+        warranty: repair.warranty,
+        repairId: "camera",
+        subType: "replacement",
+      });
+      return;
+    }
+
+    // Charging Port: Split into two separate options
+    if (repair.id === "charging-port") {
+      options.push({
+        id: "charging-port-repair",
+        title: "Charging Port Repair",
+        description: "Fix charging port issues, clean and repair damaged ports.",
+        duration: repair.duration,
+        warranty: repair.warranty,
+        repairId: "charging-port",
+        subType: "port",
+      });
+      options.push({
+        id: "charging-dock-repair",
+        title: "Charging Dock Repair",
+        description: "Repair or replace charging dock and connectivity components.",
+        duration: repair.duration,
+        warranty: repair.warranty,
+        repairId: "charging-port",
+        subType: "dock",
+      });
+      return;
+    }
+
+    // Map other repair IDs to display options
     const optionMap: Record<string, { label: string; repairId: string }> = {
       screen: { label: "Screen Repair", repairId: "screen" },
-      battery: { label: "Battery Replacement", repairId: "battery" },
       "water-damage": { label: "Water Damage Repair", repairId: "water-damage" },
-      "charging-port": { label: "Charging Port Repair", repairId: "charging-port" },
-      camera: { label: "Camera Repair", repairId: "camera" },
       "back-glass": { label: "Back Glass Repair", repairId: "back-cover" },
       speaker: { label: "Speaker Repair", repairId: "earpiece" },
       "home-button": { label: "Home Button Repair", repairId: "earpiece" },
@@ -39,15 +115,17 @@ function getRepairOptions(repairs: RepairType[]) {
 
     const option = optionMap[repair.id] || { label: repair.name, repairId: repair.id };
 
-    return {
+    options.push({
       id: repair.id,
       title: option.label,
       description: repair.description,
       duration: repair.duration,
       warranty: repair.warranty,
       repairId: option.repairId,
-    };
+    });
   });
+
+  return options;
 }
 
 export default function DeviceRepairPage({
@@ -66,13 +144,15 @@ export default function DeviceRepairPage({
     ? repairs.filter((repair) => repair.id === "battery")
     : repairs;
 
-  const repairOptions = getRepairOptions(filteredRepairs);
+  const repairOptions = getRepairOptions(filteredRepairs, device.id);
 
   const handleRepairSelect = (repairOption: typeof repairOptions[0]) => {
     setSelectedRepair(repairOption.id);
     
-    // Sub-options are handled separately for specific repairs
-    if (repairOption.repairId !== "camera" && repairOption.repairId !== "battery" && repairOption.repairId !== "back-cover") {
+    // Set subType if it exists in the option
+    if (repairOption.subType) {
+      setSelectedSubType(repairOption.subType);
+    } else {
       setSelectedSubType(undefined);
     }
   };
@@ -84,11 +164,19 @@ export default function DeviceRepairPage({
     if (!repairOption) return null;
 
     let repairType = repairOption.repairId;
-    let subType = selectedSubType;
+    let subType = repairOption.subType || selectedSubType;
 
-    // Handle camera sub-types
-    if (repairType === "camera" && subType) {
-      // Keep repairType as "camera" and use subType
+    // Map subType for camera replacement (use "front" as default, or allow selection)
+    if (repairType === "camera" && subType === "replacement") {
+      // For camera replacement, we might want to show front/rear selection
+      // For now, default to "rear" as it's more common
+      subType = "rear";
+    }
+
+    // Map charging dock to port (since pricing uses "charging-port")
+    if (repairType === "charging-port" && subType === "dock") {
+      // Use same pricing structure, but we can differentiate in title/description
+      subType = undefined; // Use base charging-port pricing
     }
 
     const pricing = getRepairPricing(device.id, repairType, subType);
@@ -266,64 +354,6 @@ export default function DeviceRepairPage({
                 <span>Back</span>
               </motion.button>
 
-              {/* Camera Sub-Options */}
-              {selectedRepair === "camera" && !selectedSubType && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
-                >
-                  {[
-                    { id: "front" as const, label: "Front Camera" },
-                    { id: "rear" as const, label: "Rear Camera" },
-                    { id: "lens" as const, label: "Camera Lens" },
-                  ].map((subOption) => (
-                    <motion.button
-                      key={subOption.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setSelectedSubType(subOption.id)}
-                      className="bg-white rounded-2xl p-6 border-2 border-primary-300 hover:border-primary-500 hover:shadow-lg transition-all text-center"
-                    >
-                      <span className="font-semibold text-neutral-900">{subOption.label}</span>
-                    </motion.button>
-                  ))}
-                </motion.div>
-              )}
-
-              {/* Battery Sub-Options: Original vs Standard */}
-              {selectedRepair === "battery" && !selectedSubType && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-                >
-                  {[
-                    {
-                      id: "original" as const,
-                      label: "Original battery",
-                      subtitle: "Premium performance, 24‑month warranty",
-                    },
-                    {
-                      id: "regular" as const,
-                      label: "Standard battery",
-                      subtitle: "Great value, 24‑month warranty",
-                    },
-                  ].map((subOption) => (
-                    <motion.button
-                      key={subOption.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setSelectedSubType(subOption.id)}
-                      className="bg-white rounded-2xl p-6 border-2 border-primary-300 hover:border-primary-500 hover:shadow-lg transition-all text-left"
-                    >
-                      <div className="font-semibold text-neutral-900 mb-1">{subOption.label}</div>
-                      <div className="text-sm text-neutral-600">{subOption.subtitle}</div>
-                    </motion.button>
-                  ))}
-                </motion.div>
-              )}
-
               {/* Back Glass Sub-Options: Glass only vs Housing */}
               {selectedRepair === "back-glass" && !selectedSubType && (
                 <motion.div
@@ -355,18 +385,6 @@ export default function DeviceRepairPage({
                     </motion.button>
                   ))}
                 </motion.div>
-              )}
-
-              {/* Back button for camera sub-options */}
-              {selectedRepair === "camera" && selectedSubType && (
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  onClick={() => setSelectedSubType(undefined)}
-                  className="mb-4 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
-                >
-                  ← Back to camera options
-                </motion.button>
               )}
 
               {/* Selected Repair Detail Card */}

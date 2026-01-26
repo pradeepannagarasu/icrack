@@ -83,9 +83,12 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
     "battery-original": `Genuine‑quality premium battery replacement for your ${deviceName}, calibrated for maximum performance and longevity.`,
     "battery-regular": `High‑quality replacement battery for your ${deviceName}, a great value choice to keep you powered all day.`,
     "charging-port": `Is your device experiencing issues with charging, or your charging port has broken? We can fit a brand new one, to fix these problems!`,
+    "charging-port-port": `Is your device experiencing issues with charging, or your charging port has broken? We can fit a brand new one, to fix these problems!`,
+    "charging-port-dock": `Repair or replace charging dock and connectivity components to restore full charging functionality.`,
     "camera-front": `Is your device experiencing issues with the front camera? We can fit a brand new module, to get it working again!`,
     "camera-rear": `Is your device experiencing issues with the rear camera? We can fit a brand new module, to get it working again!`,
     "camera-lens": `Does your camera still work, but you've cracked or broken the glass? We can easily fit a brand new glass lens!`,
+    "camera-replacement": `Full camera module replacement for front or rear camera issues. Professional repair service.`,
     earpiece: `Is your device experiencing issues with the earpiece? We can fit a brand new one, to fix these problems!`,
     "water-damage": `Has your ${deviceName} been exposed to water or liquid? Our expert technicians can diagnose and repair water damage to get your device working again.`,
   };
@@ -106,13 +109,35 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
     battery: `${deviceName} Battery Replacement`,
     "battery-original": `${deviceName} Original Battery Replacement`,
     "battery-regular": `${deviceName} Standard Battery Replacement`,
-    "charging-port": `${deviceName} / SE 2nd Gen Charging Dock Repair`,
-    "camera-front": `${deviceName} / SE (2nd Gen) / SE (3rd Gen) Front Camera Repair`,
+    "battery-original": `${deviceName} Original Battery Replacement`,
+    "battery-regular": `${deviceName} Standard Battery Replacement`,
+    "charging-port": `${deviceName} Charging Port Repair`,
+    "charging-port-port": `${deviceName} Charging Port Repair`,
+    "charging-port-dock": `${deviceName} Charging Dock Repair`,
+    "camera-front": `${deviceName} Front Camera Repair`,
     "camera-rear": `${deviceName} Rear Camera Repair`,
-    "camera-lens": `${deviceName} / SE (2nd Gen) / SE (3rd Gen) Rear Camera Lens`,
-    earpiece: `${deviceName} / SE (2nd Gen) / SE (3rd Gen) Earpiece Speaker`,
+    "camera-lens": `${deviceName} Camera Lens Repair`,
+    "camera-replacement": `${deviceName} Camera Replacement`,
+    earpiece: `${deviceName} Earpiece Speaker`,
     "water-damage": `${deviceName} Water Damage Repair`,
   };
+
+  // Handle special cases
+  if (repairType === "battery" && subType === "original") {
+    return titles["battery-original"] || `${deviceName} Original Battery Replacement`;
+  }
+  if (repairType === "battery" && subType === "regular") {
+    return titles["battery-regular"] || `${deviceName} Standard Battery Replacement`;
+  }
+  if (repairType === "camera" && subType === "lens") {
+    return titles["camera-lens"] || `${deviceName} Camera Lens Repair`;
+  }
+  if (repairType === "camera" && subType === "replacement") {
+    return titles["camera-replacement"] || `${deviceName} Camera Replacement`;
+  }
+  if (repairType === "charging-port" && subType === "dock") {
+    return titles["charging-port-dock"] || `${deviceName} Charging Dock Repair`;
+  }
 
   const key = subType ? `${repairType}-${subType}` : repairType;
   return titles[key] || titles[repairType] || `${deviceName} ${repairType} Repair`;
