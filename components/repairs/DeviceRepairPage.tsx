@@ -166,20 +166,21 @@ export default function DeviceRepairPage({
     let repairType = repairOption.repairId;
     let subType = repairOption.subType || selectedSubType;
 
-    // Map subType for camera replacement (use "front" as default, or allow selection)
+    // Map subType for camera replacement (use "rear" as default)
+    let pricingSubType: "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined = subType;
+    
     if (repairType === "camera" && subType === "replacement") {
-      // For camera replacement, we might want to show front/rear selection
-      // For now, default to "rear" as it's more common
-      subType = "rear";
+      // For camera replacement, use "rear" as default for pricing lookup
+      pricingSubType = "rear";
     }
 
     // Map charging dock to port (since pricing uses "charging-port")
     if (repairType === "charging-port" && subType === "dock") {
       // Use same pricing structure, but we can differentiate in title/description
-      subType = undefined; // Use base charging-port pricing
+      pricingSubType = undefined; // Use base charging-port pricing
     }
 
-    const pricing = getRepairPricing(device.id, repairType, subType);
+    const pricing = getRepairPricing(device.id, repairType, pricingSubType);
     if (!pricing) {
       // Fallback to repair data from repairs.json
       const repair = repairs.find((r) => r.id === selectedRepair);
