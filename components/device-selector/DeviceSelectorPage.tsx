@@ -26,7 +26,7 @@ export default function DeviceSelectorPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState<Step>("brand");
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
-  const [selectedAppleCategory, setSelectedAppleCategory] = useState<"phones" | "ipads" | "laptops" | null>(null);
+  const [selectedAppleCategory, setSelectedAppleCategory] = useState<"phones" | "tablets" | "laptops" | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
 
@@ -46,7 +46,7 @@ export default function DeviceSelectorPage() {
     }
   };
 
-  const handleAppleCategorySelect = (appleCategory: "phones" | "ipads" | "laptops") => {
+  const handleAppleCategorySelect = (appleCategory: "phones" | "tablets" | "laptops") => {
     setSelectedAppleCategory(appleCategory);
     setSelectedModel(null);
     setSelectedRepair(null);
@@ -63,7 +63,7 @@ export default function DeviceSelectorPage() {
       if (selectedBrand) {
         if (selectedBrand.id === "apple") {
           // Use selected Apple category if available
-          if (selectedAppleCategory === "ipads") {
+          if (selectedAppleCategory === "tablets") {
             category = "tablets";
           } else if (selectedAppleCategory === "phones") {
             category = "iphone";

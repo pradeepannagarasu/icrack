@@ -22,7 +22,7 @@ interface BookingFlowProps {
 export default function BookingFlow({ initialStep = "brand", onComplete, category }: BookingFlowProps) {
   const [currentStep, setCurrentStep] = useState<BookingStep>(initialStep);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
-  const [selectedAppleCategory, setSelectedAppleCategory] = useState<"phones" | "ipads" | "laptops" | null>(null);
+  const [selectedAppleCategory, setSelectedAppleCategory] = useState<DeviceCategory | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
   const [bookingData, setBookingData] = useState<Partial<BookingData>>({});
@@ -48,7 +48,7 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
     }
   };
 
-  const handleAppleCategorySelect = (appleCategory: "phones" | "ipads" | "laptops") => {
+  const handleAppleCategorySelect = (appleCategory: DeviceCategory) => {
     setSelectedAppleCategory(appleCategory);
     setSelectedModel(null);
     setSelectedRepair(null);
@@ -69,7 +69,7 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
       deviceCategory = "iphone"; // default
       if (selectedBrand?.id === "apple") {
         // Use selected Apple category if available
-        if (selectedAppleCategory === "ipads") {
+        if (selectedAppleCategory === "tablets") {
           deviceCategory = "tablets";
         } else if (selectedAppleCategory === "phones") {
           deviceCategory = "iphone";

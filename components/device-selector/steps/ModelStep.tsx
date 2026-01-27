@@ -11,7 +11,7 @@ interface ModelStepProps {
   brand: Brand;
   onSelect: (model: Model) => void;
   selectedModel: Model | null;
-  category?: DeviceCategory | "phones" | "ipads" | "laptops";
+  category?: DeviceCategory | "phones" | "laptops";
 }
 
 export default function ModelStep({
@@ -23,9 +23,7 @@ export default function ModelStep({
   // Filter models by category if provided (for Apple devices)
   const models = category 
     ? brand.models.filter((model) => {
-        if (category === "ipads") {
-          return model.id.includes("ipad");
-        } else if (category === "phones") {
+        if (category === "phones") {
           return model.id.includes("iphone");
         } else if (category === "laptops") {
           return model.id.includes("macbook") || model.id.includes("mac");

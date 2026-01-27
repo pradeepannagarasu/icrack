@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { Smartphone, Tablet, Laptop } from "lucide-react";
 import Image from "next/image";
 import { categoryImages } from "@/lib/deviceImages";
+import type { DeviceCategory } from "@/lib/categoryFilters";
 
 interface AppleCategoryStepProps {
-  onSelect: (category: "phones" | "ipads" | "laptops") => void;
+  onSelect: (category: DeviceCategory) => void;
 }
 
 export default function AppleCategoryStep({ onSelect }: AppleCategoryStepProps) {
@@ -19,7 +20,7 @@ export default function AppleCategoryStep({ onSelect }: AppleCategoryStepProps) 
       description: "iPhone repairs",
     },
     {
-      id: "ipads" as const,
+      id: "tablets" as const,
       name: "iPad",
       icon: Tablet,
       image: categoryImages.tablets,
