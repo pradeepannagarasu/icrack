@@ -38,6 +38,7 @@ export default function AdminDashboard() {
   const [selectedDevice, setSelectedDevice] = useState<string>("");
   const [hasChanges, setHasChanges] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
   // Check authentication
   useEffect(() => {
@@ -114,6 +115,42 @@ export default function AdminDashboard() {
     if (confirm("Are you sure you want to reset all changes?")) {
       setPricing(pricingData as PricingData);
       setHasChanges(false);
+      localStorage.removeItem("icrack_pricing");
+      setSaveSuccess(false);
+      // Reload page to reflect changes
+      window.location.reload();
+    }
+  };
+
+  const handleSave = () => {
+    setIsSaving(true);
+    try {
+      // Save to localStorage
+      localStorage.setItem("icrack_pricing", JSON.stringify(pricing));
+      localStorage.setItem("icrack_pricing_updated", Date.now().toString());
+      
+      setHasChanges(false);
+      setSaveSuccess(true);
+      
+      // Show success message
+      setTimeout(() => {
+        setSaveSuccess(false);
+      }, 3000);
+      
+      // Trigger a custom event to notify other components
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("pricingUpdated"));
+      }
+      
+      // Optionally reload the page to ensure all components pick up changes
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch (error) {
+      console.error("Error saving pricing:", error);
+      alert("Error saving pricing. Please try again.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -154,10 +191,32 @@ export default function AdminDashboard() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              {hasChanges && (
+              {saveSuccess && (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-sm text-green-600 font-medium flex items-center gap-2"
+                >
+                  <span className="w-2 h-2 bg-green-600 rounded-full"></span>
+                  Prices saved successfully!
+                </motion.span>
+              )}
+              {hasChanges && !saveSuccess && (
                 <span className="text-sm text-amber-600 font-medium">
                   Unsaved changes
                 </span>
+              )}
+              {hasChanges && (
+                <motion.button
+                  onClick={handleSave}
+                  disabled={isSaving}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
+                >
+                  <Save className="w-4 h-4" />
+                  {isSaving ? "Saving..." : "Save Prices"}
+                </motion.button>
               )}
               <button
                 onClick={handleLogout}
@@ -281,6 +340,7 @@ export default function AdminDashboard() {
               <button
                 onClick={handleReset}
                 className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 text-neutral-700 rounded-lg hover:bg-neutral-200 transition-colors"
+                title="Reset to original prices"
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
@@ -420,9 +480,9 @@ export default function AdminDashboard() {
           <h3 className="font-semibold text-blue-900 mb-2">📝 Instructions</h3>
           <ol className="list-decimal list-inside space-y-1 text-sm text-blue-800">
             <li>Edit prices directly in the fields above</li>
-            <li>Click "Download JSON" to save the updated pricing.json file</li>
-            <li>Replace the file in <code className="bg-blue-100 px-1 rounded">data/pricing.json</code></li>
-            <li>Commit and push the changes to update the website</li>
+            <li>Click <strong>"Save Prices"</strong> to apply changes immediately - prices will reflect on the website right away!</li>
+            <li>Alternatively, click "Download JSON" to save the updated pricing.json file for permanent updates</li>
+            <li>Changes saved via "Save Prices" are stored in browser and will persist until you reset or clear browser data</li>
           </ol>
         </div>
       </div>

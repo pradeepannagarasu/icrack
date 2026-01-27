@@ -1,6 +1,7 @@
 /**
  * Pricing Utility
  * Gets pricing information for repairs based on device and repair type
+ * Checks localStorage first for admin updates, then falls back to JSON file
  */
 
 import pricingData from "@/data/pricing.json";
@@ -34,7 +35,26 @@ interface PricingData {
   };
 }
 
-const pricing = pricingData as PricingData;
+/**
+ * Get pricing data - checks localStorage first, then falls back to JSON file
+ * This function is called dynamically to always get the latest pricing
+ */
+function getPricingData(): PricingData {
+  // Check if pricing is stored in localStorage (from admin updates)
+  if (typeof window !== "undefined") {
+    const savedPricing = localStorage.getItem("icrack_pricing");
+    if (savedPricing) {
+      try {
+        return JSON.parse(savedPricing) as PricingData;
+      } catch (e) {
+        console.error("Error parsing saved pricing:", e);
+      }
+    }
+  }
+  
+  // Fallback to default pricing from JSON file
+  return pricingData as PricingData;
+}
 
 /**
  * Get pricing for a specific repair
@@ -44,6 +64,7 @@ export function getRepairPricing(
   repairType: string,
   subType?: "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock"
 ): RepairPricing | null {
+  const pricing = getPricingData();
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
 
@@ -145,6 +166,7 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
  * Get base price for a repair type (no device specified)
  */
 export function getBaseRepairPrice(repairType: string): RepairPricing | null {
+  const pricing = getPricingData();
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
 
@@ -159,6 +181,7 @@ export function getBaseRepairPrice(repairType: string): RepairPricing | null {
  * Get price range for a repair type (min and max from all devices)
  */
 export function getRepairPriceRange(repairType: string): { min: number; max: number; base: number } | null {
+  const pricing = getPricingData();
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
 
