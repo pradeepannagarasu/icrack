@@ -109,8 +109,6 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
     battery: `${deviceName} Battery Replacement`,
     "battery-original": `${deviceName} Original Battery Replacement`,
     "battery-regular": `${deviceName} Standard Battery Replacement`,
-    "battery-original": `${deviceName} Original Battery Replacement`,
-    "battery-regular": `${deviceName} Standard Battery Replacement`,
     "charging-port": `${deviceName} Charging Port Repair`,
     "charging-port-port": `${deviceName} Charging Port Repair`,
     "charging-port-dock": `${deviceName} Charging Dock Repair`,
