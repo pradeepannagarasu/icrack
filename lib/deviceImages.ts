@@ -19,8 +19,8 @@ const brandImageMap: Record<string, string> = {
 // Category images
 export const categoryImages = {
   phones: "/images/mobile.png",
-  tablets: "/images/tablet.jpg",
-  laptops: "/images/laptop.jpg",
+  tablets: "/images/ipad.jpg",
+  laptops: "/images/mackbook.jpg",
 };
 
 // Repair type images mapping
