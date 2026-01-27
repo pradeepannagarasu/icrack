@@ -47,7 +47,7 @@ export default function iPhoneRepairsPage() {
       <section className="py-12 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-600 mb-4">
               Select Your iPhone
             </h2>
             <p className="text-lg text-neutral-600">
@@ -57,14 +57,25 @@ export default function iPhoneRepairsPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
             {iphoneModels.map((model, index) => (
-              <ScrollReveal key={model.id} delay={index * 0.05}>
+              <motion.div
+                key={model.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
+              >
                 <Link href={`/repairs/iphone/${model.id}`}>
                   <motion.div
                     whileHover={{ scale: 1.05, y: -4 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-white rounded-2xl p-6 border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all text-center group"
+                    className="relative bg-white rounded-2xl p-6 border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all text-center group"
                   >
-                    <div className="relative h-32 bg-white rounded-xl flex items-center justify-center mb-4 overflow-hidden">
+                    {/* Diamond-shaped background */}
+                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-100/30 rotate-45 rounded-lg"></div>
+                    </div>
+                    
+                    {/* Device image */}
+                    <div className="relative z-10 h-32 bg-white rounded-xl flex items-center justify-center mb-4 overflow-hidden">
                       <Image
                         src={getModelImage("apple", model.id)}
                         alt={model.name}
@@ -73,14 +84,20 @@ export default function iPhoneRepairsPage() {
                         className="object-contain w-full h-full p-4 group-hover:scale-110 transition-transform duration-300"
                         style={{ maxWidth: "100%", maxHeight: "100%" }}
                         unoptimized
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/images/mobile.png";
+                        }}
                       />
                     </div>
-                    <h3 className="font-semibold text-neutral-900 text-sm group-hover:text-primary-600 transition-colors">
+                    
+                    {/* Device name in pink */}
+                    <h3 className="relative z-10 font-semibold text-primary-600 text-sm group-hover:text-primary-700 transition-colors">
                       {model.name}
                     </h3>
                   </motion.div>
                 </Link>
-              </ScrollReveal>
+              </motion.div>
             ))}
           </div>
         </div>

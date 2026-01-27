@@ -47,7 +47,7 @@ export default function GoogleRepairsPage() {
       <section className="py-8 sm:py-12 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-primary-600 mb-3 sm:mb-4">
               Select Your Google Pixel Device
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-neutral-600 px-2">
@@ -57,14 +57,25 @@ export default function GoogleRepairsPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
             {googleModels.map((model, index) => (
-              <ScrollReveal key={model.id} delay={index * 0.05}>
+              <motion.div
+                key={model.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.3 }}
+              >
                 <Link href={`/repairs/phones/${model.id}`}>
                   <motion.div
                     whileHover={{ scale: 1.05, y: -4 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md hover:shadow-xl transition-all border border-neutral-200 hover:border-primary-300 text-center group"
+                    className="relative bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all text-center group"
                   >
-                    <div className="w-full h-32 sm:h-40 bg-neutral-50 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 overflow-hidden">
+                    {/* Diamond-shaped background */}
+                    <div className="absolute inset-0 overflow-hidden rounded-xl sm:rounded-2xl">
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-100/30 rotate-45 rounded-lg"></div>
+                    </div>
+                    
+                    {/* Device image */}
+                    <div className="relative z-10 w-full h-32 sm:h-40 bg-white rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 overflow-hidden">
                       <Image
                         src={getModelImage("google", model.id)}
                         alt={model.name}
@@ -73,14 +84,20 @@ export default function GoogleRepairsPage() {
                         className="object-contain w-full h-full p-3 sm:p-4 group-hover:scale-110 transition-transform duration-300"
                         style={{ maxWidth: "100%", maxHeight: "100%" }}
                         unoptimized
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/images/mobile.png";
+                        }}
                       />
                     </div>
-                    <h3 className="text-sm sm:text-base font-display font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors">
+                    
+                    {/* Device name in pink */}
+                    <h3 className="relative z-10 text-sm sm:text-base font-display font-semibold text-primary-600 group-hover:text-primary-700 transition-colors">
                       {model.name}
                     </h3>
                   </motion.div>
                 </Link>
-              </ScrollReveal>
+              </motion.div>
             ))}
           </div>
         </div>

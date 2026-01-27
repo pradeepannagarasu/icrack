@@ -35,7 +35,7 @@ export default function ModelStep({
   return (
     <div className="w-full">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-neutral-900 mb-3">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary-600 mb-3">
           Select Your Device
         </h2>
         <p className="text-lg md:text-xl text-neutral-600">
@@ -55,13 +55,20 @@ export default function ModelStep({
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => onSelect(model)}
-              className={`p-6 md:p-8 rounded-2xl border-2 transition-all ${
+              className={`relative p-6 md:p-8 rounded-2xl border transition-all ${
                 isSelected
                   ? "bg-primary-600 border-primary-600 shadow-lg"
                   : "bg-white border-neutral-200 hover:border-primary-300 hover:shadow-md"
               }`}
             >
-              <div className="flex flex-col items-center space-y-4">
+              {/* Diamond-shaped background (only when not selected) */}
+              {!isSelected && (
+                <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-100/30 rotate-45 rounded-lg"></div>
+                </div>
+              )}
+              
+              <div className="flex flex-col items-center space-y-4 relative z-10">
                 <motion.div
                   className={`w-20 h-20 md:w-24 md:h-24 rounded-xl flex items-center justify-center overflow-hidden ${
                     isSelected ? "bg-white/20" : "bg-white"
@@ -79,11 +86,15 @@ export default function ModelStep({
                     }`}
                     style={{ maxWidth: "100%", maxHeight: "100%" }}
                     unoptimized
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/images/mobile.png";
+                    }}
                   />
                 </motion.div>
                 <span
                   className={`font-semibold text-sm md:text-base text-center ${
-                    isSelected ? "text-white" : "text-neutral-900"
+                    isSelected ? "text-white" : "text-primary-600"
                   }`}
                 >
                   {model.name}
