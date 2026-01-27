@@ -1,19 +1,19 @@
-\"use client\";
+"use client";
 
-import { motion } from \"framer-motion\";
-import Link from \"next/link\";
-import { CheckCircle2, Clock, Shield, ArrowRight, Wrench, Award } from \"lucide-react\";
-import { RepairType } from \"@/types\";
-import DeviceSelectorCTA from \"./DeviceSelectorCTA\";
-import RepairFAQ from \"./RepairFAQ\";
-import CallOutServiceBanner from \"./CallOutServiceBanner\";
-import BackLink from \"@/components/ui/BackLink\";
-import ScrollReveal from \"@/components/animations/ScrollReveal\";
-import { fadeInUp } from \"@/lib/animations\";
-import RepairTimeBadge from \"@/components/ui/RepairTimeBadge\";
-import WarrantyBadge from \"@/components/ui/WarrantyBadge\";
-import NoFixNoFee from \"@/components/ui/NoFixNoFee\";
-import { getBaseRepairPrice, getRepairPriceRange, getRepairPricing } from \"@/lib/pricing\";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { CheckCircle2, Clock, Shield, ArrowRight, Wrench, Award } from "lucide-react";
+import { RepairType } from "@/types";
+import DeviceSelectorCTA from "./DeviceSelectorCTA";
+import RepairFAQ from "./RepairFAQ";
+import CallOutServiceBanner from "./CallOutServiceBanner";
+import BackLink from "@/components/ui/BackLink";
+import ScrollReveal from "@/components/animations/ScrollReveal";
+import { fadeInUp } from "@/lib/animations";
+import RepairTimeBadge from "@/components/ui/RepairTimeBadge";
+import WarrantyBadge from "@/components/ui/WarrantyBadge";
+import NoFixNoFee from "@/components/ui/NoFixNoFee";
+import { getBaseRepairPrice, getRepairPriceRange, getRepairPricing } from "@/lib/pricing";
 
 interface RepairDetailPageProps {
   repair: RepairType;

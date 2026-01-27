@@ -1,7 +1,7 @@
-\"use client\";
+"use client";
 
-import { motion } from \"framer-motion\";
-import { Clock, Shield, ArrowRight } from \"lucide-react\";
+import { motion } from "framer-motion";
+import { Clock, Shield, ArrowRight } from "lucide-react";
 
 interface RepairOptionCardProps {
   id: string;

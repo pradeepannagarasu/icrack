@@ -1,10 +1,10 @@
-\"use client\";
+"use client";
 
-import { motion } from \"framer-motion\";
-import { useState } from \"react\";
-import { ArrowRight, ShoppingCart } from \"lucide-react\";
-import Link from \"next/link\";
-import { useCart } from \"@/components/cart/CartContext\";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
+import Link from "next/link";
+import { useCart } from "@/components/cart/CartContext";
 
 interface RepairDetailCardProps {
   repairId: string;

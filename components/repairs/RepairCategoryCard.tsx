@@ -1,11 +1,11 @@
-\"use client\";
+"use client";
 
-import { motion } from \"framer-motion\";
-import Link from \"next/link\";
-import { LucideIcon, ArrowRight } from \"lucide-react\";
-import { cardHover } from \"@/lib/animations\";
-import RepairTimeBadge from \"@/components/ui/RepairTimeBadge\";
-import WarrantyBadge from \"@/components/ui/WarrantyBadge\";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { LucideIcon, ArrowRight } from "lucide-react";
+import { cardHover } from "@/lib/animations";
+import RepairTimeBadge from "@/components/ui/RepairTimeBadge";
+import WarrantyBadge from "@/components/ui/WarrantyBadge";
 
 interface RepairCategoryCardProps {
   icon: LucideIcon;
