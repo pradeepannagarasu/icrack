@@ -13,7 +13,7 @@ export default function AdminLoginPage() {
 
   // Default password - should be changed in production
   // In production, use environment variable: process.env.NEXT_PUBLIC_ADMIN_PASSWORD
-  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
+  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "Icrack@2026";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,9 +99,9 @@ export default function AdminLoginPage() {
           {/* Security Note */}
           <div className="mt-6 pt-6 border-t border-neutral-200">
             <p className="text-xs text-neutral-500 text-center">
-              🔒 Secure admin access. Default password: admin123
+              🔒 Secure admin access
               <br />
-              Change this in production using environment variables.
+              Contact administrator for password access.
             </p>
           </div>
         </div>
