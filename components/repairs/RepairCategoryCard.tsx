@@ -1,13 +1,11 @@
-"use client";
+\"use client\";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
-import { LucideIcon, ArrowRight } from "lucide-react";
-import { cardHover } from "@/lib/animations";
-import RepairTimeBadge from "@/components/ui/RepairTimeBadge";
-import WarrantyBadge from "@/components/ui/WarrantyBadge";
-import { getRepairImage } from "@/lib/deviceImages";
+import { motion } from \"framer-motion\";
+import Link from \"next/link\";
+import { LucideIcon, ArrowRight } from \"lucide-react\";
+import { cardHover } from \"@/lib/animations\";
+import RepairTimeBadge from \"@/components/ui/RepairTimeBadge\";
+import WarrantyBadge from \"@/components/ui/WarrantyBadge\";
 
 interface RepairCategoryCardProps {
   icon: LucideIcon;
@@ -20,6 +18,31 @@ interface RepairCategoryCardProps {
   repairTypeId?: string; // For getting repair-specific images
 }
 
+function getRepairEmoji(repairTypeId?: string): string {
+  switch (repairTypeId) {
+    case "screen":
+      return "📱";
+    case "battery":
+      return "🔋";
+    case "camera":
+      return "📷";
+    case "charging-port":
+      return "🔌";
+    case "water-damage":
+      return "💧";
+    case "diagnostics":
+      return "🩺";
+    case "speaker":
+      return "🔊";
+    case "software":
+      return "💻";
+    case "back-glass":
+      return "🪞";
+    default:
+      return "🛠️";
+  }
+}
+
 export default function RepairCategoryCard({
   icon: Icon,
   title,
@@ -30,9 +53,6 @@ export default function RepairCategoryCard({
   warranty,
   repairTypeId,
 }: RepairCategoryCardProps) {
-  // Always show image - use repair-specific image or fallback
-  const repairImage = repairTypeId ? getRepairImage(repairTypeId) : "/images/mobile.png";
-
   return (
     <motion.div
       initial="rest"
@@ -42,17 +62,11 @@ export default function RepairCategoryCard({
       className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-neutral-200 h-full flex flex-col group cursor-pointer overflow-hidden"
     >
       <Link href={href} className="flex flex-col h-full">
-        {/* Repair Image Section - Always Show */}
-        <div className="relative h-32 sm:h-36 md:h-40 bg-white rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 overflow-hidden -mx-4 sm:-mx-6 -mt-4 sm:-mt-6">
-          <Image
-            src={repairImage}
-            alt={title}
-            width={300}
-            height={300}
-            className="object-contain w-full h-full p-4 sm:p-6 group-hover:scale-110 transition-transform duration-300"
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
-            unoptimized
-          />
+        {/* Repair Emoji Icon Section */}
+        <div className="relative h-24 sm:h-28 md:h-32 bg-white rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 -mx-2 sm:-mx-4 -mt-2 sm:-mt-4">
+          <span className="text-4xl sm:text-5xl md:text-6xl">
+            {getRepairEmoji(repairTypeId)}
+          </span>
         </div>
 
         <div className="flex items-start justify-between mb-3 sm:mb-4">

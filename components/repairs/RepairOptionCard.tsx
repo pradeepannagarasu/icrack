@@ -1,9 +1,7 @@
-"use client";
+\"use client\";
 
-import { motion } from "framer-motion";
-import { Clock, Shield, ArrowRight } from "lucide-react";
-import Image from "next/image";
-import { getRepairImage } from "@/lib/deviceImages";
+import { motion } from \"framer-motion\";
+import { Clock, Shield, ArrowRight } from \"lucide-react\";
 
 interface RepairOptionCardProps {
   id: string;
@@ -13,6 +11,32 @@ interface RepairOptionCardProps {
   warranty: string;
   repairId: string;
   onClick: () => void;
+}
+
+function getRepairEmoji(repairId: string): string {
+  switch (repairId) {
+    case "screen":
+      return "📱";
+    case "battery":
+      return "🔋";
+    case "camera":
+      return "📷";
+    case "charging-port":
+      return "🔌";
+    case "water-damage":
+      return "💧";
+    case "diagnostics":
+      return "🩺";
+    case "speaker":
+      return "🔊";
+    case "software":
+      return "💻";
+    case "back-cover":
+    case "back-glass":
+      return "🪞";
+    default:
+      return "🛠️";
+  }
 }
 
 export default function RepairOptionCard({
@@ -35,17 +59,11 @@ export default function RepairOptionCard({
       className="w-full bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border-2 border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all text-left group cursor-pointer"
     >
       <div className="flex items-start space-x-3 sm:space-x-4">
-        {/* Icon - Pink rounded square */}
+        {/* Icon - Emoji inside pink rounded square */}
         <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-lg border-2 border-primary-200 flex items-center justify-center flex-shrink-0">
-          <Image
-            src={getRepairImage(repairId)}
-            alt={title}
-            width={32}
-            height={32}
-            className="object-contain w-full h-full p-1 sm:p-1.5"
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
-            unoptimized
-          />
+          <span className="text-xl sm:text-2xl">
+            {getRepairEmoji(repairId)}
+          </span>
         </div>
 
         {/* Content */}

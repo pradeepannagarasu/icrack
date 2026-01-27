@@ -1,24 +1,47 @@
-"use client";
+\"use client\";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { CheckCircle2, Clock, Shield, ArrowRight, Wrench, Award } from "lucide-react";
-import { RepairType } from "@/types";
-import DeviceSelectorCTA from "./DeviceSelectorCTA";
-import RepairFAQ from "./RepairFAQ";
-import CallOutServiceBanner from "./CallOutServiceBanner";
-import BackLink from "@/components/ui/BackLink";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import { fadeInUp } from "@/lib/animations";
-import RepairTimeBadge from "@/components/ui/RepairTimeBadge";
-import WarrantyBadge from "@/components/ui/WarrantyBadge";
-import NoFixNoFee from "@/components/ui/NoFixNoFee";
-import { getBaseRepairPrice, getRepairPriceRange, getRepairPricing } from "@/lib/pricing";
-import { getRepairImage } from "@/lib/deviceImages";
-import Image from "next/image";
+import { motion } from \"framer-motion\";
+import Link from \"next/link\";
+import { CheckCircle2, Clock, Shield, ArrowRight, Wrench, Award } from \"lucide-react\";
+import { RepairType } from \"@/types\";
+import DeviceSelectorCTA from \"./DeviceSelectorCTA\";
+import RepairFAQ from \"./RepairFAQ\";
+import CallOutServiceBanner from \"./CallOutServiceBanner\";
+import BackLink from \"@/components/ui/BackLink\";
+import ScrollReveal from \"@/components/animations/ScrollReveal\";
+import { fadeInUp } from \"@/lib/animations\";
+import RepairTimeBadge from \"@/components/ui/RepairTimeBadge\";
+import WarrantyBadge from \"@/components/ui/WarrantyBadge\";
+import NoFixNoFee from \"@/components/ui/NoFixNoFee\";
+import { getBaseRepairPrice, getRepairPriceRange, getRepairPricing } from \"@/lib/pricing\";
 
 interface RepairDetailPageProps {
   repair: RepairType;
+}
+
+function getRepairEmoji(repairId: string): string {
+  switch (repairId) {
+    case "screen":
+      return "📱";
+    case "battery":
+      return "🔋";
+    case "camera":
+      return "📷";
+    case "charging-port":
+      return "🔌";
+    case "water-damage":
+      return "💧";
+    case "diagnostics":
+      return "🩺";
+    case "speaker":
+      return "🔊";
+    case "software":
+      return "💻";
+    case "back-glass":
+      return "🪞";
+    default:
+      return "🛠️";
+  }
 }
 
 // Map repair IDs to icons and additional content
@@ -201,7 +224,6 @@ export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
   // Get pricing information
   const basePricing = getBaseRepairPrice(repair.id);
   const priceRange = getRepairPriceRange(repair.id);
-  const repairImage = getRepairImage(repair.id);
 
   const isBatteryRepair = repair.id === "battery";
 
@@ -236,17 +258,11 @@ export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+              className="w-24 h-24 md:w-28 md:h-28 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg border-2 border-primary-200"
             >
-              <Image
-                src={repairImage}
-                alt={repair.name}
-                width={160}
-                height={160}
-                className="object-contain w-full h-full p-6"
-                style={{ maxWidth: "100%", maxHeight: "100%" }}
-                unoptimized
-              />
+              <span className="text-4xl md:text-5xl">
+                {getRepairEmoji(repair.id)}
+              </span>
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-neutral-900 mb-4">

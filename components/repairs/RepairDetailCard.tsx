@@ -1,12 +1,10 @@
-"use client";
+\"use client\";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { ArrowRight, ShoppingCart } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { getRepairImage } from "@/lib/deviceImages";
-import { useCart } from "@/components/cart/CartContext";
+import { motion } from \"framer-motion\";
+import { useState } from \"react\";
+import { ArrowRight, ShoppingCart } from \"lucide-react\";
+import Link from \"next/link\";
+import { useCart } from \"@/components/cart/CartContext\";
 
 interface RepairDetailCardProps {
   repairId: string;
@@ -20,6 +18,32 @@ interface RepairDetailCardProps {
   deviceId: string;
   brandId: string;
   image?: string;
+}
+
+function getRepairEmoji(repairId: string): string {
+  switch (repairId) {
+    case "screen":
+      return "📱";
+    case "battery":
+      return "🔋";
+    case "camera":
+      return "📷";
+    case "charging-port":
+      return "🔌";
+    case "water-damage":
+      return "💧";
+    case "diagnostics":
+      return "🩺";
+    case "speaker":
+      return "🔊";
+    case "software":
+      return "💻";
+    case "back-cover":
+    case "back-glass":
+      return "🪞";
+    default:
+      return "🛠️";
+  }
 }
 
 export default function RepairDetailCard({
@@ -56,7 +80,7 @@ export default function RepairDetailCard({
       type: "repair",
       name: title,
       price: price,
-      image: image || getRepairImage(repairId),
+      image: undefined,
       details: {
         brand: brandId,
         device: deviceId,
@@ -87,17 +111,11 @@ export default function RepairDetailCard({
             </div>
           )}
 
-          {/* Repair Icon */}
-          <div className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0">
-            <Image
-              src={image || getRepairImage(repairId)}
-              alt={title}
-              width={160}
-              height={160}
-              className="object-contain w-full h-full p-4"
-              style={{ maxWidth: "100%", maxHeight: "100%" }}
-              unoptimized
-            />
+          {/* Repair Icon - Emoji */}
+          <div className="w-24 h-24 md:w-28 md:h-28 bg-white rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 border-2 border-primary-200">
+            <span className="text-4xl md:text-5xl">
+              {getRepairEmoji(repairId)}
+            </span>
           </div>
 
           {/* Title */}
