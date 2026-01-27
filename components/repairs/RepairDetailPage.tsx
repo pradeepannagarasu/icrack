@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { CheckCircle2, Clock, Shield, ArrowRight, Wrench, Award } from "lucide-react";
+import { CheckCircle2, Clock, Shield, ArrowRight, Wrench, Award, ShoppingCart } from "lucide-react";
 import { RepairType } from "@/types";
 import DeviceSelectorCTA from "./DeviceSelectorCTA";
 import RepairFAQ from "./RepairFAQ";
@@ -14,6 +14,7 @@ import RepairTimeBadge from "@/components/ui/RepairTimeBadge";
 import WarrantyBadge from "@/components/ui/WarrantyBadge";
 import NoFixNoFee from "@/components/ui/NoFixNoFee";
 import { getBaseRepairPrice, getRepairPriceRange, getRepairPricing } from "@/lib/pricing";
+import { useCart } from "@/components/cart/CartContext";
 
 interface RepairDetailPageProps {
   repair: RepairType;
@@ -200,6 +201,7 @@ const repairContent: Record<
 };
 
 export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
+  const { addToCart } = useCart();
   const content = repairContent[repair.id] || {
     icon: "🔧",
     included: [
@@ -362,13 +364,35 @@ export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
                         </span>
                       </div>
                     </div>
-                    <Link
-                      href={`/book?repair=battery&variant=original`}
-                      className="inline-flex items-center space-x-2 px-8 py-4 bg-primary-600 text-white rounded-xl font-semibold text-lg hover:bg-primary-700 transition-all hover:shadow-xl"
-                    >
-                      <span>Book Original Battery</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Link
+                        href={`/book?repair=battery&variant=original`}
+                        className="inline-flex flex-1 items-center justify-center space-x-2 px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold text-base hover:bg-primary-700 transition-all hover:shadow-xl"
+                      >
+                        <span>Book Original Battery</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          addToCart({
+                            id: "battery-original-generic",
+                            type: "repair",
+                            name: "Original Battery Replacement",
+                            price: originalBatteryPricing.price,
+                            image: undefined,
+                            details: {
+                              repairType: "battery",
+                              variant: "original",
+                            },
+                          })
+                        }
+                        className="inline-flex flex-1 items-center justify-center space-x-2 px-6 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-semibold text-base hover:bg-primary-50 transition-all"
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                        <span>Add to Cart</span>
+                      </button>
+                    </div>
                   </motion.div>
                 </ScrollReveal>
 
@@ -402,13 +426,35 @@ export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
                         </span>
                       </div>
                     </div>
-                    <Link
-                      href={`/book?repair=battery&variant=regular`}
-                      className="inline-flex items-center space-x-2 px-8 py-4 bg-primary-600 text-white rounded-xl font-semibold text-lg hover:bg-primary-700 transition-all hover:shadow-xl"
-                    >
-                      <span>Book Standard Battery</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Link
+                        href={`/book?repair=battery&variant=regular`}
+                        className="inline-flex flex-1 items-center justify-center space-x-2 px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold text-base hover:bg-primary-700 transition-all hover:shadow-xl"
+                      >
+                        <span>Book Standard Battery</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          addToCart({
+                            id: "battery-regular-generic",
+                            type: "repair",
+                            name: "Standard Battery Replacement",
+                            price: regularBatteryPricing.price,
+                            image: undefined,
+                            details: {
+                              repairType: "battery",
+                              variant: "regular",
+                            },
+                          })
+                        }
+                        className="inline-flex flex-1 items-center justify-center space-x-2 px-6 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-semibold text-base hover:bg-primary-50 transition-all"
+                      >
+                        <ShoppingCart className="w-5 h-5" />
+                        <span>Add to Cart</span>
+                      </button>
+                    </div>
                   </motion.div>
                 </ScrollReveal>
               </div>
@@ -438,13 +484,34 @@ export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
                           Prices from £{priceRange.min} to £{priceRange.max} depending on device model
                         </p>
                       )}
-                      <Link
-                        href={`/book?repair=${repair.id}`}
-                        className="inline-flex items-center space-x-2 px-8 py-4 bg-primary-600 text-white rounded-xl font-semibold text-lg hover:bg-primary-700 transition-all hover:shadow-xl"
-                      >
-                        <span>Book This Repair</span>
-                        <ArrowRight className="w-5 h-5" />
-                      </Link>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Link
+                          href={`/book?repair=${repair.id}`}
+                          className="inline-flex flex-1 items-center justify-center space-x-2 px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold text-base hover:bg-primary-700 transition-all hover:shadow-xl"
+                        >
+                          <span>Book This Repair</span>
+                          <ArrowRight className="w-5 h-5" />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            addToCart({
+                              id: `${repair.id}-generic`,
+                              type: "repair",
+                              name: repair.name,
+                              price: priceRange ? priceRange.min : basePricing.price,
+                              image: undefined,
+                              details: {
+                                repairType: repair.id,
+                              },
+                            })
+                          }
+                          className="inline-flex flex-1 items-center justify-center space-x-2 px-6 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-xl font-semibold text-base hover:bg-primary-50 transition-all"
+                        >
+                          <ShoppingCart className="w-5 h-5" />
+                          <span>Add to Cart</span>
+                        </button>
+                      </div>
                     </div>
 
                     {/* Right Column - Details */}
