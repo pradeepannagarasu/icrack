@@ -1,19 +1,34 @@
 {
   "repairs": {
     "screen": {
-      "basePrice": 79,
+      "basePrice": 35,
       "devices": {
-        "iphone-8": { "price": 79, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
-        "iphone-se": { "price": 79, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
-        "iphone-7": { "price": 75, "save": 85, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
-        "iphone-15-pro": { "price": 199, "save": 150, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
-        "iphone-15": { "price": 149, "save": 120, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Blue", "Green", "Yellow", "Pink"] },
-        "iphone-14-pro": { "price": 179, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Deep Purple", "Gold", "Silver", "Space Black"] },
-        "iphone-14": { "price": 129, "save": 100, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Blue", "Purple", "Midnight", "Starlight", "Red"] },
-        "iphone-13-pro": { "price": 169, "save": 130, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Graphite", "Gold", "Silver", "Sierra Blue", "Alpine Green"] },
-        "iphone-13": { "price": 119, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Pink", "Blue", "Midnight", "Starlight", "Red"] },
-        "iphone-12": { "price": 99, "save": 80, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
-        "iphone-11": { "price": 89, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Green", "Yellow", "Purple", "Red", "White"] },
+        "iphone-8": { "price": 59, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-se": { "price": 89, "save": 40, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
+        "iphone-7": { "price": 55, "save": 85, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-16-pro-max": { "price": 319, "save": 150, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-16-pro": { "price": 299, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-16-plus": { "price": 249, "save": 120, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-16": { "price": 229, "save": 110, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-15-pro-max": { "price": 289, "save": 150, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
+        "iphone-15-pro": { "price": 289, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
+        "iphone-15-plus": { "price": 219, "save": 120, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Blue", "Green", "Yellow", "Pink"] },
+        "iphone-15": { "price": 219, "save": 120, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Blue", "Green", "Yellow", "Pink"] },
+        "iphone-14-pro-max": { "price": 249, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Deep Purple", "Gold", "Silver", "Space Black"] },
+        "iphone-14-pro": { "price": 249, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Deep Purple", "Gold", "Silver", "Space Black"] },
+        "iphone-14-plus": { "price": 199, "save": 100, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight", "Starlight", "Blue", "Purple"] },
+        "iphone-14": { "price": 199, "save": 100, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight", "Starlight", "Blue", "Purple"] },
+        "iphone-13-pro-max": { "price": 179, "save": 130, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Graphite", "Gold", "Silver", "Sierra Blue", "Alpine Green"] },
+        "iphone-13-pro": { "price": 179, "save": 130, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Graphite", "Gold", "Silver", "Sierra Blue", "Alpine Green"] },
+        "iphone-13-mini": { "price": 179, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight", "Starlight", "Blue", "Pink"] },
+        "iphone-13": { "price": 179, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Pink", "Blue", "Midnight", "Starlight", "Red"] },
+        "iphone-12-pro-max": { "price": 159, "save": 80, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Pacific Blue", "Gold", "Silver", "Graphite"] },
+        "iphone-12-pro": { "price": 159, "save": 80, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Pacific Blue", "Gold", "Silver", "Graphite"] },
+        "iphone-12-mini": { "price": 159, "save": 60, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
+        "iphone-12": { "price": 159, "save": 80, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
+        "iphone-11-pro-max": { "price": 129, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
+        "iphone-11-pro": { "price": 129, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
+        "iphone-11": { "price": 129, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Green", "Yellow", "Purple", "Red", "White"] },
         "ipad-pro-13": { "price": 249, "save": 200, "warranty": "12 months", "time": "Up to 120 minutes" },
         "ipad-pro-12.9": { "price": 229, "save": 180, "warranty": "12 months", "time": "Up to 120 minutes" },
         "ipad-pro-11": { "price": 199, "save": 150, "warranty": "12 months", "time": "Up to 120 minutes" },
@@ -68,51 +83,135 @@
       }
     },
     "battery": {
-      "basePrice": 35,
+      "basePrice": 45,
       "devices": {
         "iphone-8": {
-          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 35, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-se": {
-          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 35, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-7": {
-          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 35, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-16-pro-max": {
+          "original": { "price": 89, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-16-pro": {
+          "original": { "price": 89, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-16-plus": {
+          "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-16": {
+          "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-15-pro-max": {
+          "original": { "price": 89, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-15-pro": {
-          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-15-plus": {
+          "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-15": {
-          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-14-pro-max": {
+          "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-14-pro": {
-          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-14-plus": {
+          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-14": {
-          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-13-pro-max": {
+          "original": { "price": 75, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-13-pro": {
+          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-13-mini": {
+          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 52, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-13": {
+          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 52, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-12-pro-max": {
+          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 52, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-12-pro": {
+          "original": { "price": 62, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-12-mini": {
           "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
           "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
-        "iphone-13": {
-          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
-        },
         "iphone-12": {
-          "original": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 62, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-11-pro-max": {
+          "original": { "price": 65, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 52, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-11-pro": {
+          "original": { "price": 62, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-11": {
-          "original": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 39, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-xs-max": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-xs": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-xr": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-x": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-se-2022": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
+        },
+        "iphone-se-2020": {
+          "original": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "ipad-pro-13": {
           "original": { "price": 149, "warranty": "24 months", "time": "Up to 120 minutes" },
