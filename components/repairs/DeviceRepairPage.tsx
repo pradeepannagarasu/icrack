@@ -35,25 +35,28 @@ function getRepairOptions(repairs: RepairType[], deviceId?: string) {
   }> = [];
 
   repairs.forEach((repair) => {
-    // Battery: Split into two separate options
+    // Screen: single card – user then sees compare step (Original vs Standard)
+    if (repair.id === "screen") {
+      options.push({
+        id: "screen",
+        title: "Screen Replacement",
+        description: "Original or standard replacement screen. Compare options and book.",
+        duration: repair.duration,
+        warranty: "12 months",
+        repairId: "screen",
+      });
+      return;
+    }
+
+    // Battery: single card – user then sees compare step (Original vs Standard)
     if (repair.id === "battery") {
       options.push({
-        id: "battery-original",
-        title: "Original Battery Replacement",
-        description: "Premium-grade battery calibrated for maximum performance and longevity. 24-month warranty.",
+        id: "battery",
+        title: "Battery Replacement",
+        description: "Original or standard battery. Compare options and book.",
         duration: repair.duration,
         warranty: "24 months",
         repairId: "battery",
-        subType: "original",
-      });
-      options.push({
-        id: "battery-regular",
-        title: "Standard Battery Replacement",
-        description: "High-quality replacement battery – the best value option to keep you powered all day. 24-month warranty.",
-        duration: repair.duration,
-        warranty: "24 months",
-        repairId: "battery",
-        subType: "regular",
       });
       return;
     }
@@ -104,9 +107,8 @@ function getRepairOptions(repairs: RepairType[], deviceId?: string) {
       return;
     }
 
-    // Map other repair IDs to display options
+    // Map other repair IDs to display options (screen handled above)
     const optionMap: Record<string, { label: string; repairId: string }> = {
-      screen: { label: "Screen Repair", repairId: "screen" },
       "water-damage": { label: "Water Damage Repair", repairId: "water-damage" },
       "back-glass": { label: "Back Glass Repair", repairId: "back-cover" },
       speaker: { label: "Speaker Repair", repairId: "earpiece" },
@@ -148,13 +150,15 @@ export default function DeviceRepairPage({
 
   const handleRepairSelect = (repairOption: typeof repairOptions[0]) => {
     setSelectedRepair(repairOption.id);
-    
-    // Set subType if it exists in the option
     if (repairOption.subType) {
       setSelectedSubType(repairOption.subType);
     } else {
       setSelectedSubType(undefined);
     }
+  };
+
+  const handleCompareOptionSelect = (repairId: string, subType: "original" | "regular") => {
+    setSelectedSubType(subType);
   };
 
   const getSelectedRepairData = () => {
@@ -355,6 +359,102 @@ export default function DeviceRepairPage({
                 <span>Back</span>
               </motion.button>
 
+              {/* Battery: Compare Original vs Standard – split prices, compare & book */}
+              {(selectedRepair === "battery" && selectedSubType === undefined) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-8"
+                >
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-neutral-900 mb-2 text-center">
+                    Choose your battery option
+                  </h3>
+                  <p className="text-sm text-neutral-600 mb-6 text-center max-w-xl mx-auto">
+                    Compare prices and select the option that suits you. Both include 24-month warranty.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    {(["original", "regular"] as const).map((subType) => {
+                      const pricing = getRepairPricing(device.id, "battery", subType);
+                      const title = subType === "original" ? "Original Battery" : "Standard Battery";
+                      const description =
+                        subType === "original"
+                          ? "Premium-grade, calibrated for maximum performance and longevity."
+                          : "High-quality replacement – best value to keep you powered all day.";
+                      return (
+                        <motion.button
+                          key={subType}
+                          type="button"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => handleCompareOptionSelect("battery", subType)}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        >
+                          <div className="text-xs font-semibold uppercase tracking-wide text-primary-600 mb-1">
+                            {title}
+                          </div>
+                          <div className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+                            £{pricing?.price ?? "—"}
+                          </div>
+                          <p className="text-sm text-neutral-600 mb-4">{description}</p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-neutral-500">24-month warranty</span>
+                            <span className="text-sm font-semibold text-primary-600">Select & book →</span>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Screen: Compare Original vs Standard – split prices, compare & book */}
+              {(selectedRepair === "screen" && selectedSubType === undefined) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-8"
+                >
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-neutral-900 mb-2 text-center">
+                    Choose your screen option
+                  </h3>
+                  <p className="text-sm text-neutral-600 mb-6 text-center max-w-xl mx-auto">
+                    Compare prices and select the option that suits you. Both include 12-month warranty.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    {(["original", "regular"] as const).map((subType) => {
+                      const pricing = getRepairPricing(device.id, "screen", subType);
+                      const title = subType === "original" ? "Original Screen" : "Standard Screen";
+                      const description =
+                        subType === "original"
+                          ? "Genuine OEM screen – best quality and colour match."
+                          : "High-quality replacement screen – great value.";
+                      return (
+                        <motion.button
+                          key={subType}
+                          type="button"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => handleCompareOptionSelect("screen", subType)}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        >
+                          <div className="text-xs font-semibold uppercase tracking-wide text-primary-600 mb-1">
+                            {title}
+                          </div>
+                          <div className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+                            £{pricing?.price ?? "—"}
+                          </div>
+                          <p className="text-sm text-neutral-600 mb-4">{description}</p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-neutral-500">12-month warranty</span>
+                            <span className="text-sm font-semibold text-primary-600">Select & book →</span>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+
               {/* Back Glass Sub-Options: Glass only vs Housing */}
               {selectedRepair === "back-glass" && !selectedSubType && (
                 <motion.div
@@ -388,8 +488,10 @@ export default function DeviceRepairPage({
                 </motion.div>
               )}
 
-              {/* Selected Repair Detail Card */}
-              {selectedRepairData && (
+              {/* Selected Repair Detail Card (after compare step for battery/screen) */}
+              {selectedRepairData &&
+                !(selectedRepair === "battery" && selectedSubType === undefined) &&
+                !(selectedRepair === "screen" && selectedSubType === undefined) && (
                 <RepairDetailCard
                   repairId={selectedRepairData.repairId}
                   title={selectedRepairData.title}

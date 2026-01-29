@@ -78,9 +78,25 @@ export function getRepairPricing(
     };
   }
 
-  // Handle sub-types (camera, battery variants, back glass/housing)
+  // Handle sub-types (camera, battery variants, back glass/housing, screen original/regular)
   if (subType && typeof devicePricing === "object" && subType in devicePricing) {
     return (devicePricing as any)[subType];
+  }
+
+  // Screen: derive original/standard from flat price when not in JSON
+  if (repairType === "screen" && (subType === "original" || subType === "regular") && typeof devicePricing === "object" && "price" in devicePricing) {
+    const flat = devicePricing as RepairPricing;
+    if (subType === "regular") {
+      return { ...flat, price: flat.price };
+    }
+    // Original typically costs more (~25–30% premium)
+    return {
+      price: Math.round(flat.price * 1.28),
+      save: flat.save,
+      warranty: flat.warranty,
+      time: flat.time,
+      variants: flat.variants,
+    };
   }
 
   // Return device-specific pricing
@@ -97,6 +113,8 @@ export function getRepairPricing(
 export function getRepairDescription(repairType: string, deviceName: string, subType?: string): string {
   const descriptions: Record<string, string> = {
     screen: `Have you cracked or smashed your screen? Bring your ${deviceName} back to life with a shiny new replacement screen. Get that new phone feeling again!`,
+    "screen-original": `Genuine OEM screen for your ${deviceName} – best quality and colour match. 12-month warranty.`,
+    "screen-regular": `High-quality replacement screen for your ${deviceName} – great value. 12-month warranty.`,
     "back-cover": `Get your ${deviceName} back glass replaced, same day by our specialist technicians.`,
     "back-cover-glass": `Cracked or smashed back glass on your ${deviceName}? We’ll replace just the glass panel to make it look like new again.`,
     "back-cover-housing": `Severe damage to the back of your ${deviceName}? We’ll replace the full rear housing for a factory-fresh finish.`,
@@ -124,6 +142,8 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
 export function getRepairTitle(repairType: string, deviceName: string, subType?: string): string {
   const titles: Record<string, string> = {
     screen: `${deviceName} Screen Replacement`,
+    "screen-original": `${deviceName} Original Screen Replacement`,
+    "screen-regular": `${deviceName} Standard Screen Replacement`,
     "back-cover": `${deviceName} Back Glass & Housing`,
     "back-cover-glass": `${deviceName} Back Glass Replacement`,
     "back-cover-housing": `${deviceName} Back Glass & Housing Replacement`,
@@ -142,6 +162,12 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
   };
 
   // Handle special cases
+  if (repairType === "screen" && subType === "original") {
+    return titles["screen-original"] || `${deviceName} Original Screen Replacement`;
+  }
+  if (repairType === "screen" && subType === "regular") {
+    return titles["screen-regular"] || `${deviceName} Standard Screen Replacement`;
+  }
   if (repairType === "battery" && subType === "original") {
     return titles["battery-original"] || `${deviceName} Original Battery Replacement`;
   }
