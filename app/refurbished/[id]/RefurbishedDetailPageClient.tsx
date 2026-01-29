@@ -26,10 +26,17 @@ export default function RefurbishedDetailPageClient({ phone }: RefurbishedDetail
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode");
   const { addToCart } = useCart();
-
-  const [selectedStorage, setSelectedStorage] = useState(phone.storageOptions[0] || "");
-  const [selectedColor, setSelectedColor] = useState(phone.colours[0] || "");
+  const [selectedStorage, setSelectedStorage] = useState(phone?.storageOptions?.[0] ?? "");
+  const [selectedColor, setSelectedColor] = useState(phone?.colours?.[0] ?? "");
   const [addedToCart, setAddedToCart] = useState(false);
+
+  if (!phone) {
+    return (
+      <div className="pt-20 lg:pt-[176px] pb-16 bg-neutral-50 min-h-screen flex items-center justify-center">
+        <p className="text-neutral-600">Phone not found.</p>
+      </div>
+    );
+  }
 
   const handleAddToCart = () => {
     addToCart({

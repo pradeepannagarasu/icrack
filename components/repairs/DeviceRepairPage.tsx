@@ -140,6 +140,10 @@ export default function DeviceRepairPage({
     "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined
   >(undefined);
 
+  if (!brand || !device) {
+    return null;
+  }
+
   // Filter repairs: For MacBooks, only show battery repairs
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
   const filteredRepairs = isMacBook 

@@ -30,12 +30,16 @@ export default function PhoneModelPage({
 }: {
   params: { model: string };
 }) {
+  const modelSlug = params?.model;
+  if (!modelSlug) {
+    notFound();
+  }
   // Find the brand and device
   let brand = null;
   let device = null;
   
   for (const b of brandsData.brands) {
-    const foundDevice = b.models.find((m) => m.id === params.model);
+    const foundDevice = b.models.find((m) => m.id === modelSlug);
     if (foundDevice && 
         !foundDevice.id.includes("iphone") && 
         !foundDevice.id.includes("ipad") && 

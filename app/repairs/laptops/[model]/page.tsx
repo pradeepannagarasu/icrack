@@ -23,12 +23,16 @@ export default function LaptopModelPage({
 }: {
   params: { model: string };
 }) {
+  const modelSlug = params?.model;
+  if (!modelSlug) {
+    notFound();
+  }
   // Find the brand and device
   let brand = null;
   let device = null;
   
   for (const b of brandsData.brands) {
-    const foundDevice = b.models.find((m) => m.id === params.model);
+    const foundDevice = b.models.find((m) => m.id === modelSlug);
     if (foundDevice && (foundDevice.id.includes("macbook") || foundDevice.id.includes("mac") || foundDevice.id.includes("xps") || foundDevice.id.includes("spectre") || foundDevice.id.includes("thinkpad") || foundDevice.id.includes("yoga") || foundDevice.id.includes("inspiron") || foundDevice.id.includes("envy") || foundDevice.id.includes("pavilion") || foundDevice.id.includes("elitebook") || foundDevice.id.includes("ideapad") || foundDevice.id.includes("latitude"))) {
       brand = b;
       device = foundDevice;

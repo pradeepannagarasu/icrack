@@ -10,7 +10,11 @@ export async function generateStaticParams() {
 }
 
 export default function RefurbishedDetailPage({ params }: { params: { id: string } }) {
-  const phone = refurbishedIphones.find((p) => p.id === params.id);
+  const id = params?.id;
+  if (!id) {
+    notFound();
+  }
+  const phone = refurbishedIphones.find((p) => p.id === id);
   if (!phone) {
     notFound();
   }

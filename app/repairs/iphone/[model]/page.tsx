@@ -19,8 +19,12 @@ export default function iPhoneModelPage({
 }: {
   params: { model: string };
 }) {
+  const modelSlug = params?.model;
+  if (!modelSlug) {
+    notFound();
+  }
   const appleBrand = brandsData.brands.find((b) => b.id === "apple");
-  const device = appleBrand?.models.find((m) => m.id === params.model);
+  const device = appleBrand?.models.find((m) => m.id === modelSlug);
 
   if (!device || !appleBrand) {
     notFound();

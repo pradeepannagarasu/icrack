@@ -14,8 +14,12 @@ export async function generateMetadata({
 }: {
   params: { "repair-type": string };
 }): Promise<Metadata> {
+  const repairType = params?.["repair-type"];
+  if (!repairType) {
+    return { title: "Repair - iCrack" };
+  }
   const repair = repairsData.repairTypes.find(
-    (r) => r.id === params["repair-type"]
+    (r) => r.id === repairType
   );
 
   if (!repair) {
@@ -36,8 +40,12 @@ export default function RepairTypePage({
 }: {
   params: { "repair-type": string };
 }) {
+  const repairType = params?.["repair-type"];
+  if (!repairType) {
+    notFound();
+  }
   const repair = repairsData.repairTypes.find(
-    (r) => r.id === params["repair-type"]
+    (r) => r.id === repairType
   );
 
   if (!repair) {
