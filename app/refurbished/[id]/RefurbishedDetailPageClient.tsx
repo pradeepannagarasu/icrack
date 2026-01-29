@@ -19,7 +19,7 @@ interface Phone {
 }
 
 interface RefurbishedDetailPageClientProps {
-  phone: Phone;
+  phone: Phone | null | undefined;
 }
 
 export default function RefurbishedDetailPageClient({ phone }: RefurbishedDetailPageClientProps) {

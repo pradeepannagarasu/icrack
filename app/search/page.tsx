@@ -29,6 +29,7 @@ function SearchPageContent() {
     // Search brands and models
     const brands = brandsData.brands;
     brands.forEach((brand) => {
+      if (!brand?.id) return;
       if (brand.name.toLowerCase().includes(searchTerm)) {
         searchResults.push({
           type: "brand",
@@ -39,7 +40,8 @@ function SearchPageContent() {
         });
       }
 
-      brand.models.forEach((model) => {
+      brand.models?.forEach((model) => {
+        if (!model?.id) return;
         if (model.name.toLowerCase().includes(searchTerm)) {
           searchResults.push({
             type: "device",
@@ -55,6 +57,7 @@ function SearchPageContent() {
     // Search repairs
     const repairs = repairsData.repairTypes;
     repairs.forEach((repair) => {
+      if (!repair?.id) return;
       if (
         repair.name.toLowerCase().includes(searchTerm) ||
         repair.description.toLowerCase().includes(searchTerm)
@@ -71,6 +74,7 @@ function SearchPageContent() {
 
     // Search refurbished phones
     refurbishedIphones.forEach((phone) => {
+      if (!phone?.id) return;
       if (phone.name.toLowerCase().includes(searchTerm)) {
         searchResults.push({
           type: "refurbished",

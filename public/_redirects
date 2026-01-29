@@ -1,4 +1,6 @@
 # Cloudflare Pages redirects
+# Serve logo as favicon to avoid 404
+/favicon.ico    /images/icrack_logo.png    200
 # SPA fallback - redirect all routes to index.html for client-side routing
 /*    /index.html   200
 
