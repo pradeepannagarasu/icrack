@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProgressIndicator from "./ProgressIndicator";
 import BrandStep from "./steps/BrandStep";
 import AppleCategoryStep from "./steps/AppleCategoryStep";
+import AppleSubcategoryStep from "./steps/AppleSubcategoryStep";
 import DeviceStep from "./steps/DeviceStep";
 import RepairTypeStep from "./steps/RepairTypeStep";
 import BookingFormStep from "./steps/BookingFormStep";
 import { Brand, Model, RepairType, BookingData } from "@/types";
 import { DeviceCategory } from "@/lib/categoryFilters";
 
-export type BookingStep = "brand" | "apple-category" | "device" | "repair" | "form";
+export type BookingStep = "brand" | "apple-category" | "apple-subcategory" | "device" | "repair" | "form";
 
 interface BookingFlowProps {
   initialStep?: BookingStep;
@@ -38,6 +39,7 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
   const handleBrandSelect = (brand: Brand) => {
     setSelectedBrand(brand);
     setSelectedAppleCategory(null);
+    setSelectedAppleSubcategory(null);
     setSelectedModel(null);
     setSelectedRepair(null);
     // If Apple is selected, show category selection, otherwise go to device selection
@@ -50,6 +52,18 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
 
   const handleAppleCategorySelect = (appleCategory: DeviceCategory) => {
     setSelectedAppleCategory(appleCategory);
+    setSelectedAppleSubcategory(null);
+    setSelectedModel(null);
+    setSelectedRepair(null);
+    if (appleCategory === "tablets" || appleCategory === "laptops") {
+      setCurrentStep("apple-subcategory");
+    } else {
+      setCurrentStep("device");
+    }
+  };
+
+  const handleAppleSubcategorySelect = (subcategoryId: string) => {
+    setSelectedAppleSubcategory(subcategoryId);
     setSelectedModel(null);
     setSelectedRepair(null);
     setCurrentStep("device");
@@ -134,8 +148,15 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
         setSelectedBrand(null);
         setSelectedAppleCategory(null);
         break;
+      case "apple-subcategory":
+        setCurrentStep("apple-category");
+        setSelectedAppleSubcategory(null);
+        break;
       case "device":
-        if (selectedBrand?.id === "apple") {
+        if (selectedBrand?.id === "apple" && selectedAppleSubcategory) {
+          setCurrentStep("apple-subcategory");
+          setSelectedAppleSubcategory(null);
+        } else if (selectedBrand?.id === "apple") {
           setCurrentStep("apple-category");
           setSelectedAppleCategory(null);
         } else {
@@ -199,6 +220,23 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
             </motion.div>
           )}
 
+          {currentStep === "apple-subcategory" &&
+            selectedBrand?.id === "apple" &&
+            (selectedAppleCategory === "tablets" || selectedAppleCategory === "laptops") && (
+            <motion.div
+              key="apple-subcategory"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AppleSubcategoryStep
+                type={selectedAppleCategory}
+                onSelect={handleAppleSubcategorySelect}
+              />
+            </motion.div>
+          )}
+
           {currentStep === "device" && selectedBrand && (
             <motion.div
               key="device"
@@ -211,6 +249,7 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
                 brand={selectedBrand}
                 onSelect={handleDeviceSelect}
                 category={selectedAppleCategory || category}
+                subcategory={selectedAppleSubcategory ?? undefined}
               />
             </motion.div>
           )}

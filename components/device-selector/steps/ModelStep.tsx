@@ -1,17 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Smartphone } from "lucide-react";
 import Image from "next/image";
 import { Brand, Model } from "@/types";
 import { getModelImage } from "@/lib/deviceImages";
 import { DeviceCategory, isModelInCategory } from "@/lib/categoryFilters";
+import {
+  filteriPadModelsBySubcategory,
+  filterMacBookModelsBySubcategory,
+} from "@/components/booking/steps/AppleSubcategoryStep";
 
 interface ModelStepProps {
   brand: Brand;
   onSelect: (model: Model) => void;
   selectedModel: Model | null;
   category?: DeviceCategory | "phones" | "laptops";
+  /** When category is tablets or laptops, filter by this subcategory (e.g. ipad-pro, macbook-air) */
+  subcategory?: string;
 }
 
 export default function ModelStep({
@@ -19,16 +24,24 @@ export default function ModelStep({
   onSelect,
   selectedModel,
   category,
+  subcategory,
 }: ModelStepProps) {
   if (!brand?.id || !brand?.models) return null;
   const allModels = (brand.models || []).filter((m) => m && m.id);
-  const models = category
+  let models = category
     ? allModels.filter((model) => {
         if (category === "phones") return model.id.includes("iphone");
         if (category === "laptops") return model.id.includes("macbook") || model.id.includes("mac");
         return isModelInCategory(model.id, category as DeviceCategory);
       })
     : allModels;
+  if (subcategory && (category === "tablets" || category === "laptops")) {
+    models = models.filter((model) =>
+      category === "tablets"
+        ? filteriPadModelsBySubcategory(model.id, subcategory)
+        : filterMacBookModelsBySubcategory(model.id, subcategory)
+    );
+  }
 
   return (
     <div className="w-full">

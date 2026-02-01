@@ -1,23 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Smartphone, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import { Brand, Model } from "@/types";
 import { getModelImage } from "@/lib/deviceImages";
-import { DeviceCategory, getModelsByCategory, isModelInCategory } from "@/lib/categoryFilters";
+import { DeviceCategory, isModelInCategory } from "@/lib/categoryFilters";
+import {
+  filteriPadModelsBySubcategory,
+  filterMacBookModelsBySubcategory,
+} from "./AppleSubcategoryStep";
 
 interface DeviceStepProps {
   brand: Brand;
   onSelect: (model: Model) => void;
   category?: DeviceCategory;
+  /** When category is tablets or laptops, filter by this subcategory (e.g. ipad-pro, macbook-air) */
+  subcategory?: string;
 }
 
-export default function DeviceStep({ brand, onSelect, category }: DeviceStepProps) {
-  // Filter models by category if provided
-  const models = category 
+export default function DeviceStep({ brand, onSelect, category, subcategory }: DeviceStepProps) {
+  let models = category
     ? brand.models.filter((model) => isModelInCategory(model.id, category))
     : brand.models;
+  if (subcategory && (category === "tablets" || category === "laptops")) {
+    models = models.filter((model) =>
+      category === "tablets"
+        ? filteriPadModelsBySubcategory(model.id, subcategory)
+        : filterMacBookModelsBySubcategory(model.id, subcategory)
+    );
+  }
   return (
     <div className="w-full">
       <div className="text-center mb-8">

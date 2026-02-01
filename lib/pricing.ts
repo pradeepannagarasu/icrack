@@ -236,8 +236,26 @@ export function getBaseRepairPrice(repairType: string): RepairPricing | null {
   };
 }
 
+/** Collect all numeric prices from a device entry (flat or nested original/regular/glass/housing/front/rear/lens) */
+function collectPrices(devicePricing: unknown): number[] {
+  const prices: number[] = [];
+  if (!devicePricing || typeof devicePricing !== "object") return prices;
+  const obj = devicePricing as Record<string, unknown>;
+  if (typeof (obj as any).price === "number") {
+    prices.push((obj as any).price);
+  }
+  for (const key of ["original", "regular", "glass", "housing", "front", "rear", "lens"]) {
+    const nested = obj[key];
+    if (nested && typeof nested === "object" && typeof (nested as any).price === "number") {
+      prices.push((nested as any).price);
+    }
+  }
+  return prices;
+}
+
 /**
  * Get price range for a repair type (min and max from all devices)
+ * Includes nested pricing (e.g. battery original/regular, back-cover glass/housing, camera front/rear/lens)
  */
 export function getRepairPriceRange(repairType: string): { min: number; max: number; base: number } | null {
   const pricing = getPricingData();
@@ -247,13 +265,11 @@ export function getRepairPriceRange(repairType: string): { min: number; max: num
   let min = repair.basePrice;
   let max = repair.basePrice;
 
-  // Find min and max prices from all devices
   Object.values(repair.devices).forEach((devicePricing) => {
-    if (typeof devicePricing === "object" && "price" in devicePricing) {
-      const price = (devicePricing as RepairPricing).price;
+    collectPrices(devicePricing).forEach((price) => {
       min = Math.min(min, price);
       max = Math.max(max, price);
-    }
+    });
   });
 
   return {

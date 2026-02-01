@@ -17,9 +17,9 @@ type iPadCategory = "ipad" | "ipad-mini" | "ipad-air" | "ipad-pro";
 
 const categories: { id: iPadCategory; name: string }[] = [
   { id: "ipad", name: "iPad" },
-  { id: "ipad-air", name: "iPad Air" },
   { id: "ipad-pro", name: "iPad Pro" },
   { id: "ipad-mini", name: "iPad Mini" },
+  { id: "ipad-air", name: "iPad Air" },
 ];
 
 function filterModelsByCategory(models: typeof allTabletModels, category: iPadCategory) {

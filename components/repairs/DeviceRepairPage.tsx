@@ -365,7 +365,7 @@ export default function DeviceRepairPage({
                   <p className="text-sm text-neutral-600 mb-6">Choose one option below.</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {[
-                      { repair: "battery", subType: "original" as const, label: "Original Battery" },
+                      { repair: "battery", subType: "original" as const, label: "Genuine Battery" },
                       { repair: "battery", subType: "regular" as const, label: "Standard Battery" },
                       { repair: "charging-port", subType: "port" as const, label: "Charging Port" },
                       { repair: "charging-port", subType: "dock" as const, label: "Charging Dock" },
