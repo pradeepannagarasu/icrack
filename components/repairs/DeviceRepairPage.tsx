@@ -236,8 +236,8 @@ export default function DeviceRepairPage({
             </p>
           </div>
 
-          {/* 5 category selectors – horizontal tabs (like iSmash) */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
+          {/* Repair category cards – equal size, stable grid, mobile-friendly */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-10 max-w-4xl mx-auto pb-2">
             {REPAIR_CATEGORIES.filter((c) => (isMacBook ? c.id === "battery-charging" : true)).map((cat) => {
               const Icon = cat.icon;
               const isActive = selectedCategory === cat.id;
@@ -248,16 +248,29 @@ export default function DeviceRepairPage({
                   onClick={() => handleCategorySelect(cat.id)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`flex flex-col items-center justify-center min-w-[100px] sm:min-w-[120px] py-4 px-3 sm:py-5 sm:px-4 rounded-xl border-2 transition-all ${
-                    isActive ? "border-primary-600 bg-primary-50 shadow-md" : "border-neutral-200 bg-white hover:border-primary-300"
+                  className={`relative flex flex-col items-center justify-center min-h-[120px] sm:min-h-[130px] w-full py-4 px-3 sm:py-5 sm:px-4 rounded-xl border-2 transition-all ${
+                    isActive
+                      ? "border-primary-500 bg-primary-50 shadow-md"
+                      : "border-neutral-200 bg-neutral-50/80 hover:border-primary-200 hover:bg-white"
                   }`}
                 >
-                  <Icon className={`w-8 h-8 sm:w-10 sm:h-10 mb-2 ${isActive ? "text-primary-600" : "text-neutral-600"}`} />
-                  <span className={`text-xs sm:text-sm font-semibold text-center leading-tight ${isActive ? "text-primary-600" : "text-neutral-700"}`}>
+                  <Icon
+                    className={`w-9 h-9 sm:w-10 sm:h-10 mb-2 flex-shrink-0 ${
+                      isActive ? "text-primary-600" : "text-neutral-700"
+                    }`}
+                  />
+                  <span
+                    className={`text-xs sm:text-sm font-semibold text-center leading-tight line-clamp-2 px-0.5 ${
+                      isActive ? "text-primary-600" : "text-neutral-700"
+                    }`}
+                  >
                     {cat.label}
                   </span>
                   {isActive && (
-                    <span className="mt-1.5 block w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-primary-600" />
+                    <span
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[8px] border-l-transparent border-r-transparent border-t-primary-500"
+                      aria-hidden
+                    />
                   )}
                 </motion.button>
               );

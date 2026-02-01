@@ -78,6 +78,13 @@ export function getRepairPricing(
         time: "30 mins",
       };
     }
+    if (repairType === "software") {
+      return {
+        price: repair.basePrice,
+        warranty: "3 months",
+        time: "Up to 60 minutes",
+      };
+    }
     return {
       price: repair.basePrice,
       warranty: repairType === "battery" ? "24 months" : "12 months",
@@ -137,6 +144,8 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
     "camera-replacement": `Full camera module replacement for front or rear camera issues. Professional repair service.`,
     earpiece: `Is your device experiencing issues with the earpiece? We can fit a brand new one, to fix these problems!`,
     "water-damage": `Has your ${deviceName} been exposed to water or liquid? Our expert technicians can diagnose and repair water damage to get your device working again.`,
+    software: `Resolve software problems, updates, and system errors. Expert troubleshooting for your ${deviceName}.`,
+    diagnostics: `Comprehensive device diagnostics. Identify issues and get repair recommendations.`,
   };
 
   const key = subType ? `${repairType}-${subType}` : repairType;
@@ -167,6 +176,7 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
     earpiece: `${deviceName} Earpiece Speaker`,
     "water-damage": `${deviceName} Water Damage Repair`,
     diagnostics: `Diagnostics`,
+    software: `Software Issues`,
   };
 
   // Handle special cases
@@ -209,6 +219,13 @@ export function getBaseRepairPrice(repairType: string): RepairPricing | null {
       price: repair.basePrice,
       warranty: "N/A",
       time: "30 mins",
+    };
+  }
+  if (repairType === "software") {
+    return {
+      price: repair.basePrice,
+      warranty: "3 months",
+      time: "Up to 60 minutes",
     };
   }
 
