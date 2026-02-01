@@ -2,18 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  Smartphone,
-  Battery,
-  Camera,
-  Plug,
-  Droplets,
-  Stethoscope,
-  Volume2,
-  Code,
-  ArrowRight,
-} from "lucide-react";
-import RepairCategoryCard from "@/components/repairs/RepairCategoryCard";
+import { ArrowRight } from "lucide-react";
 import DeviceSelectorCTA from "@/components/repairs/DeviceSelectorCTA";
 import TrustIndicators from "@/components/repairs/TrustIndicators";
 import RepairsFAQ from "@/components/repairs/RepairsFAQ";
@@ -21,89 +10,6 @@ import WhyICrack from "@/components/home/WhyICrack";
 import CallOutServiceBanner from "@/components/repairs/CallOutServiceBanner";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { fadeInUp } from "@/lib/animations";
-
-const repairCategories = [
-  {
-    icon: Smartphone,
-    title: "Screen Repair",
-    description: "Fast screen replacement for cracked, broken, or unresponsive displays. Professional service with quality parts.",
-    href: "/repairs/screen",
-    ctaText: "View Repair",
-    duration: "60-120 mins",
-    warranty: "12 months",
-    repairTypeId: "screen",
-  },
-  {
-    icon: Battery,
-    title: "Battery Replacement",
-    description: "Extend your device life with a new battery. Quick replacement service with improved performance.",
-    href: "/repairs/battery",
-    ctaText: "View Repair",
-    duration: "60 mins",
-    warranty: "12 months",
-    repairTypeId: "battery",
-  },
-  {
-    icon: Camera,
-    title: "Camera Repair",
-    description: "Fix blurry photos, black screens, or cracked lenses. Front and rear camera repairs available.",
-    href: "/repairs/camera",
-    ctaText: "View Repair",
-    duration: "60 mins",
-    warranty: "12 months",
-    repairTypeId: "camera",
-  },
-  {
-    icon: Plug,
-    title: "Charging Port",
-    description: "Restore charging functionality. Fix loose connections, damaged ports, and charging issues.",
-    href: "/repairs/charging-port",
-    ctaText: "View Repair",
-    duration: "60 mins",
-    warranty: "12 months",
-    repairTypeId: "charging-port",
-  },
-  {
-    icon: Droplets,
-    title: "Water Damage",
-    description: "Expert water damage restoration. Professional cleaning and component replacement service.",
-    href: "/repairs/water-damage",
-    ctaText: "View Repair",
-    duration: "120-240 mins",
-    warranty: "6 months",
-    repairTypeId: "water-damage",
-  },
-  {
-    icon: Stethoscope,
-    title: "Diagnostics",
-    description: "Comprehensive device diagnostics. Identify issues and get repair recommendations.",
-    href: "/repairs/diagnostics",
-    ctaText: "View Repair",
-    duration: "30 mins",
-    warranty: "N/A",
-    repairTypeId: "diagnostics",
-  },
-  {
-    icon: Volume2,
-    title: "Speaker Repair",
-    description: "Fix audio issues, distorted sound, or no sound. Speaker and earpiece repairs available.",
-    href: "/repairs/speaker",
-    ctaText: "View Repair",
-    duration: "60 mins",
-    warranty: "12 months",
-    repairTypeId: "speaker",
-  },
-  {
-    icon: Code,
-    title: "Software Issues",
-    description: "Resolve software problems, updates, and system errors. Expert troubleshooting service.",
-    href: "/repairs/software",
-    ctaText: "View Repair",
-    duration: "60-120 mins",
-    warranty: "3 months",
-    repairTypeId: "software",
-  },
-];
 
 export default function RepairsPage() {
   return (
@@ -144,28 +50,6 @@ export default function RepairsPage() {
 
       {/* Call-out Service Banner */}
       <CallOutServiceBanner />
-
-      {/* Repair Categories Grid */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="text-center mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-2 sm:mb-3">
-              Our Repair Services
-            </h2>
-            <p className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto px-2">
-              Choose a repair service below to learn more or book an appointment
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-            {repairCategories.map((category, index) => (
-              <ScrollReveal key={category.title} delay={index * 0.05}>
-                <RepairCategoryCard {...category} />
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 6 Reasons Section */}
       <WhyICrack />
