@@ -68,9 +68,9 @@
         "ipad-mini-6": { "price": 149, "save": 100, "warranty": "Lifetime", "time": "24 - 48 hours" },
         "ipad-mini-5": { "price": 139, "save": 90, "warranty": "Lifetime", "time": "24 - 48 hours" },
         "ipad-mini-4": { "price": 129, "save": 80, "warranty": "Lifetime", "time": "24 - 48 hours" },
-        "ipad-mini-3": { "price": 119, "save": 70, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-mini-2": { "price": 109, "save": 60, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-mini": { "price": 99, "save": 50, "warranty": "12 months", "time": "Up to 120 minutes" }
+        "ipad-mini-3": { "price": 119, "save": 70, "warranty": "12 months", "time": "24 - 48 hours" },
+        "ipad-mini-2": { "price": 109, "save": 60, "warranty": "12 months", "time": "24 - 48 hours" },
+        "ipad-mini": { "price": 99, "save": 50, "warranty": "12 months", "time": "24 - 48 hours" }
       }
     },
     "back-cover": {
@@ -278,8 +278,8 @@
           "regular": { "price": 35, "warranty": "12 months", "time": "Up to 60 minutes" }
         },
         "ipad-pro-13": {
-          "original": { "price": 149, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 129, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 149, "warranty": "24 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "24 months", "time": "24 - 48 hours" }
         },
         "ipad-pro-12.9": {
           "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
@@ -382,36 +382,36 @@
           "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-pro-16": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-pro-15": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-pro-14": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-pro-13": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-air-15": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-air-13": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-air-11": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-12": {
-          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
-          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" }
         }
       }
     },
@@ -579,11 +579,11 @@
       }
     },
     "diagnostics": {
-      "basePrice": 20,
+      "basePrice": 25,
       "devices": {}
     },
     "software": {
-      "basePrice": 35,
+      "basePrice": 40,
       "devices": {}
     }
   }

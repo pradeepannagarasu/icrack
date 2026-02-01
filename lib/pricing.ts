@@ -75,14 +75,14 @@ export function getRepairPricing(
       return {
         price: repair.basePrice,
         warranty: "N/A",
-        time: "30 mins",
+        time: "Up to 30 minutes",
       };
     }
     if (repairType === "software") {
       return {
         price: repair.basePrice,
         warranty: "3 months",
-        time: "Up to 60 minutes",
+        time: "60 - 120 mins",
       };
     }
     return {
@@ -218,14 +218,14 @@ export function getBaseRepairPrice(repairType: string): RepairPricing | null {
     return {
       price: repair.basePrice,
       warranty: "N/A",
-      time: "30 mins",
+      time: "Up to 30 minutes",
     };
   }
   if (repairType === "software") {
     return {
       price: repair.basePrice,
       warranty: "3 months",
-      time: "Up to 60 minutes",
+      time: "60 - 120 mins",
     };
   }
 
