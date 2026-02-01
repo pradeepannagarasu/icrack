@@ -59,7 +59,7 @@ export default function DeviceSelectionGrid({
         <div
           className={`grid ${gridCols[columns]} gap-6 md:gap-8 lg:gap-10`}
         >
-          {models.map((model, index) => (
+          {(models || []).filter((m) => m && m.id).map((model, index) => (
             <motion.div
               key={model.id}
               initial={{ opacity: 0, y: 20 }}

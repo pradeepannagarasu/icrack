@@ -54,46 +54,37 @@ export default function DeviceSelectorPage() {
   };
 
   const handleModelSelect = (model: Model) => {
+    if (!model?.id) return;
     setSelectedModel(model);
     setSelectedRepair(null);
-    // Navigate directly to the repair page for this device
-      // Determine category based on brand or model
-      let category = "phones"; // default
-      
-      if (selectedBrand) {
-        if (selectedBrand.id === "apple") {
-          // Use selected Apple category if available
-          if (selectedAppleCategory === "tablets") {
-            category = "tablets";
-          } else if (selectedAppleCategory === "phones") {
-            category = "iphone";
-          } else if (selectedAppleCategory === "laptops") {
-            category = "laptops";
-          } else {
-            // Fallback to model detection
-            if (model.id.includes("ipad")) {
-              category = "tablets";
-            } else if (model.id.includes("iphone")) {
-              category = "iphone";
-            } else if (model.id.includes("macbook") || model.id.includes("mac")) {
-              category = "laptops";
-            }
-          }
-        } else if (selectedBrand.id === "samsung") {
-        if (model.id.includes("tab")) {
+    let category = "phones";
+    const brandId = selectedBrand?.id;
+
+    if (selectedBrand) {
+      if (brandId === "apple") {
+        if (selectedAppleCategory === "tablets") {
           category = "tablets";
+        } else if (selectedAppleCategory === "phones") {
+          category = "iphone";
+        } else if (selectedAppleCategory === "laptops") {
+          category = "laptops";
         } else {
-          category = "phones";
+          if (model.id.includes("ipad")) category = "tablets";
+          else if (model.id.includes("iphone")) category = "iphone";
+          else if (model.id.includes("macbook") || model.id.includes("mac")) category = "laptops";
         }
-      } else if (model.id.includes("tab") || model.id.includes("ipad")) {
-        category = "tablets";
-      } else if (model.id.includes("macbook") || model.id.includes("mac") || model.id.includes("xps") || model.id.includes("spectre") || model.id.includes("thinkpad") || model.id.includes("yoga") || model.id.includes("inspiron") || model.id.includes("envy") || model.id.includes("pavilion") || model.id.includes("elitebook") || model.id.includes("ideapad") || model.id.includes("latitude")) {
-        category = "laptops";
+      } else if (brandId === "samsung") {
+        category = model.id.includes("tab") ? "tablets" : "phones";
       } else {
-        category = "phones";
+        if (model.id.includes("tab") || model.id.includes("ipad")) category = "tablets";
+        else if (model.id.includes("macbook") || model.id.includes("mac") || model.id.includes("xps") || model.id.includes("spectre") || model.id.includes("thinkpad") || model.id.includes("yoga") || model.id.includes("inspiron") || model.id.includes("envy") || model.id.includes("pavilion") || model.id.includes("elitebook") || model.id.includes("ideapad") || model.id.includes("latitude")) category = "laptops";
+        else category = "phones";
       }
+    } else {
+      if (model.id.includes("tab") || model.id.includes("ipad")) category = "tablets";
+      else if (model.id.includes("macbook") || model.id.includes("mac")) category = "laptops";
     }
-    
+
     router.push(`/repairs/${category}/${model.id}`);
   };
 

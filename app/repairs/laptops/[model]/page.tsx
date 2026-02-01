@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 export default function LaptopModelPage({
   params,
 }: {
-  params: { model: string };
+  params: { model?: string };
 }) {
   const modelSlug = params?.model;
   if (!modelSlug) {

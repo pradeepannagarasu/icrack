@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 export default function PhoneModelPage({
   params,
 }: {
-  params: { model: string };
+  params: { model?: string };
 }) {
   const modelSlug = params?.model;
   if (!modelSlug) {

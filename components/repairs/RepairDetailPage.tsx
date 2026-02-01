@@ -201,6 +201,9 @@ const repairContent: Record<
 };
 
 export default function RepairDetailPage({ repair }: RepairDetailPageProps) {
+  if (!repair || !repair.id) {
+    return null;
+  }
   const { addToCart } = useCart();
   const content = repairContent[repair.id] || {
     icon: "🔧",
