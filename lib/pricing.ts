@@ -71,6 +71,13 @@ export function getRepairPricing(
   const devicePricing = repair.devices[deviceId];
   if (!devicePricing) {
     // Fallback to base price
+    if (repairType === "diagnostics") {
+      return {
+        price: repair.basePrice,
+        warranty: "N/A",
+        time: "30 mins",
+      };
+    }
     return {
       price: repair.basePrice,
       warranty: repairType === "battery" ? "24 months" : "12 months",
@@ -159,6 +166,7 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
     "camera-replacement": `${deviceName} Camera Replacement`,
     earpiece: `${deviceName} Earpiece Speaker`,
     "water-damage": `${deviceName} Water Damage Repair`,
+    diagnostics: `Diagnostics`,
   };
 
   // Handle special cases
@@ -195,6 +203,14 @@ export function getBaseRepairPrice(repairType: string): RepairPricing | null {
   const pricing = getPricingData();
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
+
+  if (repairType === "diagnostics") {
+    return {
+      price: repair.basePrice,
+      warranty: "N/A",
+      time: "30 mins",
+    };
+  }
 
   return {
     price: repair.basePrice,

@@ -6,8 +6,8 @@
         "iphone-8": { "price": 59, "save": 90, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
         "iphone-se": { "price": 89, "save": 40, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
         "iphone-7": { "price": 55, "save": 85, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
-        "iphone-16-pro-max": { "price": 319, "save": 150, "warranty": "12 months", "time": "Up to 60 minutes" },
-        "iphone-16-pro": { "price": 299, "save": 140, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-16-pro-max": { "price": 349, "save": 150, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium", "Desert Titanium"] },
+        "iphone-16-pro": { "price": 349, "save": 140, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium"] },
         "iphone-16-plus": { "price": 249, "save": 120, "warranty": "12 months", "time": "Up to 60 minutes" },
         "iphone-16": { "price": 229, "save": 110, "warranty": "12 months", "time": "Up to 60 minutes" },
         "iphone-15-pro-max": { "price": 289, "save": 150, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
@@ -29,29 +29,29 @@
         "iphone-11-pro-max": { "price": 129, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
         "iphone-11-pro": { "price": 129, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
         "iphone-11": { "price": 129, "save": 70, "warranty": "12 months", "time": "Up to 60 minutes", "variants": ["Black", "Green", "Yellow", "Purple", "Red", "White"] },
-        "ipad-pro-13": { "price": 249, "save": 200, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-pro-12.9": { "price": 229, "save": 180, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-pro-11": { "price": 199, "save": 150, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-pro-10.5": { "price": 179, "save": 130, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-pro-9.7": { "price": 169, "save": 120, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-air-5": { "price": 189, "save": 140, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-air-4": { "price": 179, "save": 130, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-air-3": { "price": 169, "save": 120, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-air-2": { "price": 159, "save": 110, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-air": { "price": 149, "save": 100, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-10": { "price": 149, "save": 100, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-9": { "price": 139, "save": 90, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-8": { "price": 129, "save": 80, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-7": { "price": 119, "save": 70, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-6": { "price": 109, "save": 60, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-5": { "price": 99, "save": 50, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-4": { "price": 89, "save": 40, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-3": { "price": 79, "save": 30, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-2": { "price": 69, "save": 20, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad": { "price": 59, "save": 10, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-mini-6": { "price": 149, "save": 100, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-mini-5": { "price": 139, "save": 90, "warranty": "12 months", "time": "Up to 120 minutes" },
-        "ipad-mini-4": { "price": 129, "save": 80, "warranty": "12 months", "time": "Up to 120 minutes" },
+        "ipad-pro-13": { "price": 349, "save": 200, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-pro-12.9": { "price": 249, "save": 180, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-pro-11": { "price": 199, "save": 150, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-pro-10.5": { "price": 179, "save": 130, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-pro-9.7": { "price": 169, "save": 120, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-air-5": { "price": 199, "save": 140, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-air-4": { "price": 199, "save": 130, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-air-3": { "price": 169, "save": 120, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-air-2": { "price": 159, "save": 110, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-air": { "price": 149, "save": 100, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-10": { "price": 99, "save": 100, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-9": { "price": 99, "save": 90, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-8": { "price": 99, "save": 80, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-7": { "price": 99, "save": 70, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-6": { "price": 109, "save": 60, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-5": { "price": 99, "save": 50, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-4": { "price": 89, "save": 40, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-3": { "price": 79, "save": 30, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-2": { "price": 69, "save": 20, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad": { "price": 59, "save": 10, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-mini-6": { "price": 149, "save": 100, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-mini-5": { "price": 139, "save": 90, "warranty": "Lifetime", "time": "24 - 48 hours" },
+        "ipad-mini-4": { "price": 129, "save": 80, "warranty": "Lifetime", "time": "24 - 48 hours" },
         "ipad-mini-3": { "price": 119, "save": 70, "warranty": "12 months", "time": "Up to 120 minutes" },
         "ipad-mini-2": { "price": 109, "save": 60, "warranty": "12 months", "time": "Up to 120 minutes" },
         "ipad-mini": { "price": 99, "save": 50, "warranty": "12 months", "time": "Up to 120 minutes" }
@@ -72,13 +72,21 @@
           "glass": { "price": 75, "warranty": "12 months", "time": "Up to 60 minutes" },
           "housing": { "price": 105, "warranty": "12 months", "time": "Up to 90 minutes" }
         },
+        "iphone-16-pro-max": {
+          "glass": { "price": 249, "warranty": "3 months", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium", "Desert Titanium"] },
+          "housing": { "price": 289, "warranty": "3 months", "time": "Up to 90 minutes" }
+        },
+        "iphone-16-pro": {
+          "glass": { "price": 249, "warranty": "3 months", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium"] },
+          "housing": { "price": 289, "warranty": "3 months", "time": "Up to 90 minutes" }
+        },
         "iphone-15-pro": {
-          "glass": { "price": 149, "warranty": "12 months", "time": "Up to 60 minutes" },
-          "housing": { "price": 189, "warranty": "12 months", "time": "Up to 90 minutes" }
+          "glass": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 189, "warranty": "3 months", "time": "Up to 90 minutes" }
         },
         "iphone-15": {
-          "glass": { "price": 129, "warranty": "12 months", "time": "Up to 60 minutes" },
-          "housing": { "price": 169, "warranty": "12 months", "time": "Up to 90 minutes" }
+          "glass": { "price": 129, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "housing": { "price": 169, "warranty": "3 months", "time": "Up to 90 minutes" }
         }
       }
     },
@@ -98,12 +106,12 @@
           "regular": { "price": 45, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-16-pro-max": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 179, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "Up to 60 minutes" }
         },
         "iphone-16-pro": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 179, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "Up to 60 minutes" }
         },
         "iphone-16-plus": {
           "original": { "price": 79, "warranty": "24 months", "time": "Up to 60 minutes" },
@@ -138,12 +146,12 @@
           "regular": { "price": 59, "warranty": "24 months", "time": "Up to 60 minutes" }
         },
         "iphone-14-plus": {
-          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 49, "warranty": "12 months", "time": "Up to 60 minutes" }
         },
         "iphone-14": {
-          "original": { "price": 69, "warranty": "24 months", "time": "Up to 60 minutes" },
-          "regular": { "price": 55, "warranty": "24 months", "time": "Up to 60 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "Up to 60 minutes" },
+          "regular": { "price": 55, "warranty": "12 months", "time": "Up to 60 minutes" }
         },
         "iphone-13-pro-max": {
           "original": { "price": 75, "warranty": "24 months", "time": "Up to 60 minutes" },
@@ -218,136 +226,136 @@
           "regular": { "price": 129, "warranty": "24 months", "time": "Up to 120 minutes" }
         },
         "ipad-pro-12.9": {
-          "original": { "price": 139, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 119, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-pro-11": {
-          "original": { "price": 129, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 109, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 109, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-pro-10.5": {
-          "original": { "price": 119, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 99, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 119, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 99, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-pro-9.7": {
-          "original": { "price": 109, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 109, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 89, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-air-5": {
-          "original": { "price": 119, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 99, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-air-4": {
-          "original": { "price": 109, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-air-3": {
-          "original": { "price": 99, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 99, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-air-2": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 89, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-air": {
-          "original": { "price": 99, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-10": {
-          "original": { "price": 109, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-9": {
-          "original": { "price": 99, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-8": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-7": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-6": {
-          "original": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-5": {
-          "original": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-4": {
-          "original": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-3": {
-          "original": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-2": {
-          "original": { "price": 59, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 39, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-mini-6": {
-          "original": { "price": 99, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 59, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 59, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-mini-5": {
-          "original": { "price": 89, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 89, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-mini-4": {
-          "original": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 59, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-mini-3": {
-          "original": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 79, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 59, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-mini-2": {
-          "original": { "price": 69, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 49, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "ipad-mini": {
-          "original": { "price": 79, "warranty": "24 months", "time": "Up to 120 minutes" },
-          "regular": { "price": 59, "warranty": "24 months", "time": "Up to 120 minutes" }
+          "original": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" },
+          "regular": { "price": 69, "warranty": "12 months", "time": "24 - 48 hours" }
         },
         "macbook-pro-16": {
-          "original": { "price": 249, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 219, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-pro-15": {
-          "original": { "price": 239, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 209, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-pro-14": {
-          "original": { "price": 239, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 209, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-pro-13": {
-          "original": { "price": 229, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 199, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-air-15": {
-          "original": { "price": 219, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 189, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-air-13": {
-          "original": { "price": 209, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 179, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-air-11": {
-          "original": { "price": 199, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 169, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         },
         "macbook-12": {
-          "original": { "price": 189, "warranty": "24 months", "time": "Up to 180 minutes" },
-          "regular": { "price": 159, "warranty": "24 months", "time": "Up to 180 minutes" }
+          "original": { "price": 129, "warranty": "12 months", "time": "24 hours" },
+          "regular": { "price": 129, "warranty": "12 months", "time": "24 hours" }
         }
       }
     },
@@ -357,13 +365,27 @@
         "iphone-8": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Space Grey", "Silver", "Gold"] },
         "iphone-se": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
         "iphone-7": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
-        "iphone-15-pro": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-15": { "price": 35, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        "iphone-16-pro": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-16-pro-max": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-15-pro": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-15": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-14-plus": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-14": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
       }
     },
     "camera": {
       "basePrice": 49,
       "devices": {
+        "iphone-16-pro": {
+          "front": { "price": 279, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "rear": { "price": 329, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "lens": { "price": 65, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-16-pro-max": {
+          "front": { "price": 279, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "rear": { "price": 329, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "lens": { "price": 65, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
         "iphone-8": {
           "front": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "rear": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
@@ -380,9 +402,9 @@
           "lens": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-15-pro": {
-          "front": { "price": 59, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-          "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-          "lens": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+          "front": { "price": 279, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "rear": { "price": 329, "warranty": "3 months", "time": "Up to 60 minutes" },
+          "lens": { "price": 65, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         }
       }
     },
@@ -392,8 +414,10 @@
         "iphone-8": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-7": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-se": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-15-pro": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-15": { "price": 35, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        "iphone-16-pro": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
+        "iphone-16-pro-max": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
+        "iphone-15-pro": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
+        "iphone-15": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
       }
     },
     "water-damage": {
@@ -403,6 +427,10 @@
         "iphone-se": { "price": 99, "warranty": "6 months", "time": "2-4 hours" },
         "iphone-15-pro": { "price": 149, "warranty": "6 months", "time": "2-4 hours" }
       }
+    },
+    "diagnostics": {
+      "basePrice": 20,
+      "devices": {}
     }
   }
 }

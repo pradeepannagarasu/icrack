@@ -29,35 +29,37 @@ export default function DeviceCard({
     >
       <Link href={href} className="block">
         <motion.div
-          whileHover={{ scale: 1.05, y: -4 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative bg-white rounded-2xl p-6 border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all text-center group"
+          whileHover={{ scale: 1.03, y: -4 }}
+          whileTap={{ scale: 0.98 }}
+          className="relative bg-white rounded-2xl p-6 lg:p-8 border border-neutral-200 hover:border-primary-300 hover:shadow-xl transition-all text-center group h-full flex flex-col items-center"
         >
-          {/* Diamond-shaped background */}
-          <div className="absolute inset-0 overflow-hidden rounded-2xl">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-100/30 rotate-45 rounded-lg"></div>
+          {/* Light blue geometric star/cross shape behind device */}
+          <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rotate-45 rounded-xl opacity-60"
+              style={{ backgroundColor: "#bae6fd" }}
+            />
           </div>
-          
+
           {/* Device image */}
-          <div className="relative z-10 h-32 bg-white rounded-xl flex items-center justify-center mb-4 overflow-hidden">
+          <div className="relative z-10 h-36 lg:h-40 w-full flex items-center justify-center mb-4 flex-shrink-0">
             <Image
               src={imageSrc}
               alt={name}
-              width={200}
-              height={200}
-              className="object-contain w-full h-full p-4 group-hover:scale-110 transition-transform duration-300"
+              width={180}
+              height={180}
+              className="object-contain w-full h-full p-4 group-hover:scale-105 transition-transform duration-300"
               style={{ maxWidth: "100%", maxHeight: "100%" }}
               unoptimized
               onError={(e) => {
-                // Fallback to mobile.png if image fails to load
                 const target = e.target as HTMLImageElement;
                 target.src = "/images/mobile.png";
               }}
             />
           </div>
-          
+
           {/* Device name in pink */}
-          <h3 className="relative z-10 font-semibold text-primary-600 text-sm group-hover:text-primary-700 transition-colors">
+          <h3 className="relative z-10 font-semibold text-primary-600 text-base lg:text-lg group-hover:text-primary-700 transition-colors mt-auto">
             {name}
           </h3>
         </motion.div>
