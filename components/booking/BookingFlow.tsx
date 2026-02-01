@@ -24,13 +24,19 @@ export default function BookingFlow({ initialStep = "brand", onComplete, categor
   const [currentStep, setCurrentStep] = useState<BookingStep>(initialStep);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [selectedAppleCategory, setSelectedAppleCategory] = useState<DeviceCategory | null>(null);
+  const [selectedAppleSubcategory, setSelectedAppleSubcategory] = useState<string | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
   const [bookingData, setBookingData] = useState<Partial<BookingData>>({});
 
+  const showAppleSubcategory =
+    selectedBrand?.id === "apple" &&
+    (selectedAppleCategory === "tablets" || selectedAppleCategory === "laptops");
+
   const steps: { id: BookingStep; label: string }[] = [
     { id: "brand", label: "Brand" },
     ...(selectedBrand?.id === "apple" ? [{ id: "apple-category" as BookingStep, label: "Device Type" }] : []),
+    ...(showAppleSubcategory ? [{ id: "apple-subcategory" as BookingStep, label: "Category" }] : []),
     { id: "device", label: "Device" },
     { id: "repair", label: "Repair" },
     { id: "form", label: "Details" },
