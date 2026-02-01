@@ -163,8 +163,8 @@ export default function SamsungRepairsPage() {
                   Back to series
                 </button>
                 <DeviceSelectionGrid
-                  title={SERIES.find((s) => s.id === selectedSeries)?.label ?? seriesLabel}
-                  subtitle={`All models in the ${seriesLabel}`}
+                  title={SERIES.find((s) => s.id === selectedSeries)?.label ?? seriesLabel ?? "Models"}
+                  subtitle={`All models in the ${seriesLabel ?? "series"}`}
                   models={modelsInSeries}
                   baseHref="/repairs/phones"
                   getImageSrc={(id) => getModelImage("samsung", id)}
