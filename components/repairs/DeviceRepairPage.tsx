@@ -4,14 +4,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Smartphone, Battery, Camera, Droplets, Wrench, HelpCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, Smartphone, Battery, Camera, Wrench, Layout } from "lucide-react";
 import { Brand, Model, RepairType } from "@/types";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { fadeInUp } from "@/lib/animations";
 import { getModelImage, getRepairImage } from "@/lib/deviceImages";
 import DeviceRepairFAQ from "@/components/repairs/DeviceRepairFAQ";
 import RepairDetailCard from "@/components/repairs/RepairDetailCard";
-import RepairOptionCard from "@/components/repairs/RepairOptionCard";
 import { getRepairPricing, getRepairDescription, getRepairTitle } from "@/lib/pricing";
 import CallOutServiceBanner from "@/components/repairs/CallOutServiceBanner";
 import BackLink from "@/components/ui/BackLink";
@@ -22,120 +21,23 @@ interface DeviceRepairPageProps {
   repairs: RepairType[];
 }
 
-// Map repair types from repairs.json to display options
-function getRepairOptions(repairs: RepairType[], deviceId?: string) {
-  const options: Array<{
-    id: string;
-    title: string;
-    description: string;
-    duration: string;
-    warranty: string;
-    repairId: string;
-    subType?: "original" | "regular" | "lens" | "replacement" | "port" | "dock";
-  }> = [];
+// 5 top-level categories (iSmash-style: selectors on top, sub-options inside one panel)
+const REPAIR_CATEGORIES = [
+  { id: "screen" as const, label: "Front screen", icon: Smartphone },
+  { id: "back-cover" as const, label: "Back cover", icon: Layout },
+  { id: "battery-charging" as const, label: "Battery & charging", icon: Battery },
+  { id: "camera" as const, label: "Camera (front or rear)", icon: Camera },
+  { id: "other" as const, label: "Other repairs", icon: Wrench },
+] as const;
 
-  (repairs || []).forEach((repair) => {
-    if (!repair?.id) return;
-    // Screen: single card – user then sees compare step (Original vs Standard)
-    if (repair.id === "screen") {
-      options.push({
-        id: "screen",
-        title: "Screen Replacement",
-        description: "Original or standard replacement screen. Compare options and book.",
-        duration: repair.duration,
-        warranty: "12 months",
-        repairId: "screen",
-      });
-      return;
-    }
-
-    // Battery: single card – user then sees compare step (Original vs Standard)
-    if (repair.id === "battery") {
-      options.push({
-        id: "battery",
-        title: "Battery Replacement",
-        description: "Original or standard battery. Compare options and book.",
-        duration: repair.duration,
-        warranty: "24 months",
-        repairId: "battery",
-      });
-      return;
-    }
-
-    // Camera: Split into two separate options
-    if (repair.id === "camera") {
-      options.push({
-        id: "camera-lens",
-        title: "Camera Lens Repair",
-        description: "Replace cracked or damaged camera lens glass. Quick and affordable repair.",
-        duration: repair.duration,
-        warranty: repair.warranty,
-        repairId: "camera",
-        subType: "lens",
-      });
-      options.push({
-        id: "camera-replacement",
-        title: "Camera Replacement",
-        description: "Full camera module replacement for front or rear camera issues.",
-        duration: repair.duration,
-        warranty: repair.warranty,
-        repairId: "camera",
-        subType: "replacement",
-      });
-      return;
-    }
-
-    // Charging Port: Split into two separate options
-    if (repair.id === "charging-port") {
-      options.push({
-        id: "charging-port-repair",
-        title: "Charging Port Repair",
-        description: "Fix charging port issues, clean and repair damaged ports.",
-        duration: repair.duration,
-        warranty: repair.warranty,
-        repairId: "charging-port",
-        subType: "port",
-      });
-      options.push({
-        id: "charging-dock-repair",
-        title: "Charging Dock Repair",
-        description: "Repair or replace charging dock and connectivity components.",
-        duration: repair.duration,
-        warranty: repair.warranty,
-        repairId: "charging-port",
-        subType: "dock",
-      });
-      return;
-    }
-
-    // Map other repair IDs to display options (screen handled above)
-    const optionMap: Record<string, { label: string; repairId: string }> = {
-      "water-damage": { label: "Water Damage Repair", repairId: "water-damage" },
-      "back-glass": { label: "Back Glass Repair", repairId: "back-cover" },
-      speaker: { label: "Speaker Repair", repairId: "earpiece" },
-      "home-button": { label: "Home Button Repair", repairId: "earpiece" },
-    };
-
-    const option = optionMap[repair.id] || { label: repair.name, repairId: repair.id };
-
-    options.push({
-      id: repair.id,
-      title: option.label,
-      description: repair.description,
-      duration: repair.duration,
-      warranty: repair.warranty,
-      repairId: option.repairId,
-    });
-  });
-
-  return options;
-}
+type CategoryId = (typeof REPAIR_CATEGORIES)[number]["id"];
 
 export default function DeviceRepairPage({
   brand,
   device,
   repairs,
 }: DeviceRepairPageProps) {
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<string | null>(null);
   const [selectedSubType, setSelectedSubType] = useState<
     "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined
@@ -145,85 +47,90 @@ export default function DeviceRepairPage({
     return null;
   }
 
-  // Filter repairs: For MacBooks, only show battery repairs
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
-  const filteredRepairs = isMacBook 
+  const filteredRepairs = isMacBook
     ? (repairs || []).filter((repair) => repair?.id === "battery")
     : (repairs || []);
-  const repairOptions = getRepairOptions(filteredRepairs, device.id);
+  const otherRepairIds = ["water-damage", "speaker", "earpiece", "diagnostics", "software", "home-button"];
+  const otherRepairs = filteredRepairs.filter((r) => r?.id && otherRepairIds.includes(r.id));
 
-  const handleRepairSelect = (repairOption: typeof repairOptions[0]) => {
-    setSelectedRepair(repairOption.id);
-    if (repairOption.subType) {
-      setSelectedSubType(repairOption.subType);
-    } else {
-      setSelectedSubType(undefined);
-    }
+  const handleCategorySelect = (cat: CategoryId) => {
+    setSelectedCategory(cat);
+    setSelectedRepair(null);
+    setSelectedSubType(undefined);
   };
 
-  const handleCompareOptionSelect = (repairId: string, subType: "original" | "regular") => {
-    setSelectedSubType(subType);
+  const handleBackFromDetail = () => {
+    if (selectedSubType !== undefined || (selectedCategory === "other" && selectedRepair)) {
+      setSelectedSubType(undefined);
+      setSelectedRepair(null);
+    } else {
+      setSelectedCategory(null);
+    }
   };
 
   const getSelectedRepairData = () => {
-    if (!selectedRepair) return null;
-
-    const repairOption = repairOptions.find((r) => r.id === selectedRepair);
-    if (!repairOption) return null;
-
-    let repairType = repairOption.repairId;
-    let subType = repairOption.subType || selectedSubType;
-
-    // Map subType for camera replacement (use "rear" as default)
-    let pricingSubType: "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined = subType;
-    
-    if (repairType === "camera" && subType === "replacement") {
-      // For camera replacement, use "rear" as default for pricing lookup
-      pricingSubType = "rear";
-    }
-
-    // Map charging dock to port (since pricing uses "charging-port")
-    if (repairType === "charging-port" && subType === "dock") {
-      // Use same pricing structure, but we can differentiate in title/description
-      pricingSubType = undefined; // Use base charging-port pricing
-    }
-
-    const pricing = getRepairPricing(device.id, repairType, pricingSubType);
-    if (!pricing) {
-      // Fallback to repair data from repairs.json
-      const repair = repairs.find((r) => r.id === selectedRepair);
+    // "Other": selectedRepair is the repair id (water-damage, earpiece, etc.)
+    if (selectedCategory === "other" && selectedRepair) {
+      const repairType = selectedRepair === "speaker" || selectedRepair === "home-button" ? "earpiece" : selectedRepair;
+      const pricing = getRepairPricing(device.id, repairType);
+      const repair = repairs.find((r) => r?.id === selectedRepair || r?.id === repairType);
       if (!repair) return null;
-      
       return {
         repairId: repairType,
-        title: repairOption.title,
-        price: 0, // Will need to add to pricing.json
-        saveAmount: undefined,
+        title: repair.name,
+        price: pricing?.price ?? 0,
+        saveAmount: pricing?.save,
         description: repair.description,
         warranty: repair.warranty,
         repairTime: repair.duration,
         variants: undefined,
-        subType,
+        subType: undefined,
       };
     }
-
-    const title = getRepairTitle(repairType, device.name, subType);
-    const description = getRepairDescription(repairType, device.name, subType);
-
-    return {
-      repairId: repairType,
-      title,
-      price: pricing.price,
-      saveAmount: pricing.save,
-      description,
-      warranty: pricing.warranty,
-      repairTime: pricing.time,
-      variants: pricing.variants,
-      subType,
-    };
+    // Need category + sub-option chosen (subType or for battery-charging selectedRepair)
+    if (!selectedCategory) return null;
+    if (selectedCategory === "screen" || selectedCategory === "back-cover" || selectedCategory === "camera") {
+      if (selectedSubType === undefined) return null;
+      let repairType = selectedCategory === "back-cover" ? "back-cover" : selectedCategory;
+      let pricingSubType = selectedSubType;
+      if (repairType === "camera" && selectedSubType === "replacement") pricingSubType = "rear";
+      const pricing = getRepairPricing(device.id, repairType, pricingSubType as any);
+      if (!pricing) return null;
+      return {
+        repairId: repairType,
+        title: getRepairTitle(repairType, device.name, selectedSubType),
+        price: pricing.price,
+        saveAmount: pricing.save,
+        description: getRepairDescription(repairType, device.name, selectedSubType),
+        warranty: pricing.warranty,
+        repairTime: pricing.time,
+        variants: pricing.variants,
+        subType: selectedSubType,
+      };
+    }
+    if (selectedCategory === "battery-charging") {
+      const repairType = selectedRepair === "charging-port" ? "charging-port" : "battery";
+      if (!selectedRepair || selectedSubType === undefined) return null;
+      const pricing = getRepairPricing(device.id, repairType, selectedSubType as "original" | "regular" | "port" | "dock");
+      if (!pricing) return null;
+      return {
+        repairId: repairType,
+        title: getRepairTitle(repairType, device.name, selectedSubType),
+        price: pricing.price,
+        saveAmount: pricing.save,
+        description: getRepairDescription(repairType, device.name, selectedSubType),
+        warranty: pricing.warranty,
+        repairTime: pricing.time,
+        variants: pricing.variants,
+        subType: selectedSubType,
+      };
+    }
+    return null;
   };
 
   const selectedRepairData = getSelectedRepairData();
+  const showSubOptions = selectedCategory && !selectedRepairData;
 
   return (
     <div className="pt-20">
@@ -316,186 +223,209 @@ export default function DeviceRepairPage({
         </div>
       </section>
 
-      {/* Repair Type Selection */}
+      {/* Repair Type Selection – 5 top selectors (iSmash-style), one detail panel with sub-options inside */}
       <section className="py-8 sm:py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {!selectedRepairData ? (
-            <>
-              {/* Heading */}
-              <div className="text-center mb-8 sm:mb-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-2 sm:mb-3">
-                  What needs repair?
-                </h2>
-                <p className="text-sm sm:text-base md:text-lg text-neutral-600 px-2">
-                  Select the repair service for your {brand.name} {device.name}
-                </p>
-              </div>
+          {/* Heading */}
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-2 sm:mb-3">
+              What needs repair?
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-neutral-600 px-2">
+              Select the repair service for your {brand.name} {device.name}
+            </p>
+          </div>
 
-              {/* Repair Options Grid - 2 Column Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-                {repairOptions.map((option, index) => (
-                  <RepairOptionCard
-                    key={option.id}
-                    id={option.id}
-                    title={option.title}
-                    description={option.description}
-                    duration={option.duration}
-                    warranty={option.warranty}
-                    repairId={option.repairId}
-                    onClick={() => handleRepairSelect(option)}
-                  />
-                ))}
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Back Button */}
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                onClick={() => {
-                  setSelectedRepair(null);
-                  setSelectedSubType(undefined);
-                }}
-                className="mb-6 text-primary-600 hover:text-primary-700 font-semibold transition-colors flex items-center space-x-2"
+          {/* 5 category selectors – horizontal tabs (like iSmash) */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
+            {REPAIR_CATEGORIES.filter((c) => (isMacBook ? c.id === "battery-charging" : true)).map((cat) => {
+              const Icon = cat.icon;
+              const isActive = selectedCategory === cat.id;
+              return (
+                <motion.button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => handleCategorySelect(cat.id)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex flex-col items-center justify-center min-w-[100px] sm:min-w-[120px] py-4 px-3 sm:py-5 sm:px-4 rounded-xl border-2 transition-all ${
+                    isActive ? "border-primary-600 bg-primary-50 shadow-md" : "border-neutral-200 bg-white hover:border-primary-300"
+                  }`}
+                >
+                  <Icon className={`w-8 h-8 sm:w-10 sm:h-10 mb-2 ${isActive ? "text-primary-600" : "text-neutral-600"}`} />
+                  <span className={`text-xs sm:text-sm font-semibold text-center leading-tight ${isActive ? "text-primary-600" : "text-neutral-700"}`}>
+                    {cat.label}
+                  </span>
+                  {isActive && (
+                    <span className="mt-1.5 block w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-primary-600" />
+                  )}
+                </motion.button>
+              );
+            })}
+          </div>
+
+          {/* One detail panel (pink border) – sub-options inside, or RepairDetailCard after selection */}
+          {selectedCategory && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-2xl border-2 border-primary-300 bg-white p-6 sm:p-8 shadow-sm"
+            >
+              <button
+                type="button"
+                onClick={handleBackFromDetail}
+                className="mb-6 text-primary-600 hover:text-primary-700 font-semibold transition-colors flex items-center gap-2"
               >
-                <span>←</span>
-                <span>Back</span>
-              </motion.button>
+                <span>←</span> Back
+              </button>
 
-              {/* Battery: Compare Original vs Standard – split prices, compare & book */}
-              {(selectedRepair === "battery" && selectedSubType === undefined) && (
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-8"
-                >
-                  <h3 className="text-lg sm:text-xl font-display font-semibold text-neutral-900 mb-2 text-center">
-                    Choose your battery option
+              {/* Sub-options inside panel (split two prices etc.) */}
+              {showSubOptions && selectedCategory === "screen" && (
+                <div>
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">
+                    Genuine {device.name} Screen Replacement
                   </h3>
-                  <p className="text-sm text-neutral-600 mb-6 text-center max-w-xl mx-auto">
-                    Compare prices and select the option that suits you. Both include 24-month warranty.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {(["original", "regular"] as const).map((subType) => {
-                      const pricing = getRepairPricing(device.id, "battery", subType);
-                      const title = subType === "original" ? "Original Battery" : "Standard Battery";
-                      const description =
-                        subType === "original"
-                          ? "Premium-grade, calibrated for maximum performance and longevity."
-                          : "High-quality replacement – best value to keep you powered all day.";
-                      return (
-                        <motion.button
-                          key={subType}
-                          type="button"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => handleCompareOptionSelect("battery", subType)}
-                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary-500"
-                        >
-                          <div className="text-xs font-semibold uppercase tracking-wide text-primary-600 mb-1">
-                            {title}
-                          </div>
-                          <div className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
-                            £{pricing?.price ?? "—"}
-                          </div>
-                          <p className="text-sm text-neutral-600 mb-4">{description}</p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-neutral-500">24-month warranty</span>
-                            <span className="text-sm font-semibold text-primary-600">Select & book →</span>
-                          </div>
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Screen: Compare Original vs Standard – split prices, compare & book */}
-              {(selectedRepair === "screen" && selectedSubType === undefined) && (
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-8"
-                >
-                  <h3 className="text-lg sm:text-xl font-display font-semibold text-neutral-900 mb-2 text-center">
-                    Choose your screen option
-                  </h3>
-                  <p className="text-sm text-neutral-600 mb-6 text-center max-w-xl mx-auto">
-                    Compare prices and select the option that suits you. Both include 12-month warranty.
-                  </p>
+                  <p className="text-sm text-neutral-600 mb-6">Choose your screen option below.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {(["original", "regular"] as const).map((subType) => {
                       const pricing = getRepairPricing(device.id, "screen", subType);
                       const title = subType === "original" ? "Original Screen" : "Standard Screen";
-                      const description =
-                        subType === "original"
-                          ? "Genuine OEM screen – best quality and colour match."
-                          : "High-quality replacement screen – great value.";
                       return (
                         <motion.button
                           key={subType}
                           type="button"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => handleCompareOptionSelect("screen", subType)}
-                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary-500"
+                          onClick={() => { setSelectedRepair("screen"); setSelectedSubType(subType); }}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all"
                         >
-                          <div className="text-xs font-semibold uppercase tracking-wide text-primary-600 mb-1">
-                            {title}
-                          </div>
-                          <div className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
-                            £{pricing?.price ?? "—"}
-                          </div>
-                          <p className="text-sm text-neutral-600 mb-4">{description}</p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-neutral-500">12-month warranty</span>
-                            <span className="text-sm font-semibold text-primary-600">Select & book →</span>
-                          </div>
+                          <div className="text-xs font-semibold uppercase tracking-wide text-primary-600 mb-1">{title}</div>
+                          <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-2">£{pricing?.price ?? "—"}</div>
+                          <p className="text-sm text-neutral-600">Select & book →</p>
                         </motion.button>
                       );
                     })}
                   </div>
-                </motion.div>
+                </div>
               )}
 
-              {/* Back Glass Sub-Options: Glass only vs Housing */}
-              {selectedRepair === "back-glass" && !selectedSubType && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-                >
-                  {[
-                    {
-                      id: "glass" as const,
-                      label: "Back glass only",
-                      subtitle: "Replace just the cracked glass panel",
-                    },
-                    {
-                      id: "housing" as const,
-                      label: "Back glass & housing",
-                      subtitle: "Full rear housing replacement for heavy damage",
-                    },
-                  ].map((subOption) => (
-                    <motion.button
-                      key={subOption.id}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setSelectedSubType(subOption.id)}
-                      className="bg-white rounded-2xl p-6 border-2 border-primary-300 hover:border-primary-500 hover:shadow-lg transition-all text-left"
-                    >
-                      <div className="font-semibold text-neutral-900 mb-1">{subOption.label}</div>
-                      <div className="text-sm text-neutral-600">{subOption.subtitle}</div>
-                    </motion.button>
-                  ))}
-                </motion.div>
+              {showSubOptions && selectedCategory === "back-cover" && (
+                <div>
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Back Glass Replacement</h3>
+                  <p className="text-sm text-neutral-600 mb-6">Choose your option below.</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    {[
+                      { id: "glass" as const, label: "Back glass only", subtitle: "Replace just the cracked glass" },
+                      { id: "housing" as const, label: "Back glass & housing", subtitle: "Full rear housing replacement" },
+                    ].map((opt) => {
+                      const pricing = getRepairPricing(device.id, "back-cover", opt.id);
+                      return (
+                        <motion.button
+                          key={opt.id}
+                          type="button"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => { setSelectedRepair("back-cover"); setSelectedSubType(opt.id); }}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all"
+                        >
+                          <div className="font-semibold text-neutral-900 mb-1">{opt.label}</div>
+                          <div className="text-2xl font-bold text-primary-600 mb-1">£{pricing?.price ?? "—"}</div>
+                          <div className="text-sm text-neutral-600">{opt.subtitle}</div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
               )}
 
-              {/* Selected Repair Detail Card (after compare step for battery/screen) */}
-              {selectedRepairData &&
-                !(selectedRepair === "battery" && selectedSubType === undefined) &&
-                !(selectedRepair === "screen" && selectedSubType === undefined) && (
+              {showSubOptions && selectedCategory === "battery-charging" && (
+                <div>
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Battery & Charging</h3>
+                  <p className="text-sm text-neutral-600 mb-6">Choose one option below.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { repair: "battery", subType: "original" as const, label: "Original Battery" },
+                      { repair: "battery", subType: "regular" as const, label: "Standard Battery" },
+                      { repair: "charging-port", subType: "port" as const, label: "Charging Port" },
+                      { repair: "charging-port", subType: "dock" as const, label: "Charging Dock" },
+                    ].map((opt) => {
+                      const pricing = getRepairPricing(device.id, opt.repair, opt.subType);
+                      return (
+                        <motion.button
+                          key={`${opt.repair}-${opt.subType}`}
+                          type="button"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => { setSelectedRepair(opt.repair); setSelectedSubType(opt.subType); }}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-5 text-left hover:border-primary-500 hover:shadow-lg transition-all"
+                        >
+                          <div className="font-semibold text-neutral-900 text-sm mb-1">{opt.label}</div>
+                          <div className="text-xl font-bold text-primary-600">£{pricing?.price ?? "—"}</div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {showSubOptions && selectedCategory === "camera" && (
+                <div>
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Camera (front or rear)</h3>
+                  <p className="text-sm text-neutral-600 mb-6">Choose one option below.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                    {[
+                      { subType: "rear" as const, label: "Rear Camera Replacement" },
+                      { subType: "front" as const, label: "Front Camera (Face ID)" },
+                      { subType: "lens" as const, label: "Rear Camera Lens" },
+                    ].map((opt) => {
+                      const pricing = getRepairPricing(device.id, "camera", opt.subType === "rear" ? "rear" : opt.subType);
+                      return (
+                        <motion.button
+                          key={opt.subType}
+                          type="button"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => { setSelectedRepair("camera"); setSelectedSubType(opt.subType === "rear" ? "rear" : opt.subType === "front" ? "front" : "lens"); }}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all"
+                        >
+                          <div className="font-semibold text-neutral-900 mb-1">{opt.label}</div>
+                          <div className="text-2xl font-bold text-primary-600">£{pricing?.price ?? "—"}</div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {showSubOptions && selectedCategory === "other" && (
+                <div>
+                  <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Other repairs</h3>
+                  <p className="text-sm text-neutral-600 mb-6">Select the repair you need.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {otherRepairs.map((repair) => {
+                      const repairId = repair.id === "speaker" || repair.id === "home-button" ? "earpiece" : repair.id;
+                      const pricing = getRepairPricing(device.id, repairId);
+                      return (
+                        <motion.button
+                          key={repair.id}
+                          type="button"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() => { setSelectedRepair(repair.id); setSelectedSubType(undefined); }}
+                          className="rounded-2xl border-2 border-primary-200 bg-white p-5 text-left hover:border-primary-500 hover:shadow-lg transition-all"
+                        >
+                          <div className="font-semibold text-neutral-900 mb-1">{repair.name}</div>
+                          <div className="text-xl font-bold text-primary-600">£{pricing?.price ?? "—"}</div>
+                          <div className="text-sm text-neutral-600 mt-1">{repair.duration} · {repair.warranty}</div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Single repair detail card after user picks a sub-option */}
+              {selectedRepairData && (
                 <RepairDetailCard
                   repairId={selectedRepairData.repairId}
                   title={selectedRepairData.title}
@@ -509,7 +439,7 @@ export default function DeviceRepairPage({
                   brandId={brand.id}
                 />
               )}
-            </>
+            </motion.div>
           )}
         </div>
       </section>
