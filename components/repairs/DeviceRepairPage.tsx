@@ -289,7 +289,10 @@ export default function DeviceRepairPage({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {(["original", "regular"] as const).map((subType) => {
                       const pricing = getRepairPricing(device.id, "screen", subType);
-                      const title = subType === "original" ? "Original Screen" : "Standard Screen";
+                      const is14ProStyle = device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max";
+                      const title = is14ProStyle
+                        ? (subType === "original" ? "Non-Original OLED" : "Non-Original (LCD)")
+                        : (subType === "original" ? "Genuine / Original Screen" : "Standard Screen");
                       return (
                         <motion.button
                           key={subType}
@@ -299,8 +302,13 @@ export default function DeviceRepairPage({
                           onClick={() => { setSelectedRepair("screen"); setSelectedSubType(subType); }}
                           className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all"
                         >
-                          <div className="text-xs font-semibold uppercase tracking-wide text-primary-600 mb-1">{title}</div>
-                          <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-2">£{pricing?.price ?? "—"}</div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-xs font-semibold uppercase tracking-wide text-primary-600">{title}</span>
+                            {is14ProStyle && subType === "original" && (
+                              <span className="text-xs font-semibold text-white bg-primary-500 px-2 py-0.5 rounded">Most Popular</span>
+                            )}
+                          </div>
+                          <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-2 mt-1">£{pricing?.price ?? "—"}</div>
                           <p className="text-sm text-neutral-600">Select & book →</p>
                         </motion.button>
                       );
