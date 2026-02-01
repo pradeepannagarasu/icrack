@@ -5,13 +5,10 @@ import DeviceRepairPage from "@/components/repairs/DeviceRepairPage";
 
 export async function generateStaticParams() {
   const appleBrand = brandsData.brands.find((b) => b.id === "apple");
-  if (!appleBrand) return [];
-  
+  if (!appleBrand?.models) return [];
   return appleBrand.models
-    .filter((m) => m.id.includes("iphone") && !m.id.includes("ipad"))
-    .map((model) => ({
-      model: model.id,
-    }));
+    .filter((m) => m && m.id && m.id.includes("iphone") && !m.id.includes("ipad"))
+    .map((model) => ({ model: model.id }));
 }
 
 export default function iPhoneModelPage({

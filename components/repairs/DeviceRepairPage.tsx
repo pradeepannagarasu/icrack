@@ -34,7 +34,8 @@ function getRepairOptions(repairs: RepairType[], deviceId?: string) {
     subType?: "original" | "regular" | "lens" | "replacement" | "port" | "dock";
   }> = [];
 
-  repairs.forEach((repair) => {
+  (repairs || []).forEach((repair) => {
+    if (!repair?.id) return;
     // Screen: single card – user then sees compare step (Original vs Standard)
     if (repair.id === "screen") {
       options.push({
@@ -140,16 +141,15 @@ export default function DeviceRepairPage({
     "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined
   >(undefined);
 
-  if (!brand || !device) {
+  if (!brand?.id || !device?.id) {
     return null;
   }
 
   // Filter repairs: For MacBooks, only show battery repairs
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
   const filteredRepairs = isMacBook 
-    ? repairs.filter((repair) => repair.id === "battery")
-    : repairs;
-
+    ? (repairs || []).filter((repair) => repair?.id === "battery")
+    : (repairs || []);
   const repairOptions = getRepairOptions(filteredRepairs, device.id);
 
   const handleRepairSelect = (repairOption: typeof repairOptions[0]) => {

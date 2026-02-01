@@ -4,24 +4,18 @@ import repairsData from "@/data/repairs.json";
 import DeviceRepairPage from "@/components/repairs/DeviceRepairPage";
 
 export async function generateStaticParams() {
-  const brands = brandsData.brands;
+  const brands = brandsData.brands || [];
   const params: { model: string }[] = [];
-  
   brands.forEach((brand) => {
-    brand.models
+    (brand.models || [])
       .filter((m) => {
-        // Exclude iPhones, iPads, MacBooks, and tablets
-        return !m.id.includes("iphone") && 
-               !m.id.includes("ipad") && 
-               !m.id.includes("macbook") && 
-               !m.id.includes("mac") &&
-               !m.id.includes("tab");
+        if (!m || !m.id) return false;
+        return !m.id.includes("iphone") && !m.id.includes("ipad") && !m.id.includes("macbook") && !m.id.includes("mac") && !m.id.includes("tab");
       })
       .forEach((model) => {
         params.push({ model: model.id });
       });
   });
-  
   return params;
 }
 
@@ -34,18 +28,13 @@ export default function PhoneModelPage({
   if (!modelSlug) {
     notFound();
   }
-  // Find the brand and device
   let brand = null;
   let device = null;
-  
-  for (const b of brandsData.brands) {
-    const foundDevice = b.models.find((m) => m.id === modelSlug);
-    if (foundDevice && 
-        !foundDevice.id.includes("iphone") && 
-        !foundDevice.id.includes("ipad") && 
-        !foundDevice.id.includes("macbook") && 
-        !foundDevice.id.includes("mac") &&
-        !foundDevice.id.includes("tab")) {
+  const brands = brandsData.brands || [];
+  for (const b of brands) {
+    if (!b?.models) continue;
+    const foundDevice = b.models.find((m) => m && m.id === modelSlug);
+    if (foundDevice && !foundDevice.id.includes("iphone") && !foundDevice.id.includes("ipad") && !foundDevice.id.includes("macbook") && !foundDevice.id.includes("mac") && !foundDevice.id.includes("tab")) {
       brand = b;
       device = foundDevice;
       break;

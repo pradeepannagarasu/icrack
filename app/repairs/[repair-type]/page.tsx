@@ -4,9 +4,9 @@ import repairsData from "@/data/repairs.json";
 import RepairDetailPage from "@/components/repairs/RepairDetailPage";
 
 export async function generateStaticParams() {
-  return repairsData.repairTypes.map((repair) => ({
-    "repair-type": repair.id,
-  }));
+  return (repairsData.repairTypes || [])
+    .filter((repair) => repair && repair.id)
+    .map((repair) => ({ "repair-type": repair.id }));
 }
 
 export async function generateMetadata({
@@ -18,11 +18,11 @@ export async function generateMetadata({
   if (!repairType) {
     return { title: "Repair - iCrack" };
   }
-  const repair = repairsData.repairTypes.find(
-    (r) => r.id === repairType
+  const repair = (repairsData.repairTypes || []).find(
+    (r) => r && r.id === repairType
   );
 
-  if (!repair) {
+  if (!repair?.id) {
     return {
       title: "Repair Not Found - iCrack",
     };
@@ -44,11 +44,11 @@ export default function RepairTypePage({
   if (!repairType) {
     notFound();
   }
-  const repair = repairsData.repairTypes.find(
-    (r) => r.id === repairType
+  const repair = (repairsData.repairTypes || []).find(
+    (r) => r && r.id === repairType
   );
 
-  if (!repair) {
+  if (!repair?.id) {
     notFound();
   }
 

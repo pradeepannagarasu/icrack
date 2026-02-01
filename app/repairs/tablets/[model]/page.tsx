@@ -4,17 +4,15 @@ import repairsData from "@/data/repairs.json";
 import DeviceRepairPage from "@/components/repairs/DeviceRepairPage";
 
 export async function generateStaticParams() {
-  const brands = brandsData.brands;
+  const brands = brandsData.brands || [];
   const params: { model: string }[] = [];
-  
   brands.forEach((brand) => {
-    brand.models
-      .filter((m) => m.id.includes("ipad") || m.id.includes("tab"))
+    (brand.models || [])
+      .filter((m) => m && m.id && (m.id.includes("ipad") || m.id.includes("tab")))
       .forEach((model) => {
         params.push({ model: model.id });
       });
   });
-  
   return params;
 }
 
@@ -27,12 +25,12 @@ export default function TabletModelPage({
   if (!modelSlug) {
     notFound();
   }
-  // Find the brand and device
   let brand = null;
   let device = null;
-  
-  for (const b of brandsData.brands) {
-    const foundDevice = b.models.find((m) => m.id === modelSlug);
+  const brands = brandsData.brands || [];
+  for (const b of brands) {
+    if (!b?.models) continue;
+    const foundDevice = b.models.find((m) => m && m.id === modelSlug);
     if (foundDevice && (foundDevice.id.includes("ipad") || foundDevice.id.includes("tab"))) {
       brand = b;
       device = foundDevice;

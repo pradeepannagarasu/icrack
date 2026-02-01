@@ -20,17 +20,15 @@ export default function ModelStep({
   selectedModel,
   category,
 }: ModelStepProps) {
-  // Filter models by category if provided (for Apple devices)
-  const models = category 
-    ? brand.models.filter((model) => {
-        if (category === "phones") {
-          return model.id.includes("iphone");
-        } else if (category === "laptops") {
-          return model.id.includes("macbook") || model.id.includes("mac");
-        }
+  if (!brand?.id || !brand?.models) return null;
+  const allModels = (brand.models || []).filter((m) => m && m.id);
+  const models = category
+    ? allModels.filter((model) => {
+        if (category === "phones") return model.id.includes("iphone");
+        if (category === "laptops") return model.id.includes("macbook") || model.id.includes("mac");
         return isModelInCategory(model.id, category as DeviceCategory);
       })
-    : brand.models;
+    : allModels;
 
   return (
     <div className="w-full">

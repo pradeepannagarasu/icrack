@@ -4,17 +4,17 @@ import RefurbishedDetailPageClient from "./RefurbishedDetailPageClient";
 import { Suspense } from "react";
 
 export async function generateStaticParams() {
-  return refurbishedIphones.map((phone) => ({
-    id: phone.id,
-  }));
+  return (refurbishedIphones || [])
+    .filter((phone) => phone && phone.id)
+    .map((phone) => ({ id: phone.id }));
 }
 
-export default function RefurbishedDetailPage({ params }: { params: { id: string } }) {
+export default function RefurbishedDetailPage({ params }: { params: { id?: string } }) {
   const id = params?.id;
   if (!id) {
     notFound();
   }
-  const phone = refurbishedIphones.find((p) => p.id === id);
+  const phone = (refurbishedIphones || []).find((p) => p && p.id === id);
   if (!phone) {
     notFound();
   }
