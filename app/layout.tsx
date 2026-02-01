@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MobileCTABar from "@/components/layout/MobileCTABar";
 import PageTransition from "@/components/animations/PageTransition";
+import ScrollRestoration from "@/components/layout/ScrollRestoration";
 import { CartProvider } from "@/components/cart/CartContext";
 
 const inter = Inter({
@@ -39,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${poppins.variable}`}>
+        <ScrollRestoration />
         <CartProvider>
           <Header />
           <PageTransition>

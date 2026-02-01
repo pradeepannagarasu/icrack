@@ -51,7 +51,7 @@ export default function DeviceRepairPage({
   const filteredRepairs = isMacBook
     ? (repairs || []).filter((repair) => repair?.id === "battery")
     : (repairs || []);
-  const otherRepairIds = ["water-damage", "speaker", "earpiece", "diagnostics", "software", "home-button"];
+  const otherRepairIds = ["water-damage", "speaker", "earpiece", "home-button"];
   const otherRepairs = filteredRepairs.filter((r) => r?.id && otherRepairIds.includes(r.id));
 
   const handleCategorySelect = (cat: CategoryId) => {

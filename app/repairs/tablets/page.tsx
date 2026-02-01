@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import brandsData from "@/data/brands.json";
 import { getModelImage } from "@/lib/deviceImages";
@@ -121,9 +120,21 @@ export default function TabletsPage() {
                         : "border-neutral-200 bg-white hover:border-primary-300 hover:shadow-md"
                     }`}
                   >
-                    <span className="font-display font-bold text-lg text-primary-600 text-left">
-                      {cat.name}
-                    </span>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="hidden sm:flex w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-neutral-100 flex-shrink-0 items-center justify-center overflow-hidden">
+                        <img
+                          src="/images/ipad.jpg"
+                          alt=""
+                          className="object-contain w-full h-full p-1"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = "none";
+                          }}
+                        />
+                      </div>
+                      <span className="font-display font-bold text-lg text-primary-600 text-left">
+                        {cat.name}
+                      </span>
+                    </div>
                     <span className="flex items-center gap-2 text-sm font-semibold text-primary-600 shrink-0">
                       Select Device
                       {isExpanded ? (
@@ -162,14 +173,12 @@ export default function TabletsPage() {
                                       style={{ backgroundColor: "#bae6fd" }}
                                     />
                                   </div>
-                                  <div className="relative z-10 h-36 w-full flex items-center justify-center mb-3">
-                                    <Image
+                                  <div className="relative z-10 min-h-[140px] h-36 lg:min-h-[160px] lg:h-40 w-full flex items-center justify-center mb-3 flex-shrink-0">
+                                    {/* Native img for reliable display on desktop and mobile */}
+                                    <img
                                       src={getModelImage("apple", model.id)}
                                       alt={model.name}
-                                      width={140}
-                                      height={140}
-                                      className="object-contain w-full h-full p-3"
-                                      unoptimized
+                                      className="object-contain w-full h-full max-h-[140px] lg:max-h-[160px] p-3"
                                       onError={(e) => {
                                         const t = e.target as HTMLImageElement;
                                         t.src = "/images/ipad.jpg";
