@@ -12,8 +12,11 @@ interface BrandStepProps {
   category?: DeviceCategory;
 }
 
+const REPAIR_BRAND_IDS = ["apple", "samsung", "google"];
+
 export default function BrandStep({ onSelect, category }: BrandStepProps) {
-  const brands = category ? getBrandsByCategory(category) : (require("@/data/brands.json").brands as Brand[]);
+  const allBrands = category ? getBrandsByCategory(category) : (require("@/data/brands.json").brands as Brand[]);
+  const brands = allBrands.filter((b) => REPAIR_BRAND_IDS.includes(b.id));
 
   return (
     <div className="w-full">
