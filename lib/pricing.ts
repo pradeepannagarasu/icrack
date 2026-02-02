@@ -68,13 +68,14 @@ export function getRepairPricing(
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
 
-  // Samsung devices: always use default JSON pricing so updated Samsung prices are never overridden by old localStorage
+  // Samsung & all iPhones: always use default JSON pricing so each model shows its repair prices and localStorage never overrides
   const defaultData = pricingData as PricingData;
   const defaultRepair = defaultData.repairs?.[repairType];
   const defaultDevice = defaultRepair?.devices?.[deviceId];
-  const useDefaultForSamsung = deviceId.startsWith("galaxy-") && defaultDevice != null;
+  const useDefaultPricing =
+    (deviceId.startsWith("galaxy-") || deviceId.startsWith("iphone-")) && defaultDevice != null;
 
-  const devicePricing = useDefaultForSamsung ? defaultDevice : repair.devices[deviceId];
+  const devicePricing = useDefaultPricing ? defaultDevice : repair.devices[deviceId];
   if (!devicePricing) {
     // Fallback to base price
     if (repairType === "diagnostics") {
