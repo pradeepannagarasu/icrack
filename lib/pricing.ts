@@ -62,7 +62,7 @@ function getPricingData(): PricingData {
 export function getRepairPricing(
   deviceId: string,
   repairType: string,
-  subType?: "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock"
+  subType?: "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | "inner" | "outer"
 ): RepairPricing | null {
   const pricing = getPricingData();
   const repair = pricing.repairs[repairType];
@@ -129,6 +129,8 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
     screen: `Have you cracked or smashed your screen? Bring your ${deviceName} back to life with a shiny new replacement screen. Get that new phone feeling again!`,
     "screen-original": `Genuine OEM screen for your ${deviceName} – best quality and colour match. 12-month warranty.`,
     "screen-regular": `High-quality replacement screen for your ${deviceName} – great value. 12-month warranty.`,
+    "screen-inner": `Our Samsung-Accredited Technicians will replace your cracked or smashed screen with a brand new, Genuine Samsung Screen Replacement. Plus, you'll get a FREE GENUINE SAMSUNG BATTERY REPLACEMENT included!`,
+    "screen-outer": `Our Samsung-Accredited Technicians will replace your cracked or smashed screen with a brand new, Genuine Samsung Screen Replacement.`,
     "back-cover": `Get your ${deviceName} back glass replaced, same day by our specialist technicians.`,
     "back-cover-glass": `Cracked or smashed back glass on your ${deviceName}? We’ll replace just the glass panel to make it look like new again.`,
     "back-cover-housing": `Severe damage to the back of your ${deviceName}? We’ll replace the full rear housing for a factory-fresh finish.`,
@@ -185,6 +187,12 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
   }
   if (repairType === "screen" && subType === "regular") {
     return titles["screen-regular"] || `${deviceName} Standard Screen Replacement`;
+  }
+  if (repairType === "screen" && subType === "inner") {
+    return `${deviceName} Inner Screen Replacement`;
+  }
+  if (repairType === "screen" && subType === "outer") {
+    return `${deviceName} Outer Screen Replacement`;
   }
   if (repairType === "battery" && subType === "original") {
     return titles["battery-original"] || `${deviceName} Original Battery Replacement`;

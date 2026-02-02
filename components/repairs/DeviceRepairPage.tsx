@@ -41,7 +41,7 @@ export default function DeviceRepairPage({
   const [selectedCategory, setSelectedCategory] = useState<CategoryId | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<string | null>(null);
   const [selectedSubType, setSelectedSubType] = useState<
-    "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | undefined
+    "front" | "rear" | "lens" | "replacement" | "original" | "regular" | "glass" | "housing" | "port" | "dock" | "inner" | "outer" | undefined
   >(undefined);
 
   if (!brand?.id || !device?.id) {
@@ -329,16 +329,28 @@ export default function DeviceRepairPage({
               {showSubOptions && selectedCategory === "screen" && (
                 <div>
                   <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">
-                    Genuine {device.name} Screen Replacement
+                    {device.id.includes("z-flip") ? `${device.name} Screen Replacement` : `Genuine ${device.name} Screen Replacement`}
                   </h3>
                   <p className="text-sm text-neutral-600 mb-6">Choose your screen option below.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {(["original", "regular"] as const).map((subType) => {
-                      const pricing = getRepairPricing(device.id, "screen", subType);
+                    {(device.id.includes("z-flip")
+                      ? [
+                          { subType: "inner" as const, label: "Inner Screen Replacement" },
+                          { subType: "outer" as const, label: "Outer Screen Replacement" },
+                        ]
+                      : [
+                          {
+                            subType: "original" as const,
+                            label: device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max" ? "Non-Original OLED" : "Genuine / Original Screen",
+                          },
+                          {
+                            subType: "regular" as const,
+                            label: device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max" ? "Non-Original (LCD)" : "Standard Screen",
+                          },
+                        ]
+                    ).map(({ subType, label }) => {
+                      const pricing = getRepairPricing(device.id, "screen", subType as any);
                       const is14ProStyle = device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max";
-                      const title = is14ProStyle
-                        ? (subType === "original" ? "Non-Original OLED" : "Non-Original (LCD)")
-                        : (subType === "original" ? "Genuine / Original Screen" : "Standard Screen");
                       return (
                         <motion.button
                           key={subType}
@@ -349,7 +361,7 @@ export default function DeviceRepairPage({
                           className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all"
                         >
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-xs font-semibold uppercase tracking-wide text-primary-600">{title}</span>
+                            <span className="text-xs font-semibold uppercase tracking-wide text-primary-600">{label}</span>
                             {is14ProStyle && subType === "original" && (
                               <span className="text-xs font-semibold text-white bg-primary-500 px-2 py-0.5 rounded">Most Popular</span>
                             )}

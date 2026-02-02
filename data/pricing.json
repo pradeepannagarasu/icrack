@@ -73,7 +73,44 @@
         "ipad-mini-4": { "price": 139, "save": 70, "warranty": "Lifetime", "time": "24 - 48 hours" },
         "ipad-mini-3": { "price": 129, "save": 60, "warranty": "12 months", "time": "24 - 48 hours" },
         "ipad-mini-2": { "price": 119, "save": 50, "warranty": "12 months", "time": "24 - 48 hours" },
-        "ipad-mini": { "price": 109, "save": 40, "warranty": "12 months", "time": "24 - 48 hours" }
+        "ipad-mini": { "price": 109, "save": 40, "warranty": "12 months", "time": "24 - 48 hours" },
+        "galaxy-z-flip-4": {
+          "inner": { "price": 299, "warranty": "3 months", "time": "2 - 4 hours" },
+          "outer": { "price": 119, "warranty": "Lifetime", "time": "2 - 4 hours" }
+        },
+        "galaxy-z-flip-5": {
+          "inner": { "price": 279, "warranty": "3 months", "time": "2 - 4 hours" },
+          "outer": { "price": 119, "warranty": "Lifetime", "time": "2 - 4 hours" }
+        },
+        "galaxy-z-flip-3": {
+          "inner": { "price": 299, "warranty": "3 months", "time": "2 - 4 hours" },
+          "outer": { "price": 119, "warranty": "Lifetime", "time": "2 - 4 hours" }
+        },
+        "galaxy-z-flip": {
+          "inner": { "price": 299, "warranty": "3 months", "time": "2 - 4 hours" },
+          "outer": { "price": 119, "warranty": "Lifetime", "time": "2 - 4 hours" }
+        },
+        "galaxy-a53": { "price": 129, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-a54": { "price": 129, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-a52": { "price": 129, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-a32": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s23-ultra": { "price": 249, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s23-plus": { "price": 199, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s23": { "price": 179, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s24-ultra": { "price": 249, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s24-plus": { "price": 179, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s24": { "price": 159, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s22-ultra": { "price": 249, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s22-plus": { "price": 199, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s22": { "price": 179, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s21-ultra": { "price": 249, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s21-plus": { "price": 199, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s21": { "price": 179, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s20-ultra": { "price": 229, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s20-plus": { "price": 199, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s20": { "price": 179, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-note-20-ultra": { "price": 229, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-note-20": { "price": 199, "warranty": "Lifetime", "time": "2 - 4 hours" }
       }
     },
     "back-cover": {
@@ -186,7 +223,32 @@
         "iphone-11-pro": {
           "glass": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
           "housing": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" }
-        }
+        },
+        "galaxy-z-flip-4": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-z-flip-5": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-z-flip-3": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-z-flip": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-note-20-ultra": { "housing": { "price": 49, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-note-20": { "housing": { "price": 49, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a53": { "housing": { "price": 49, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a54": { "housing": { "price": 49, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a52": { "housing": { "price": 49, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a32": { "housing": { "price": 49, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23-ultra": { "housing": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23-plus": { "housing": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s24-ultra": { "housing": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s24-plus": { "housing": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s24": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22-ultra": { "housing": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22-plus": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21-ultra": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21-plus": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20-ultra": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20-plus": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20": { "housing": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } }
       }
     },
     "battery": {
@@ -455,7 +517,32 @@
         "macbook-12": {
           "original": { "price": 129, "warranty": "12 months", "time": "24 - 48 hours" },
           "regular": { "price": 119, "warranty": "12 months", "time": "24 - 48 hours" }
-        }
+        },
+        "galaxy-z-flip-4": { "price": 79, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-z-flip-5": { "price": 79, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-z-flip-3": { "price": 79, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-z-flip": { "price": 79, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-note-20-ultra": { "price": 79, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-note-20": { "price": 79, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-a53": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-a54": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-a52": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-a32": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s23-ultra": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s23-plus": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s23": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s24-ultra": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s24-plus": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s24": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s22-ultra": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s22-plus": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s22": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s21-ultra": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s21-plus": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s21": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s20-ultra": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s20-plus": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" },
+        "galaxy-s20": { "price": 65, "warranty": "12 months", "time": "2 - 4 hours" }
       }
     },
     "charging-port": {
@@ -489,7 +576,32 @@
         "iphone-12": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-12-mini": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-12-pro": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-12-pro-max": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        "iphone-12-pro-max": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "galaxy-z-flip-4": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-z-flip-5": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-z-flip-3": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-z-flip": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-note-20-ultra": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-note-20": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a53": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-a54": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-a52": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-a32": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23-ultra": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s23-plus": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s23": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s24-ultra": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s24-plus": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s24": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s22-ultra": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22-plus": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s21-ultra": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21-plus": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" },
+        "galaxy-s20-ultra": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20-plus": { "port": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" }, "dock": { "price": 85, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" }
       }
     },
     "camera": {
@@ -650,7 +762,32 @@
           "front": { "price": 59, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "lens": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" }
-        }
+        },
+        "galaxy-z-flip-4": { "front": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-z-flip-5": { "front": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-z-flip-3": { "front": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-z-flip": { "front": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 99, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-note-20-ultra": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-note-20": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a53": { "front": { "price": 89, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 89, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a54": { "front": { "price": 89, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 89, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a52": { "front": { "price": 89, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 89, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-a32": { "front": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 79, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23-ultra": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23-plus": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s23": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s24-ultra": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s24-plus": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s24": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22-ultra": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22-plus": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s22": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21-ultra": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21-plus": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s21": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20-ultra": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20-plus": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } },
+        "galaxy-s20": { "front": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" }, "rear": { "price": 109, "warranty": "Lifetime", "time": "2 - 4 hours" } }
       }
     },
     "earpiece": {
