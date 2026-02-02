@@ -14,7 +14,6 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/repairs", label: "Repairs" },
   { href: "/refurbished", label: "Refurbished Phones" },
-  { href: "/accessories", label: "Accessories" },
   { href: "/business", label: "Business" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },

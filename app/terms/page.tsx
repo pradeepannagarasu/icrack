@@ -44,7 +44,7 @@ export default function TermsPage() {
                 2. Services
               </h2>
               <p className="text-sm sm:text-base text-neutral-700 mb-4 sm:mb-6">
-                iCrack provides mobile phone, tablet, and laptop repair services, as well as refurbished devices and accessories. All services are subject to availability and our terms.
+                iCrack provides mobile phone, tablet, and laptop repair services, as well as refurbished devices. All services are subject to availability and our terms.
               </p>
 
               <h2 className="text-2xl sm:text-3xl font-display font-bold text-neutral-900 mb-4 sm:mb-6 mt-8 sm:mt-12">

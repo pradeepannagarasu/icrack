@@ -54,7 +54,7 @@ export default function OffersPage() {
               iCrack Offers & Deals
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-neutral-700 mb-4 sm:mb-6 px-2">
-              Save on repairs and accessories with our latest offers and promotions.
+              Save on repairs with our latest offers and promotions.
             </p>
           </motion.div>
         </div>

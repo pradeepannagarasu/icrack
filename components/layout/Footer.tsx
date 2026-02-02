@@ -10,7 +10,6 @@ const footerLinks = {
     { href: "/repairs", label: "Phone Repairs" },
     { href: "/repairs/iphone", label: "iPhone Repair" },
     { href: "/repairs/samsung", label: "Samsung Repair" },
-    { href: "/accessories", label: "Accessories" },
   ],
   company: [
     { href: "/about", label: "About Us" },

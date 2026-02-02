@@ -22,7 +22,7 @@ const benefits = [
   },
   {
     title: "All Services Included",
-    description: "Discount applies to repairs, accessories, and refurbished devices.",
+    description: "Discount applies to repairs and refurbished devices.",
   },
 ];
 

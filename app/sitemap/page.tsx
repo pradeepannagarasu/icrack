@@ -15,7 +15,6 @@ const sitemapSections = [
       { href: "/repairs/iphone", label: "iPhone Repairs" },
       { href: "/repairs/tablets", label: "Tablet Repairs" },
       { href: "/repairs/laptops", label: "Laptop Repairs" },
-      { href: "/accessories", label: "Accessories" },
       { href: "/refurbished", label: "Refurbished Phones" },
     ],
   },

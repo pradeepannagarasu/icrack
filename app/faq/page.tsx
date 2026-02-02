@@ -20,7 +20,7 @@ const faqCategories = [
       },
       {
         question: "What should I bring with me?",
-        answer: "Just bring your device and any accessories you'd like us to check. If you have a passcode, please unlock your device before the repair. We also recommend backing up your data before any repair.",
+        answer: "Just bring your device. If you have a passcode, please unlock your device before the repair. We also recommend backing up your data before any repair.",
       },
       {
         question: "Can I track my repair status?",
@@ -71,12 +71,8 @@ const faqCategories = [
     ],
   },
   {
-    category: "Accessories & Services",
+    category: "Services",
     questions: [
-      {
-        question: "Do you sell accessories?",
-        answer: "Yes! We stock a wide range of accessories including charging cables, wireless chargers, power banks, audio accessories, and more. Visit our accessories page or any of our stores to see our full range.",
-      },
       {
         question: "Do you offer mail-in repairs?",
         answer: "Yes, we offer a convenient mail-in service. Simply book online, send us your device, and we'll repair and return it to you. This service is perfect if you can't visit a store.",

@@ -25,23 +25,13 @@ const services = [
     buttonText: "Shop iPhones",
     href: "/refurbished",
   },
-  {
-    id: "protect",
-    title: "Protect",
-    icon: Shield,
-    bgColor: "bg-accent-900",
-    iconColor: "text-primary-400",
-    textColor: "text-white",
-    buttonText: "Learn More",
-    href: "/accessories",
-  },
 ];
 
 export default function RepairReplaceProtect() {
   return (
     <section className="py-8 sm:py-12 lg:py-24 bg-gradient-to-b from-white to-primary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (

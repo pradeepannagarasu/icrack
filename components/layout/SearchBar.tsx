@@ -67,7 +67,7 @@ export default function SearchBar() {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search for repairs, devices, accessories..."
+                      placeholder="Search for repairs, devices..."
                       className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:border-primary-600 transition-colors"
                     />
                   </div>

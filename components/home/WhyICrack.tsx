@@ -45,7 +45,7 @@ export default function WhyICrack() {
             Why iCrack?
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-700 max-w-3xl mx-auto px-2">
-            iCrack specialises in offering an express repair service for smartphones, tablets and computers along with a wide range of mobile accessories and refurbished devices. Since launching, iCrack has grown to multiple repair shops and counting! We pride ourselves on offering an express repair service powered by our iCrack accredited technicians, on-site at each of our shops, with up to 24 months' warranty on selected repairs.
+            iCrack specialises in offering an express repair service for smartphones, tablets and computers along with refurbished devices. Since launching, iCrack has grown to multiple repair shops and counting! We pride ourselves on offering an express repair service powered by our iCrack accredited technicians, on-site at each of our shops, with up to 24 months' warranty on selected repairs.
           </p>
         </div>
 
