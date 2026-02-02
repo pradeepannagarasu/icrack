@@ -110,8 +110,8 @@ export function getRepairPricing(
     if (subType === "regular") {
       return { ...flat, price: flat.price };
     }
-    // Samsung (flat price): show same price for Original as Standard (no separate tiers)
-    if (deviceId.startsWith("galaxy-")) {
+    // Samsung & Google (flat price): same price for Original as Standard (no separate tiers)
+    if (deviceId.startsWith("galaxy-") || deviceId.startsWith("pixel-")) {
       return { ...flat, price: flat.price };
     }
     // iPhone: Original typically costs more (~25–30% premium)
