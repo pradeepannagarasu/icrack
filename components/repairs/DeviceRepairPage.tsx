@@ -129,19 +129,21 @@ export default function DeviceRepairPage({
       };
     }
 
-    // Diagnostics: \"I don't know\" – simple one-step option
+    // Diagnostics: "I don't know" – simple one-step option (always show card, never blank)
     if (selectedCategory === "diagnostics") {
       const pricing = getRepairPricing(device.id, "diagnostics");
-      if (!pricing) return null;
       const repair = repairs.find((r) => r?.id === "diagnostics");
+      const price = pricing?.price ?? 20;
+      const warranty = repair?.warranty ?? pricing?.warranty ?? "N/A";
+      const repairTime = repair?.duration ?? pricing?.time ?? "Up to 30 minutes";
       return {
         repairId: "diagnostics",
         title: repair?.name || "I don't know what's wrong",
-        price: pricing.price,
-        saveAmount: pricing.save,
+        price,
+        saveAmount: pricing?.save,
         description: repair?.description || getRepairDescription("diagnostics", device.name),
-        warranty: repair?.warranty || pricing.warranty,
-        repairTime: repair?.duration || pricing.time,
+        warranty,
+        repairTime,
         variants: undefined,
         subType: undefined,
       };
