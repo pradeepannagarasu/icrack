@@ -14,21 +14,18 @@ export default function DeviceTypeStep({ onSelect }: DeviceTypeStepProps) {
     {
       id: "phones" as const,
       name: "Smartphones",
-      icon: Smartphone,
       image: categoryImages.phones,
       description: "iPhone, Samsung & more",
     },
     {
       id: "tablets" as const,
       name: "iPads",
-      icon: Tablet,
       image: categoryImages.tablets,
       description: "iPad repairs",
     },
     {
       id: "laptops" as const,
       name: "MacBooks",
-      icon: Laptop,
       image: categoryImages.laptops,
       description: "MacBook repairs",
     },
