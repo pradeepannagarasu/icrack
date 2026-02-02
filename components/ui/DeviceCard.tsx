@@ -59,7 +59,7 @@ export default function DeviceCard({
           </div>
 
           {/* Device name in pink */}
-          <h3 className="relative z-10 font-semibold text-primary-600 text-base lg:text-lg group-hover:text-primary-700 transition-colors mt-auto">
+          <h3 className="font-semibold text-primary-600 text-base lg:text-lg group-hover:text-primary-700 transition-colors mt-auto">
             {name}
           </h3>
         </motion.div>

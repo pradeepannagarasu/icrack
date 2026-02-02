@@ -208,13 +208,7 @@ export default function LaptopsPage() {
                             whileTap={{ scale: 0.98 }}
                             className="relative bg-white rounded-2xl p-5 sm:p-6 border-2 border-neutral-200 hover:border-primary-400 hover:shadow-xl transition-all text-center group h-full flex flex-col items-center"
                           >
-                            <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
-                              <div
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rotate-45 rounded-xl opacity-50"
-                                style={{ backgroundColor: "#bae6fd" }}
-                              />
-                            </div>
-                            <div className="relative z-10 min-h-[120px] h-28 sm:h-32 lg:h-36 w-full flex items-center justify-center mb-3 flex-shrink-0">
+                            <div className="min-h-[120px] h-28 sm:h-32 lg:h-36 w-full flex items-center justify-center mb-3 flex-shrink-0">
                               <img
                                 src={getModelImage("apple", model.id)}
                                 alt={model.name}
@@ -225,10 +219,10 @@ export default function LaptopsPage() {
                                 }}
                               />
                             </div>
-                            <h4 className="relative z-10 font-semibold text-primary-600 text-sm sm:text-base group-hover:text-primary-700 line-clamp-2">
+                            <h4 className="font-semibold text-primary-600 text-sm sm:text-base group-hover:text-primary-700 line-clamp-2">
                               {model.name}
                             </h4>
-                            <span className="relative z-10 mt-1 text-xs text-neutral-500 group-hover:text-primary-600">
+                            <span className="mt-1 text-xs text-neutral-500 group-hover:text-primary-600">
                               View repairs →
                             </span>
                           </motion.div>

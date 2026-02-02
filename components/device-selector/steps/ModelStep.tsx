@@ -72,17 +72,7 @@ export default function ModelStep({
                   : "bg-white border-neutral-200 hover:border-primary-300 hover:shadow-xl"
               }`}
             >
-              {/* Light blue geometric shape (only when not selected) */}
-              {!isSelected && (
-                <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
-                  <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rotate-45 rounded-xl opacity-60"
-                    style={{ backgroundColor: "#bae6fd" }}
-                  />
-                </div>
-              )}
-
-              <div className="relative z-10 h-36 w-full flex items-center justify-center mb-4 flex-shrink-0">
+              <div className="relative h-36 w-full flex items-center justify-center mb-4 flex-shrink-0">
                 <Image
                   src={getModelImage(brand.id, model.id)}
                   alt={model.name}
@@ -100,7 +90,7 @@ export default function ModelStep({
                 />
               </div>
               <span
-                className={`font-semibold text-base lg:text-lg text-center ${
+                className={`font-semibold text-base lg:text-lg text-center block ${
                   isSelected ? "text-white" : "text-primary-600"
                 }`}
               >

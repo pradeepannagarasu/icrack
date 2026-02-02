@@ -72,20 +72,7 @@ export default function DeviceSelectionGrid({
                   whileTap={{ scale: 0.98 }}
                   className="relative bg-white rounded-2xl p-6 lg:p-8 border border-neutral-200 hover:border-primary-300 hover:shadow-xl transition-all text-center group h-full flex flex-col items-center"
                 >
-                  {/* Light blue geometric star/cross shape behind device */}
-                  <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
-                    <div
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rotate-45 rounded-xl opacity-60"
-                      style={{ backgroundColor: "#bae6fd" }}
-                    />
-                    <div
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rotate-[22.5deg] rounded-lg opacity-50"
-                      style={{ backgroundColor: "#7dd3fc" }}
-                    />
-                  </div>
-
-                  {/* Device image */}
-                  <div className="relative z-10 h-36 lg:h-40 w-full flex items-center justify-center mb-4 flex-shrink-0">
+                  <div className="h-36 lg:h-40 w-full flex items-center justify-center mb-4 flex-shrink-0">
                     <Image
                       src={getImageSrc(model.id)}
                       alt={model.name}
@@ -102,7 +89,7 @@ export default function DeviceSelectionGrid({
                   </div>
 
                   {/* Model name in pink */}
-                  <h3 className="relative z-10 font-semibold text-primary-600 text-base lg:text-lg group-hover:text-primary-700 transition-colors mt-auto">
+                  <h3 className="font-semibold text-primary-600 text-base lg:text-lg group-hover:text-primary-700 transition-colors mt-auto">
                     {model.name}
                   </h3>
                 </motion.div>
