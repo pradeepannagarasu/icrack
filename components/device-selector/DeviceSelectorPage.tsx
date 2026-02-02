@@ -34,9 +34,14 @@ export default function DeviceSelectorPage() {
 
   const brandsForStep = useMemo(() => {
     if (!selectedDeviceCategory) return [];
-    return getBrandsByCategory(selectedDeviceCategory).filter((b) =>
+    const brands = getBrandsByCategory(selectedDeviceCategory).filter((b) =>
       REPAIR_BRAND_IDS.includes(b.id)
     );
+    // Tablets (iPads): only Apple, no Samsung tablets
+    if (selectedDeviceCategory === "tablets") {
+      return brands.filter((b) => b.id === "apple");
+    }
+    return brands;
   }, [selectedDeviceCategory]);
 
   const showAppleSubcategory =
