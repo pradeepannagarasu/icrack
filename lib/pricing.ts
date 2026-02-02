@@ -68,7 +68,13 @@ export function getRepairPricing(
   const repair = pricing.repairs[repairType];
   if (!repair) return null;
 
-  const devicePricing = repair.devices[deviceId];
+  // Samsung devices: always use default JSON pricing so updated Samsung prices are never overridden by old localStorage
+  const defaultData = pricingData as PricingData;
+  const defaultRepair = defaultData.repairs?.[repairType];
+  const defaultDevice = defaultRepair?.devices?.[deviceId];
+  const useDefaultForSamsung = deviceId.startsWith("galaxy-") && defaultDevice != null;
+
+  const devicePricing = useDefaultForSamsung ? defaultDevice : repair.devices[deviceId];
   if (!devicePricing) {
     // Fallback to base price
     if (repairType === "diagnostics") {
@@ -103,7 +109,11 @@ export function getRepairPricing(
     if (subType === "regular") {
       return { ...flat, price: flat.price };
     }
-    // Original typically costs more (~25–30% premium)
+    // Samsung (flat price): show same price for Original as Standard (no separate tiers)
+    if (deviceId.startsWith("galaxy-")) {
+      return { ...flat, price: flat.price };
+    }
+    // iPhone: Original typically costs more (~25–30% premium)
     return {
       price: Math.round(flat.price * 1.28),
       save: flat.save,
