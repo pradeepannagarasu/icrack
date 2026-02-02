@@ -21,13 +21,14 @@ interface DeviceRepairPageProps {
   repairs: RepairType[];
 }
 
-// 5 top-level categories (iSmash-style: selectors on top, sub-options inside one panel)
+// Top-level categories (iSmash-style: selectors on top, sub-options inside one panel)
 const REPAIR_CATEGORIES = [
   { id: "screen" as const, label: "Front screen", icon: Smartphone },
   { id: "back-cover" as const, label: "Back cover", icon: Layout },
   { id: "battery-charging" as const, label: "Battery & charging", icon: Battery },
   { id: "camera" as const, label: "Camera (front or rear)", icon: Camera },
   { id: "other" as const, label: "Other repairs", icon: Wrench },
+  { id: "diagnostics" as const, label: "I don't know", icon: Wrench },
 ] as const;
 
 type CategoryId = (typeof REPAIR_CATEGORIES)[number]["id"];
@@ -48,6 +49,7 @@ export default function DeviceRepairPage({
   }
 
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
+  const isTablet = device.id.toLowerCase().includes("ipad") || device.id.toLowerCase().includes("tab");
   const filteredRepairs = isMacBook
     ? (repairs || []).filter((repair) => repair?.id === "battery")
     : (repairs || []);
@@ -124,6 +126,24 @@ export default function DeviceRepairPage({
         repairTime: pricing.time,
         variants: pricing.variants,
         subType: selectedSubType,
+      };
+    }
+
+    // Diagnostics: \"I don't know\" – simple one-step option
+    if (selectedCategory === "diagnostics") {
+      const pricing = getRepairPricing(device.id, "diagnostics");
+      if (!pricing) return null;
+      const repair = repairs.find((r) => r?.id === "diagnostics");
+      return {
+        repairId: "diagnostics",
+        title: repair?.name || "I don't know what's wrong",
+        price: pricing.price,
+        saveAmount: pricing.save,
+        description: repair?.description || getRepairDescription("diagnostics", device.name),
+        warranty: repair?.warranty || pricing.warranty,
+        repairTime: repair?.duration || pricing.time,
+        variants: undefined,
+        subType: undefined,
       };
     }
     return null;
@@ -238,7 +258,18 @@ export default function DeviceRepairPage({
 
           {/* Repair category cards – equal size, stable grid, mobile-friendly */}
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 mb-10 max-w-4xl mx-auto pb-2">
-            {REPAIR_CATEGORIES.filter((c) => (isMacBook ? c.id === "battery-charging" : true)).map((cat) => {
+            {REPAIR_CATEGORIES.filter((c) => {
+              if (isMacBook) {
+                // MacBook: battery-only flow
+                return c.id === "battery-charging";
+              }
+              if (isTablet) {
+                // iPad / tablets: only Front screen, Battery & charging, I don't know
+                return c.id === "screen" || c.id === "battery-charging" || c.id === "diagnostics";
+              }
+              // Phones and other devices: hide diagnostics from top-level
+              return c.id !== "diagnostics";
+            }).map((cat) => {
               const Icon = cat.icon;
               const isActive = selectedCategory === cat.id;
               return (
