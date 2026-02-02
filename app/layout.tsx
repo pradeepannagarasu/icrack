@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import MobileCTABar from "@/components/layout/MobileCTABar";
 import PageTransition from "@/components/animations/PageTransition";
 import ScrollRestoration from "@/components/layout/ScrollRestoration";
+import GlobalBackBar from "@/components/layout/GlobalBackBar";
 import { CartProvider } from "@/components/cart/CartContext";
 
 const inter = Inter({
@@ -44,7 +45,10 @@ export default function RootLayout({
         <CartProvider>
           <Header />
           <PageTransition>
-            <main className="min-h-screen pb-20 lg:pb-0">{children}</main>
+            <main className="min-h-screen pb-20 lg:pb-0">
+              <GlobalBackBar />
+              {children}
+            </main>
           </PageTransition>
           <Footer />
           <MobileCTABar />
