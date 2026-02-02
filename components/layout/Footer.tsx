@@ -155,7 +155,7 @@ export default function Footer() {
                   { label: "Samsung Repairs", href: "/repairs/samsung" },
                   { label: "Google Repairs", href: "/repairs/google" },
                   { label: "All Phone Repairs", href: "/repairs" },
-                  { label: "Book Appointment", href: "/book" },
+                  { label: "Book Appointment", href: "/select-device" },
                 ].map((link) => (
                   <li key={link.label}>
                     <Link

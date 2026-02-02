@@ -19,7 +19,7 @@ export default function BrandStep({ onSelect, category }: BrandStepProps) {
   const brands = allBrands.filter((b) => REPAIR_BRAND_IDS.includes(b.id));
 
   return (
-    <div className="w-full">
+    <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
       <div className="text-center mb-8">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-neutral-900 mb-3">
           Choose Your Brand
@@ -29,7 +29,7 @@ export default function BrandStep({ onSelect, category }: BrandStepProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full justify-items-center">
         {brands.map((brand, index) => (
           <motion.button
             key={brand.id}
@@ -39,7 +39,7 @@ export default function BrandStep({ onSelect, category }: BrandStepProps) {
             whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onSelect(brand)}
-            className="p-8 md:p-10 bg-white rounded-3xl border-2 border-neutral-200 hover:border-primary-300 hover:shadow-xl transition-all group"
+            className="w-full max-w-[280px] p-8 md:p-10 bg-white rounded-3xl border-2 border-neutral-200 hover:border-primary-300 hover:shadow-xl transition-all group"
           >
             <div className="flex flex-col items-center space-y-4">
               <div className="w-28 h-28 md:w-32 md:h-32 bg-white rounded-2xl flex items-center justify-center overflow-hidden shadow-sm">

@@ -89,7 +89,7 @@ export default function RepairsPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="/book"
+                    href="/select-device"
                     className="inline-flex items-center space-x-2 px-6 sm:px-8 py-3 sm:py-4 bg-white text-primary-600 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg hover:bg-neutral-100 transition-all hover:shadow-xl"
                   >
                     <span>Book Repair Now</span>

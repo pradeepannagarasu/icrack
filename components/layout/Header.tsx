@@ -140,7 +140,7 @@ export default function Header() {
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all group-hover:w-full" />
                       </Link>
                       <Link
-                        href="/book"
+                        href="/select-device"
                         className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary-600 text-white shadow-sm hover:bg-primary-700 hover:shadow-md transition-all"
                       >
                         <span>Book</span>
@@ -208,7 +208,7 @@ export default function Header() {
                   <CartIcon />
                 </div>
                 <Link
-                  href="/book"
+                  href="/select-device"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block w-full px-6 py-3.5 bg-primary-600 text-white rounded-xl font-semibold text-center hover:bg-primary-700 transition-all active:scale-95 flex items-center justify-center space-x-2"
                 >

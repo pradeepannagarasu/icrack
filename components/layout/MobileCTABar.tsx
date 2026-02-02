@@ -53,7 +53,7 @@ export default function MobileCTABar() {
           <div className="bg-white border-t border-neutral-200 shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 py-3">
               <Link
-                href="/book"
+                href="/select-device"
                 className="w-full flex items-center justify-center space-x-2 px-6 py-3.5 bg-primary-600 text-white rounded-xl font-semibold text-base hover:bg-primary-700 transition-all active:scale-95"
               >
                 <span>Book Repair</span>

@@ -93,7 +93,7 @@ export default function iPhoneRepairsPage() {
               Select your iPhone model above or book an appointment directly
             </p>
             <Link
-              href="/book"
+              href="/select-device"
               className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-neutral-100 transition-all hover:shadow-xl"
             >
               <span>Book Appointment</span>

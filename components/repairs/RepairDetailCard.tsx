@@ -212,7 +212,7 @@ export default function RepairDetailCard({
                     Choose from our locations and speak to a technician in person.
                   </p>
                   <Link
-                    href="/book"
+                    href="/select-device"
                     className="inline-flex items-center text-xs font-semibold text-primary-700 hover:text-primary-800"
                   >
                     Find a store <ArrowRight className="w-3 h-3 ml-1" />

@@ -225,7 +225,7 @@ export default function AccessoriesPage() {
               Browse our full range of accessories and find the perfect match for your device.
             </p>
             <Link
-              href="/book"
+              href="/select-device"
               className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold text-lg hover:bg-neutral-100 transition-all hover:shadow-xl"
             >
               <span>Shop Now</span>

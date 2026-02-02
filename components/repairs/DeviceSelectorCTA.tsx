@@ -32,7 +32,7 @@ export default function DeviceSelectorCTA() {
           whileTap={{ scale: 0.95 }}
         >
           <Link
-            href="/book"
+            href="/select-device"
             className="inline-flex items-center space-x-2 px-6 py-3 bg-primary-600 text-white rounded-xl font-semibold hover:bg-primary-700 transition-all hover:shadow-lg"
           >
             <span>Select Device</span>

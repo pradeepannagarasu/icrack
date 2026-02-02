@@ -1,68 +1,81 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Brand, Model, RepairType } from "@/types";
 import brandsData from "@/data/brands.json";
 import repairsData from "@/data/repairs.json";
+import { getBrandsByCategory } from "@/lib/categoryFilters";
+import type { DeviceCategory } from "@/lib/categoryFilters";
 import ProgressIndicator from "./ProgressIndicator";
+import DeviceTypeStep from "./steps/DeviceTypeStep";
 import BrandStep from "./steps/BrandStep";
-import AppleCategoryStep from "../booking/steps/AppleCategoryStep";
 import AppleSubcategoryStep from "../booking/steps/AppleSubcategoryStep";
 import ModelStep from "./steps/ModelStep";
 import RepairStep from "./steps/RepairStep";
 import BookingStep from "./steps/BookingStep";
 
-type Step = "brand" | "apple-category" | "apple-subcategory" | "model" | "repair" | "book";
+const REPAIR_BRAND_IDS = ["apple", "samsung", "google"];
+
+type Step = "device-type" | "brand" | "apple-subcategory" | "model" | "repair" | "book";
 
 export default function DeviceSelectorPage() {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<Step>("brand");
+  const [currentStep, setCurrentStep] = useState<Step>("device-type");
+  const [selectedDeviceCategory, setSelectedDeviceCategory] = useState<DeviceCategory | null>(null);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [selectedAppleCategory, setSelectedAppleCategory] = useState<"phones" | "tablets" | "laptops" | null>(null);
   const [selectedAppleSubcategory, setSelectedAppleSubcategory] = useState<string | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [selectedRepair, setSelectedRepair] = useState<RepairType | null>(null);
 
-  const brands = brandsData.brands as Brand[];
   const repairs = repairsData.repairTypes as RepairType[];
+
+  const brandsForStep = useMemo(() => {
+    if (!selectedDeviceCategory) return [];
+    return getBrandsByCategory(selectedDeviceCategory).filter((b) =>
+      REPAIR_BRAND_IDS.includes(b.id)
+    );
+  }, [selectedDeviceCategory]);
 
   const showAppleSubcategory =
     selectedBrand?.id === "apple" &&
     (selectedAppleCategory === "tablets" || selectedAppleCategory === "laptops");
 
   const steps: { id: Step; label: string }[] = [
+    { id: "device-type", label: "Device" },
     { id: "brand", label: "Brand" },
-    ...(selectedBrand?.id === "apple" ? [{ id: "apple-category" as Step, label: "Device Type" }] : []),
     ...(showAppleSubcategory ? [{ id: "apple-subcategory" as Step, label: "Category" }] : []),
     { id: "model", label: "Model" },
     { id: "repair", label: "Repair" },
     { id: "book", label: "Book" },
   ];
 
-  const handleBrandSelect = (brand: Brand) => {
-    setSelectedBrand(brand);
+  const handleDeviceTypeSelect = (category: DeviceCategory) => {
+    setSelectedDeviceCategory(category);
+    setSelectedBrand(null);
     setSelectedAppleCategory(null);
     setSelectedAppleSubcategory(null);
     setSelectedModel(null);
     setSelectedRepair(null);
-    // If Apple is selected, show category selection, otherwise go to model selection
-    if (brand.id === "apple") {
-      setCurrentStep("apple-category");
-    } else {
-      setCurrentStep("model");
-    }
+    setCurrentStep("brand");
   };
 
-  const handleAppleCategorySelect = (appleCategory: "phones" | "tablets" | "laptops") => {
-    setSelectedAppleCategory(appleCategory);
+  const handleBrandSelect = (brand: Brand) => {
+    setSelectedBrand(brand);
     setSelectedAppleSubcategory(null);
     setSelectedModel(null);
     setSelectedRepair(null);
-    if (appleCategory === "tablets" || appleCategory === "laptops") {
-      setCurrentStep("apple-subcategory");
+    if (brand.id === "apple") {
+      setSelectedAppleCategory(selectedDeviceCategory ?? null);
+      if (selectedDeviceCategory === "tablets" || selectedDeviceCategory === "laptops") {
+        setCurrentStep("apple-subcategory");
+      } else {
+        setCurrentStep("model");
+      }
     } else {
+      setSelectedAppleCategory(null);
       setCurrentStep("model");
     }
   };
@@ -125,22 +138,20 @@ export default function DeviceSelectorPage() {
 
   const handleBack = () => {
     switch (currentStep) {
-      case "apple-category":
-        setCurrentStep("brand");
+      case "brand":
+        setCurrentStep("device-type");
+        setSelectedDeviceCategory(null);
         setSelectedBrand(null);
         setSelectedAppleCategory(null);
         break;
       case "apple-subcategory":
-        setCurrentStep("apple-category");
+        setCurrentStep("brand");
         setSelectedAppleSubcategory(null);
         break;
       case "model":
         if (selectedBrand?.id === "apple" && selectedAppleSubcategory) {
           setCurrentStep("apple-subcategory");
           setSelectedAppleSubcategory(null);
-        } else if (selectedBrand?.id === "apple") {
-          setCurrentStep("apple-category");
-          setSelectedAppleCategory(null);
         } else {
           setCurrentStep("brand");
           setSelectedBrand(null);
@@ -158,7 +169,7 @@ export default function DeviceSelectorPage() {
     }
   };
 
-  const canGoBack = currentStep !== "brand";
+  const canGoBack = currentStep !== "device-type";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-primary-50 flex flex-col">
@@ -179,7 +190,20 @@ export default function DeviceSelectorPage() {
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
         <div className="w-full max-w-4xl">
           <AnimatePresence mode="wait">
-            {currentStep === "brand" && (
+            {currentStep === "device-type" && (
+              <motion.div
+                key="device-type"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="flex justify-center"
+              >
+                <DeviceTypeStep onSelect={handleDeviceTypeSelect} />
+              </motion.div>
+            )}
+
+            {currentStep === "brand" && selectedDeviceCategory && (
               <motion.div
                 key="brand"
                 initial={{ opacity: 0, x: 50 }}
@@ -188,22 +212,10 @@ export default function DeviceSelectorPage() {
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 <BrandStep
-                  brands={brands}
+                  brands={brandsForStep}
                   onSelect={handleBrandSelect}
                   selectedBrand={selectedBrand}
                 />
-              </motion.div>
-            )}
-
-            {currentStep === "apple-category" && selectedBrand?.id === "apple" && (
-              <motion.div
-                key="apple-category"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              >
-                <AppleCategoryStep onSelect={handleAppleCategorySelect} />
               </motion.div>
             )}
 

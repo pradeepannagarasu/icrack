@@ -78,7 +78,7 @@ export default function DeviceSelector({ category }: DeviceSelectorProps = {} as
               </div>
               <div className="text-center">
                 <Link
-                  href="/book"
+                  href="/select-device"
                   className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-semibold transition-colors"
                 >
                   <span>Or start full booking flow</span>

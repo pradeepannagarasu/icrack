@@ -18,7 +18,7 @@ export default function BrandStep({
   selectedBrand,
 }: BrandStepProps) {
   return (
-    <div className="w-full">
+    <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-neutral-900 mb-3">
           Select Your Brand
@@ -28,7 +28,7 @@ export default function BrandStep({
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full justify-items-center">
         {brands.map((brand, index) => {
           const isSelected = selectedBrand?.id === brand.id;
           return (
@@ -40,7 +40,7 @@ export default function BrandStep({
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => onSelect(brand)}
-              className={`p-8 md:p-10 rounded-3xl border-2 transition-all ${
+              className={`w-full max-w-[280px] p-8 md:p-10 rounded-3xl border-2 transition-all ${
                 isSelected
                   ? "bg-primary-600 border-primary-600 shadow-xl"
                   : "bg-white border-neutral-200 hover:border-primary-300 hover:shadow-xl"
