@@ -175,7 +175,7 @@ export default function RepairDetailCard({
           </div>
         </div>
 
-        {/* Right Column - Description, Warranty, Time */}
+        {/* Right Column - Description, Warranty, Time, Extras */}
         <div className="flex flex-col justify-between">
           {/* Repair Description */}
           <div className="mb-6">
@@ -198,6 +198,53 @@ export default function RepairDetailCard({
               <span className="text-primary-600 font-bold text-lg">{repairTime}</span>
             </div>
           </div>
+
+          {/* Extra options for diagnostics: Visit us / Mail-in / Call out */}
+          {repairId === "diagnostics" && (
+            <div className="border-t border-neutral-200 pt-4 mb-6">
+              <h4 className="text-lg font-semibold text-neutral-900 mb-3">
+                Not sure what&apos;s wrong? £20 diagnostics, three easy ways to reach us:
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="rounded-xl border border-primary-200 bg-primary-50/40 p-3 sm:p-4">
+                  <h5 className="font-semibold text-primary-700 mb-1">Visit us</h5>
+                  <p className="text-xs sm:text-sm text-neutral-700 mb-2">
+                    Choose from our locations and speak to a technician in person.
+                  </p>
+                  <Link
+                    href="/book"
+                    className="inline-flex items-center text-xs font-semibold text-primary-700 hover:text-primary-800"
+                  >
+                    Find a store <ArrowRight className="w-3 h-3 ml-1" />
+                  </Link>
+                </div>
+                <div className="rounded-xl border border-primary-200 bg-primary-50/40 p-3 sm:p-4">
+                  <h5 className="font-semibold text-primary-700 mb-1">Mail-in</h5>
+                  <p className="text-xs sm:text-sm text-neutral-700 mb-2">
+                    No store nearby? Book a secure mail-in repair and we&apos;ll handle the rest.
+                  </p>
+                  <Link
+                    href="/book/mail-in"
+                    className="inline-flex items-center text-xs font-semibold text-primary-700 hover:text-primary-800"
+                  >
+                    Book mail-in <ArrowRight className="w-3 h-3 ml-1" />
+                  </Link>
+                </div>
+                <div className="rounded-xl border border-primary-200 bg-primary-50/40 p-3 sm:p-4">
+                  <h5 className="font-semibold text-primary-700 mb-1">Call out</h5>
+                  <p className="text-xs sm:text-sm text-neutral-700 mb-2">
+                    We can come to your home or office. 12–24 hour call-out service.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center text-xs font-semibold text-primary-700 hover:text-primary-800"
+                  >
+                    Request call out <ArrowRight className="w-3 h-3 ml-1" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Booking Note */}
           <div className="mt-auto">
