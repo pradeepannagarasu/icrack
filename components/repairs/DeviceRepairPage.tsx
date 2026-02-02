@@ -419,12 +419,12 @@ export default function DeviceRepairPage({
                   <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Battery & Charging</h3>
                   <p className="text-sm text-neutral-600 mb-6">Choose one option below.</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {[
+                    {([
                       { repair: "battery", subType: "original" as const, label: "Genuine Battery" },
-                      { repair: "battery", subType: "regular" as const, label: "Standard Battery" },
+                      ...(brand.id === "samsung" || brand.id === "google" ? [] : [{ repair: "battery" as const, subType: "regular" as const, label: "Standard Battery" }]),
                       { repair: "charging-port", subType: "port" as const, label: "Charging Port" },
                       { repair: "charging-port", subType: "dock" as const, label: "Charging Dock" },
-                    ].map((opt) => {
+                    ] as { repair: "battery" | "charging-port"; subType: "original" | "regular" | "port" | "dock"; label: string }[]).map((opt) => {
                       const pricing = getRepairPricing(device.id, opt.repair, opt.subType);
                       return (
                         <motion.button
