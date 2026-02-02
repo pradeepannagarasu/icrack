@@ -13,6 +13,7 @@ import WhyICrack from "@/components/home/WhyICrack";
 import TrustLogos from "@/components/home/TrustLogos";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { heroVariants, fadeInUp } from "@/lib/animations";
+import { refurbishedIphones } from "@/lib/refurbished";
 
 const services = [
   {
@@ -201,7 +202,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Refurbished Phones Section */}
+      {/* Refurbished Phones Section - same data as /refurbished */}
       <section id="refurbished-iphones" className="py-8 sm:py-12 lg:py-24 bg-neutral-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-8 sm:mb-12">
@@ -209,55 +210,12 @@ export default function Home() {
               Refurbished iPhones
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto px-2">
-              Premium, fully-tested Apple iPhones with 12-month warranty and multiple colour & storage options.
+              Premium, fully-tested Apple iPhones with 24-month warranty and multiple colour & storage options.
             </p>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {[
-              {
-                id: "iphone-15-pro-max",
-                name: "iPhone 15 Pro Max",
-                price: 1099,
-                storage: ["256GB", "512GB", "1TB"],
-                colours: ["Black Titanium", "Blue Titanium", "White Titanium", "Natural Titanium"],
-              },
-              {
-                id: "iphone-15",
-                name: "iPhone 15",
-                price: 799,
-                storage: ["128GB", "256GB"],
-                colours: ["Black", "Blue", "Green", "Yellow", "Pink"],
-              },
-              {
-                id: "iphone-14-pro",
-                name: "iPhone 14 Pro",
-                price: 899,
-                storage: ["128GB", "256GB", "512GB"],
-                colours: ["Deep Purple", "Gold", "Silver", "Space Black"],
-              },
-              {
-                id: "iphone-13-pro",
-                name: "iPhone 13 Pro",
-                price: 749,
-                storage: ["128GB", "256GB"],
-                colours: ["Graphite", "Gold", "Silver", "Sierra Blue", "Alpine Green"],
-              },
-              {
-                id: "iphone-12",
-                name: "iPhone 12",
-                price: 549,
-                storage: ["64GB", "128GB"],
-                colours: ["Black", "White", "Red", "Green", "Blue", "Purple"],
-              },
-              {
-                id: "iphone-se",
-                name: "iPhone SE (3rd Gen)",
-                price: 349,
-                storage: ["64GB", "128GB"],
-                colours: ["Midnight", "Starlight", "Red"],
-              },
-            ].map((phone, index) => (
+            {(refurbishedIphones || []).slice(0, 6).map((phone, index) => (
               <ScrollReveal key={phone.id} delay={index * 0.05}>
                 <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-neutral-200 p-4 sm:p-6 flex flex-col">
                   <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
@@ -275,10 +233,10 @@ export default function Home() {
                         {phone.name}
                       </h3>
                       <p className="text-sm text-primary-600 font-semibold mb-1">
-                        From £{phone.price}
+                        From £{phone.basePrice}
                       </p>
                       <p className="text-xs text-neutral-500">
-                        12-month warranty • 30-point quality check
+                        24-month warranty • {phone.condition} condition
                       </p>
                     </div>
                   </div>
@@ -289,7 +247,7 @@ export default function Home() {
                       Storage
                     </p>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {phone.storage.map((s) => (
+                      {phone.storageOptions.map((s) => (
                         <span
                           key={s}
                           className="px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border text-[10px] sm:text-xs font-medium border-primary-200 text-primary-700 bg-primary-50"
@@ -336,6 +294,15 @@ export default function Home() {
               </ScrollReveal>
             ))}
           </div>
+          <ScrollReveal className="text-center mt-8">
+            <Link
+              href="/refurbished"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors"
+            >
+              View all refurbished iPhones ({refurbishedIphones?.length ?? 0} models)
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 

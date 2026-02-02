@@ -13,7 +13,7 @@ import CartIcon from "@/components/cart/CartIcon";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/repairs", label: "Repairs" },
-  { href: "/#refurbished-iphones", label: "Refurbished Phones" },
+  { href: "/refurbished", label: "Refurbished Phones" },
   { href: "/accessories", label: "Accessories" },
   { href: "/business", label: "Business" },
   { href: "/about", label: "About" },
