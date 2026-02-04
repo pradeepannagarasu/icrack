@@ -35,17 +35,50 @@
         "iphone-13-pro": { "price": 149, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Graphite", "Gold", "Silver", "Sierra Blue", "Alpine Green"] },
         "iphone-13-mini": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight", "Starlight", "Blue", "Pink"] },
         "iphone-13": { "price": 149, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Pink", "Blue", "Midnight", "Starlight", "Red"] },
-        "iphone-12-pro-max": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Pacific Blue", "Gold", "Silver", "Graphite"] },
-        "iphone-12-pro": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Pacific Blue", "Gold", "Silver", "Graphite"] },
-        "iphone-12-mini": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
-        "iphone-12": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
-        "iphone-11-pro-max": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
-        "iphone-11-pro": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
-        "iphone-11": { "price": 89, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Green", "Yellow", "Purple", "Red", "White"] },
-        "iphone-xs-max": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Gold", "Silver", "Space Grey"] },
-        "iphone-xs": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Gold", "Silver", "Space Grey"] },
-        "iphone-xr": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Blue", "Coral", "Yellow", "Red"] },
-        "iphone-x": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Silver", "Space Grey"] },
+        "iphone-12-pro-max": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Pacific Blue", "Gold", "Silver", "Graphite"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-12-pro": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Pacific Blue", "Gold", "Silver", "Graphite"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-12-mini": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-12": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red", "Green", "Blue", "Purple"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-11-pro-max": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-11-pro": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight Green", "Gold", "Space Grey", "Silver"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-11": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Green", "Yellow", "Purple", "Red", "White"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-xs-max": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Gold", "Silver", "Space Grey"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-xs": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Gold", "Silver", "Space Grey"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-xr": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Blue", "Coral", "Yellow", "Red"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-x": {
+          "original": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Silver", "Space Grey"] },
+          "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
         "ipad-pro-13": { "price": 379, "save": 170, "warranty": "Lifetime", "time": "24 - 48 hours" },
         "ipad-pro-12.9": { "price": 349, "save": 130, "warranty": "Lifetime", "time": "24 - 48 hours" },
         "ipad-pro-11": { "price": 249, "save": 100, "warranty": "Lifetime", "time": "24 - 48 hours" },

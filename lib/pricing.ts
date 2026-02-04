@@ -167,10 +167,11 @@ export function getRepairPricing(
  * Get repair description based on type
  */
 export function getRepairDescription(repairType: string, deviceName: string, subType?: string): string {
+  const bookingNote = " Please ensure you book online prior to arriving, so we can make sure your required part is on site and ready for your repair. Note: this time is an estimate, and may vary slightly depending on location.";
   const descriptions: Record<string, string> = {
     screen: `Have you cracked or smashed your screen? Bring your ${deviceName} back to life with a shiny new replacement screen. Get that new phone feeling again!`,
-    "screen-original": `Have you cracked or smashed your screen? Bring your ${deviceName} back to life with a shiny new replacement screen. Get that new phone feeling again!`,
-    "screen-regular": `Have you cracked or smashed your screen? Bring your ${deviceName} back to life with a shiny new replacement screen. Get that new phone feeling again!`,
+    "screen-original": `An Original Apple screen, refurbished with new, pristine glass.${bookingNote}`,
+    "screen-regular": `Our LCD screen is a great option for most customers, providing excellent colour accuracy, brightness & responsiveness. Most customers won't notice a huge difference compared to our Original Refurbished Screen.${bookingNote}`,
     "screen-inner": `Our Samsung-Accredited Technicians will replace your cracked or smashed screen with a brand new, Genuine Samsung Screen Replacement. Plus, you'll get a FREE GENUINE SAMSUNG BATTERY REPLACEMENT included!`,
     "screen-outer": `Our Samsung-Accredited Technicians will replace your cracked or smashed screen with a brand new, Genuine Samsung Screen Replacement.`,
     "back-cover": `Get your ${deviceName} back glass replaced, same day by our specialist technicians.`,
@@ -192,14 +193,15 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
     diagnostics: `Comprehensive device diagnostics. Identify issues and get repair recommendations.`,
   };
 
-  // For screen and battery we keep titles/descriptions simple and consistent,
-  // regardless of variant (original / non-original).
+  // Use subtype for screen so Original vs Non-Original get their specific descriptions
   const key =
-    repairType === "screen" || repairType === "battery"
-      ? repairType
-      : subType
-        ? `${repairType}-${subType}`
-        : repairType;
+    repairType === "screen" && subType
+      ? `${repairType}-${subType}`
+      : repairType === "battery"
+        ? repairType
+        : subType
+          ? `${repairType}-${subType}`
+          : repairType;
   return descriptions[key] || descriptions[repairType] || `Professional ${repairType} repair for your ${deviceName}.`;
 }
 
@@ -209,8 +211,8 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
 export function getRepairTitle(repairType: string, deviceName: string, subType?: string): string {
   const titles: Record<string, string> = {
     screen: `${deviceName} Screen Replacement`,
-    "screen-original": `${deviceName} Screen Replacement`,
-    "screen-regular": `${deviceName} Screen Replacement`,
+    "screen-original": `${deviceName} Original Screen`,
+    "screen-regular": `${deviceName} Non-Original Screen`,
     "back-cover": `${deviceName} Back Glass & Housing`,
     "back-cover-glass": `${deviceName} Back Glass Replacement`,
     "back-cover-housing": `${deviceName} Back Glass & Housing Replacement`,
@@ -247,12 +249,15 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
     return titles["charging-port-dock"] || `${deviceName} Charging Dock Repair`;
   }
 
+  // Use subtype for screen so Original vs Non-Original show correct titles
   const key =
-    repairType === "screen" || repairType === "battery"
-      ? repairType
-      : subType
-        ? `${repairType}-${subType}`
-        : repairType;
+    repairType === "screen" && subType
+      ? `${repairType}-${subType}`
+      : repairType === "battery"
+        ? repairType
+        : subType
+          ? `${repairType}-${subType}`
+          : repairType;
   return titles[key] || titles[repairType] || `${deviceName} ${repairType} Repair`;
 }
 
