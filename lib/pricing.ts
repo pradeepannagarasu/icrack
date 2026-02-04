@@ -68,6 +68,46 @@ export function deviceHasRepair(deviceId: string, repairType: string): boolean {
 }
 
 /**
+ * Get which explicit screen variants (original/regular/inner/outer)
+ * exist for a given device in the static pricing JSON.
+ * Used by the UI to decide whether to show one or multiple screen options.
+ */
+export function getScreenVariantKeys(
+  deviceId: string
+): Array<"original" | "regular" | "inner" | "outer"> {
+  const data = pricingData as PricingData;
+  const screenRepair = data.repairs?.["screen"];
+  const devicePricing = screenRepair?.devices?.[deviceId] as
+    | RepairPricing
+    | {
+        front?: RepairPricing;
+        rear?: RepairPricing;
+        lens?: RepairPricing;
+        original?: RepairPricing;
+        regular?: RepairPricing;
+        glass?: RepairPricing;
+        housing?: RepairPricing;
+        inner?: RepairPricing;
+        outer?: RepairPricing;
+      }
+    | undefined;
+
+  const keys: Array<"original" | "regular" | "inner" | "outer"> = [];
+  if (!devicePricing || typeof devicePricing !== "object" || "price" in devicePricing) {
+    // Flat price – no explicit variants
+    return keys;
+  }
+
+  (["original", "regular", "inner", "outer"] as const).forEach((key) => {
+    if ((devicePricing as any)[key]) {
+      keys.push(key);
+    }
+  });
+
+  return keys;
+}
+
+/**
  * Get pricing for a specific repair
  */
 export function getRepairPricing(
@@ -113,26 +153,6 @@ export function getRepairPricing(
   // Handle sub-types (camera, battery variants, back glass/housing, screen original/regular)
   if (subType && typeof devicePricing === "object" && subType in devicePricing) {
     return (devicePricing as any)[subType];
-  }
-
-  // Screen: derive original/standard from flat price when not in JSON
-  if (repairType === "screen" && (subType === "original" || subType === "regular") && typeof devicePricing === "object" && "price" in devicePricing) {
-    const flat = devicePricing as RepairPricing;
-    if (subType === "regular") {
-      return { ...flat, price: flat.price };
-    }
-    // Samsung & Google (flat price): same price for Original as Standard (no separate tiers)
-    if (deviceId.startsWith("galaxy-") || deviceId.startsWith("pixel-")) {
-      return { ...flat, price: flat.price };
-    }
-    // iPhone: Original typically costs more (~25–30% premium)
-    return {
-      price: Math.round(flat.price * 1.28),
-      save: flat.save,
-      warranty: flat.warranty,
-      time: flat.time,
-      variants: flat.variants,
-    };
   }
 
   // Return device-specific pricing
