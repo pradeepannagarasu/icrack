@@ -827,22 +827,22 @@
         },
         "iphone-12-pro-max": {
           "front": { "price": 229, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-          "rear": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "lens": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-12-pro": {
           "front": { "price": 229, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-          "rear": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "lens": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-12-mini": {
           "front": { "price": 229, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-          "rear": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "lens": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-12": {
           "front": { "price": 229, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-          "rear": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "rear": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "lens": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-8": {

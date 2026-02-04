@@ -183,9 +183,9 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
     "charging-port": `Is your device experiencing issues with charging, or your charging port has broken? We can fit a brand new one, to fix these problems!`,
     "charging-port-port": `Is your device experiencing issues with charging, or your charging port has broken? We can fit a brand new one, to fix these problems!`,
     "charging-port-dock": `Repair or replace charging dock and connectivity components to restore full charging functionality.`,
-    "camera-front": `Is your device experiencing issues with the front camera? We can fit a brand new module, to get it working again!`,
-    "camera-rear": `Is your device experiencing issues with the rear camera? We can fit a brand new module, to get it working again!`,
-    "camera-lens": `Does your camera still work, but you've cracked or broken the glass? We can easily fit a brand new glass lens!`,
+    "camera-front": `Is your device experiencing issues with the front camera? We can fit a brand new module, to get it working again!${bookingNote}`,
+    "camera-rear": `Is your device experiencing issues with the rear camera? We can fit a brand new module, to get it working again!${bookingNote}`,
+    "camera-lens": `Does your camera still work, but you've cracked or broken the glass? We can easily fit a brand new glass lens!${bookingNote}`,
     "camera-replacement": `Full camera module replacement for front or rear camera issues. Professional repair service.`,
     earpiece: `Is your device experiencing issues with the earpiece? We can fit a brand new one, to fix these problems!`,
     "water-damage": `Has your ${deviceName} been exposed to water or liquid? Our expert technicians can diagnose and repair water damage to get your device working again.`,
@@ -238,6 +238,16 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
   }
   if (repairType === "screen" && subType === "outer") {
     return `${deviceName} Outer Screen Replacement`;
+  }
+  // iPhone 12 / 12 Pro / 12 Mini – device-specific camera titles
+  if (repairType === "camera" && subType === "front" && (deviceName === "iPhone 12" || deviceName === "iPhone 12 Pro")) {
+    return "iPhone 12 and 12 Pro TrueDepth Face ID Camera";
+  }
+  if (repairType === "camera" && subType === "rear" && (deviceName === "iPhone 12" || deviceName === "iPhone 12 Mini" || deviceName === "iPhone 12 Pro" || deviceName === "iPhone 12 Pro Max")) {
+    return "iPhone 12 Rear Camera Replacement";
+  }
+  if (repairType === "camera" && subType === "lens" && (deviceName === "iPhone 12" || deviceName === "iPhone 12 Mini")) {
+    return "iPhone 12 / 12 Mini Rear Camera Lens";
   }
   if (repairType === "camera" && subType === "lens") {
     return titles["camera-lens"] || `${deviceName} Camera Lens Repair`;
