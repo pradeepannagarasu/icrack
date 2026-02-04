@@ -6,6 +6,10 @@
         "iphone-8": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
         "iphone-se": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
         "iphone-7": { "price": 59, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-6s-plus": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-6s": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-6-plus": { "price": 35, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold"] },
+        "iphone-6": { "price": 35, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Space Grey", "Silver", "Gold"] },
         "iphone-8-plus": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold"] },
         "iphone-7-plus": { "price": 69, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
         "iphone-se-2020": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
@@ -306,6 +310,22 @@
           "glass": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "housing": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
+        "iphone-6s-plus": {
+          "glass": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "housing": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-6s": {
+          "glass": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "housing": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-6-plus": {
+          "glass": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "housing": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
+        "iphone-6": {
+          "glass": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "housing": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+        },
         "galaxy-z-flip-4": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
         "galaxy-z-flip-5": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
         "galaxy-z-flip-3": { "glass": { "price": 69, "warranty": "Lifetime", "time": "2 - 4 hours" } },
@@ -372,6 +392,10 @@
           "original": { "price": 35, "warranty": "12 months", "time": "Up to 60 minutes" },
           "regular": { "price": 35, "warranty": "12 months", "time": "Up to 60 minutes" }
         },
+        "iphone-6s-plus": { "price": 19, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-6s": { "price": 35, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-6-plus": { "price": 19, "warranty": "12 months", "time": "Up to 60 minutes" },
+        "iphone-6": { "price": 19, "warranty": "12 months", "time": "Up to 60 minutes" },
         "iphone-16-pro-max": {
           "original": { "price": 179, "warranty": "3 months", "time": "Up to 60 minutes" },
           "regular": { "price": 99, "warranty": "12 months", "time": "Up to 60 minutes" }
@@ -687,7 +711,11 @@
         "iphone-se": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
         "iphone-se-2020": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
         "iphone-se-2022": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight", "Starlight", "Red"] },
-        "iphone-7": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-7": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
+        "iphone-6s-plus": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6s": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6-plus": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-16-pro": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-16-pro-max": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-16-plus": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" },
@@ -851,7 +879,7 @@
           "lens": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-se": {
-          "front": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "front": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "rear": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
           "lens": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
@@ -992,9 +1020,17 @@
     "earpiece": {
       "basePrice": 39,
       "devices": {
-        "iphone-8": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-7": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-se": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-se-2022": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-se-2020": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-8-plus": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-8": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-7-plus": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-7": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6s-plus": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6s": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6-plus": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-se": { "price": 49, "warranty": "Lifetime", "time": "Up to 60 minutes" },
         "iphone-16-pro": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
         "iphone-16-pro-max": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
         "iphone-16-plus": { "price": 149, "warranty": "3 months", "time": "Up to 60 minutes" },
@@ -1042,12 +1078,17 @@
         "pixel-4a-5g": { "price": 39, "warranty": "Lifetime", "time": "Up to 60 minutes" }
       }
     },
+    "home-button": {
+      "basePrice": 29,
+      "devices": {
+        "iphone-6": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+        "iphone-6-plus": { "price": 29, "warranty": "Lifetime", "time": "Up to 60 minutes" }
+      }
+    },
     "water-damage": {
       "basePrice": 99,
       "devices": {
         "iphone-8": { "price": 99, "warranty": "6 months", "time": "2-4 hours" },
-        "iphone-se": { "price": 99, "warranty": "6 months", "time": "2-4 hours" },
-        "iphone-7": { "price": 99, "warranty": "6 months", "time": "2-4 hours" },
         "iphone-x": { "price": 119, "warranty": "6 months", "time": "2-4 hours" },
         "iphone-xr": { "price": 119, "warranty": "6 months", "time": "2-4 hours" },
         "iphone-xs": { "price": 119, "warranty": "6 months", "time": "2-4 hours" },

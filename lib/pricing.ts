@@ -187,7 +187,8 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
     "camera-rear": `Is your device experiencing issues with the rear camera? We can fit a brand new module, to get it working again!${bookingNote}`,
     "camera-lens": `Does your camera still work, but you've cracked or broken the glass? We can easily fit a brand new glass lens!${bookingNote}`,
     "camera-replacement": `Full camera module replacement for front or rear camera issues. Professional repair service.`,
-    earpiece: `Is your device experiencing issues with the earpiece? We can fit a brand new one, to fix these problems!`,
+    earpiece: `Is your device experiencing issues with the earpiece? We can fit a brand new one, to fix these problems!${bookingNote}`,
+    "home-button": `Is your device experiencing issues with your home button? Our trained technicians can fit a replacement, to get it working again!${bookingNote}`,
     "water-damage": `Has your ${deviceName} been exposed to water or liquid? Our expert technicians can diagnose and repair water damage to get your device working again.`,
     software: `Resolve software problems, updates, and system errors. Expert troubleshooting for your ${deviceName}.`,
     diagnostics: `Comprehensive device diagnostics. Identify issues and get repair recommendations.`,
@@ -226,7 +227,8 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
     "camera-rear": `${deviceName} Rear Camera Repair`,
     "camera-lens": `${deviceName} Camera Lens Repair`,
     "camera-replacement": `${deviceName} Camera Replacement`,
-    earpiece: `${deviceName} Earpiece Speaker`,
+    earpiece: `${deviceName} Earpiece`,
+    "home-button": `${deviceName} Home Button`,
     "water-damage": `${deviceName} Water Damage Repair`,
     diagnostics: `Diagnostics`,
     software: `Software Issues`,
@@ -248,6 +250,24 @@ export function getRepairTitle(repairType: string, deviceName: string, subType?:
   }
   if (repairType === "camera" && subType === "lens" && (deviceName === "iPhone 12" || deviceName === "iPhone 12 Mini")) {
     return "iPhone 12 / 12 Mini Rear Camera Lens";
+  }
+  if (repairType === "camera" && subType === "lens" && (deviceName === "iPhone 7" || deviceName === "iPhone 8" || deviceName === "iPhone SE (2020)" || deviceName === "iPhone SE (2022)" || deviceName === "iPhone SE (1st Gen)")) {
+    return "iPhone 7 / 8 / SE (2nd Gen) / SE (3rd Gen) Rear Camera Lens";
+  }
+  if (repairType === "camera" && subType === "lens" && (deviceName === "iPhone 6" || deviceName === "iPhone 6s")) {
+    return "iPhone 6 / 6s Rear Camera Lens";
+  }
+  if (repairType === "camera" && subType === "lens" && (deviceName === "iPhone 6 Plus" || deviceName === "iPhone 6s Plus")) {
+    return "iPhone 6 Plus / 6s Plus Rear Camera Lens";
+  }
+  if (repairType === "home-button" && (deviceName === "iPhone 6" || deviceName === "iPhone 6 Plus")) {
+    return "iPhone 6 / 6 Plus Home Button + Flex";
+  }
+  if (repairType === "earpiece" && deviceName === "iPhone 6s") {
+    return "iPhone 6S Earpiece";
+  }
+  if (repairType === "earpiece" && deviceName === "iPhone 6s Plus") {
+    return "iPhone 6S Plus Earpiece";
   }
   if (repairType === "camera" && subType === "lens") {
     return titles["camera-lens"] || `${deviceName} Camera Lens Repair`;

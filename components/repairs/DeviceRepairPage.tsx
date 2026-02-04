@@ -78,7 +78,7 @@ export default function DeviceRepairPage({
   const otherRepairs = filteredRepairs
     .filter((r) => r?.id && otherRepairIds.includes(r.id))
     .filter((r) => {
-      const repairId = r.id === "speaker" || r.id === "home-button" ? "earpiece" : r.id;
+      const repairId = r.id === "speaker" ? "earpiece" : r.id;
       return deviceHasRepair(device.id, repairId);
     });
 
@@ -100,7 +100,7 @@ export default function DeviceRepairPage({
   const getSelectedRepairData = () => {
     // "Other": selectedRepair is the repair id (water-damage, earpiece, etc.)
     if (selectedCategory === "other" && selectedRepair) {
-      const repairType = selectedRepair === "speaker" || selectedRepair === "home-button" ? "earpiece" : selectedRepair;
+      const repairType = selectedRepair === "speaker" ? "earpiece" : selectedRepair;
       const pricing = getRepairPricing(device.id, repairType);
       const repair = repairs.find((r) => r?.id === selectedRepair || r?.id === repairType);
       if (!repair) return null;
@@ -506,7 +506,12 @@ export default function DeviceRepairPage({
                       { subType: "rear" as const, label: "Rear Camera Replacement" },
                       { subType: "front" as const, label: "Front Camera (Face ID)" },
                       { subType: "lens" as const, label: "Rear Camera Lens" },
-                    ].map((opt) => {
+                    ]
+                      .filter((opt) => {
+                        const key = opt.subType === "rear" ? "rear" : opt.subType;
+                        return getRepairPricing(device.id, "camera", key as "front" | "rear" | "lens");
+                      })
+                      .map((opt) => {
                       const pricing = getRepairPricing(device.id, "camera", opt.subType === "rear" ? "rear" : opt.subType);
                       return (
                         <motion.button
@@ -532,7 +537,7 @@ export default function DeviceRepairPage({
                   <p className="text-sm text-neutral-600 mb-6">Select the repair you need.</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {otherRepairs.map((repair) => {
-                      const repairId = repair.id === "speaker" || repair.id === "home-button" ? "earpiece" : repair.id;
+                      const repairId = repair.id === "speaker" ? "earpiece" : repair.id;
                       const pricing = getRepairPricing(device.id, repairId);
                       return (
                         <motion.button
