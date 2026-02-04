@@ -51,6 +51,7 @@ export default function DeviceRepairPage({
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
   const isTablet = device.id.toLowerCase().includes("ipad") || device.id.toLowerCase().includes("tab");
   const isApplePhone = brand.id === "apple" && !isMacBook && !isTablet;
+  const isIphone16Series = isApplePhone && device.id.startsWith("iphone-16");
 
   // Use pricing.json to determine which repair types actually exist for this model
   const hasScreenRepair = deviceHasRepair(device.id, "screen");
@@ -62,7 +63,9 @@ export default function DeviceRepairPage({
   const filteredRepairs = isMacBook
     ? (repairs || []).filter((repair) => repair?.id === "battery")
     : (repairs || []);
-  const otherRepairIds = ["water-damage", "speaker", "earpiece", "home-button"];
+  const otherRepairIds = isIphone16Series
+    ? ["earpiece"] // iPhone 16 series: only show Top Speaker in Other repairs
+    : ["water-damage", "speaker", "earpiece", "home-button"];
   const otherRepairs = filteredRepairs
     .filter((r) => r?.id && otherRepairIds.includes(r.id))
     .filter((r) => {
@@ -365,7 +368,9 @@ export default function DeviceRepairPage({
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {(() => {
-                      const isSingleScreenOption = (brand.id === "samsung" || brand.id === "google") && !device.id.includes("z-flip");
+                      const isSingleScreenOption =
+                        ((brand.id === "samsung" || brand.id === "google") && !device.id.includes("z-flip")) ||
+                        isIphone16Series;
                       const screenOptions = device.id.includes("z-flip")
                         ? [
                             { subType: "inner" as const, label: "Inner Screen Replacement" },
@@ -416,10 +421,15 @@ export default function DeviceRepairPage({
                   <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Back Glass Replacement</h3>
                   <p className="text-sm text-neutral-600 mb-6">Choose your option below.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {[
-                      { id: "glass" as const, label: "Back glass only", subtitle: "Replace just the cracked glass" },
-                      { id: "housing" as const, label: "Back glass & housing", subtitle: "Full rear housing replacement" },
-                    ].map((opt) => {
+                    {(isIphone16Series
+                      ? [
+                          { id: "glass" as const, label: "Back glass only", subtitle: "Replace just the cracked glass" },
+                        ]
+                      : [
+                          { id: "glass" as const, label: "Back glass only", subtitle: "Replace just the cracked glass" },
+                          { id: "housing" as const, label: "Back glass & housing", subtitle: "Full rear housing replacement" },
+                        ]
+                    ).map((opt) => {
                       const pricing = getRepairPricing(device.id, "back-cover", opt.id);
                       return (
                         <motion.button
@@ -452,8 +462,12 @@ export default function DeviceRepairPage({
                       { repair: "charging-port", subType: "port" as const, label: "Charging Port" },
                       { repair: "charging-port", subType: "dock" as const, label: "Charging Dock" },
                     ] as { repair: "battery" | "charging-port"; subType: "original" | "regular" | "port" | "dock"; label: string }[])
-                      // Only show options that have pricing configured for this device
+                      // Only show options that are valid for this specific model
                       .filter((opt) => {
+                        // iPhone 16 series: only Genuine Battery (no Standard, no charging repairs)
+                        if (isIphone16Series) {
+                          return opt.repair === "battery" && opt.subType === "original";
+                        }
                         if (opt.repair === "battery") {
                           return deviceHasRepair(device.id, "battery");
                         }
