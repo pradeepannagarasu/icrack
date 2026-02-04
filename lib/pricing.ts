@@ -57,6 +57,17 @@ function getPricingData(): PricingData {
 }
 
 /**
+ * Check if a device has explicit pricing configured for a repair type.
+ * Used by the UI to hide repair options that don't exist for a given model.
+ */
+export function deviceHasRepair(deviceId: string, repairType: string): boolean {
+  const data = pricingData as PricingData;
+  const repair = data.repairs?.[repairType];
+  if (!repair || !repair.devices) return false;
+  return repair.devices[deviceId] != null;
+}
+
+/**
  * Get pricing for a specific repair
  */
 export function getRepairPricing(

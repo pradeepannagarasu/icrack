@@ -11,7 +11,7 @@ import { fadeInUp } from "@/lib/animations";
 import { getModelImage, getRepairImage } from "@/lib/deviceImages";
 import DeviceRepairFAQ from "@/components/repairs/DeviceRepairFAQ";
 import RepairDetailCard from "@/components/repairs/RepairDetailCard";
-import { getRepairPricing, getRepairDescription, getRepairTitle } from "@/lib/pricing";
+import { getRepairPricing, getRepairDescription, getRepairTitle, deviceHasRepair } from "@/lib/pricing";
 import CallOutServiceBanner from "@/components/repairs/CallOutServiceBanner";
 import BackLink from "@/components/ui/BackLink";
 
@@ -50,11 +50,25 @@ export default function DeviceRepairPage({
 
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
   const isTablet = device.id.toLowerCase().includes("ipad") || device.id.toLowerCase().includes("tab");
+  const isApplePhone = brand.id === "apple" && !isMacBook && !isTablet;
+
+  // Use pricing.json to determine which repair types actually exist for this model
+  const hasScreenRepair = deviceHasRepair(device.id, "screen");
+  const hasBackCoverRepair = deviceHasRepair(device.id, "back-cover");
+  const hasBatteryRepair = deviceHasRepair(device.id, "battery");
+  const hasChargingPortRepair = deviceHasRepair(device.id, "charging-port");
+  const hasAnyBatteryCategory = hasBatteryRepair || hasChargingPortRepair;
+  const hasCameraRepair = deviceHasRepair(device.id, "camera");
   const filteredRepairs = isMacBook
     ? (repairs || []).filter((repair) => repair?.id === "battery")
     : (repairs || []);
   const otherRepairIds = ["water-damage", "speaker", "earpiece", "home-button"];
-  const otherRepairs = filteredRepairs.filter((r) => r?.id && otherRepairIds.includes(r.id));
+  const otherRepairs = filteredRepairs
+    .filter((r) => r?.id && otherRepairIds.includes(r.id))
+    .filter((r) => {
+      const repairId = r.id === "speaker" || r.id === "home-button" ? "earpiece" : r.id;
+      return deviceHasRepair(device.id, repairId);
+    });
 
   const handleCategorySelect = (cat: CategoryId) => {
     setSelectedCategory(cat);
@@ -269,10 +283,22 @@ export default function DeviceRepairPage({
                 // iPad / tablets: only Front screen, Battery & charging, I don't know
                 return c.id === "screen" || c.id === "battery-charging" || c.id === "diagnostics";
               }
-              // Phones: hide diagnostics; Samsung & Google phones – no back cover
+              // Apple iPhone: only show categories that have pricing configured for this model
+              if (isApplePhone) {
+                if (c.id === "screen") return hasScreenRepair;
+                if (c.id === "back-cover") return hasBackCoverRepair;
+                if (c.id === "battery-charging") return hasAnyBatteryCategory;
+                if (c.id === "camera") return hasCameraRepair;
+                if (c.id === "other") return otherRepairs.length > 0;
+                // Hide diagnostics for iPhone models (not part of iSmash flow)
+                if (c.id === "diagnostics") return false;
+                return false;
+              }
+              // Samsung & Google phones: hide diagnostics and back cover (handled earlier), keep others
               if (brand.id === "samsung" || brand.id === "google") {
                 return c.id !== "diagnostics" && c.id !== "back-cover";
               }
+              // Other phones: hide diagnostics only
               return c.id !== "diagnostics";
             }).map((cat) => {
               const Icon = cat.icon;
@@ -421,10 +447,22 @@ export default function DeviceRepairPage({
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {([
                       { repair: "battery", subType: "original" as const, label: "Genuine Battery" },
+                      // For non-Apple brands we may show a Standard Battery variant
                       ...(brand.id === "samsung" || brand.id === "google" ? [] : [{ repair: "battery" as const, subType: "regular" as const, label: "Standard Battery" }]),
                       { repair: "charging-port", subType: "port" as const, label: "Charging Port" },
                       { repair: "charging-port", subType: "dock" as const, label: "Charging Dock" },
-                    ] as { repair: "battery" | "charging-port"; subType: "original" | "regular" | "port" | "dock"; label: string }[]).map((opt) => {
+                    ] as { repair: "battery" | "charging-port"; subType: "original" | "regular" | "port" | "dock"; label: string }[])
+                      // Only show options that have pricing configured for this device
+                      .filter((opt) => {
+                        if (opt.repair === "battery") {
+                          return deviceHasRepair(device.id, "battery");
+                        }
+                        if (opt.repair === "charging-port") {
+                          return deviceHasRepair(device.id, "charging-port");
+                        }
+                        return false;
+                      })
+                      .map((opt) => {
                       const pricing = getRepairPricing(device.id, opt.repair, opt.subType);
                       return (
                         <motion.button

@@ -10,12 +10,12 @@
         "iphone-7-plus": { "price": 69, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Silver", "Gold", "Rose Gold"] },
         "iphone-se-2020": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "White", "Red"] },
         "iphone-se-2022": { "price": 79, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Midnight", "Starlight", "Red"] },
-        "iphone-16-pro-max": { "price": 349, "save": 150, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium", "Desert Titanium"] },
+        "iphone-16-pro-max": { "price": 429, "save": 150, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium", "Desert Titanium"] },
         "iphone-16-pro": { "price": 349, "save": 140, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium"] },
         "iphone-16-plus": { "price": 249, "save": 100, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Blue", "Green", "Yellow", "Pink"] },
         "iphone-16": { "price": 249, "save": 90, "warranty": "Lifetime", "time": "Up to 60 minutes" },
-        "iphone-15-pro-max": { "price": 319, "save": 130, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
-        "iphone-15-pro": { "price": 309, "save": 130, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
+        "iphone-15-pro-max": { "price": 199, "save": 130, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
+        "iphone-15-pro": { "price": 189, "save": 130, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
         "iphone-15-plus": {
           "original": { "price": 199, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Black", "Blue", "Green", "Yellow", "Pink"] },
           "regular": { "price": 99, "warranty": "Lifetime", "time": "Up to 60 minutes" }
@@ -159,7 +159,7 @@
           "housing": { "price": 109, "warranty": "12 months", "time": "Up to 90 minutes" }
         },
         "iphone-16-pro-max": {
-          "glass": { "price": 249, "warranty": "3 months", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium", "Desert Titanium"] },
+          "glass": { "price": 279, "warranty": "3 months", "time": "Up to 60 minutes", "variants": ["Black Titanium", "White Titanium", "Natural Titanium", "Desert Titanium"] },
           "housing": { "price": 309, "warranty": "3 months", "time": "Up to 90 minutes" }
         },
         "iphone-16-pro": {
@@ -175,12 +175,12 @@
           "housing": { "price": 219, "warranty": "3 months", "time": "Up to 90 minutes" }
         },
         "iphone-15-pro-max": {
-          "glass": { "price": 249, "warranty": "3 months", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
-          "housing": { "price": 289, "warranty": "3 months", "time": "Up to 90 minutes" }
+          "glass": { "price": 149, "warranty": "Lifetime", "time": "Up to 60 minutes", "variants": ["Natural Titanium", "Blue Titanium", "White Titanium", "Black Titanium"] },
+          "housing": { "price": 149, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-15-pro": {
-          "glass": { "price": 199, "warranty": "3 months", "time": "Up to 60 minutes" },
-          "housing": { "price": 239, "warranty": "3 months", "time": "Up to 90 minutes" }
+          "glass": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" },
+          "housing": { "price": 129, "warranty": "Lifetime", "time": "Up to 60 minutes" }
         },
         "iphone-15-plus": {
           "glass": { "price": 99, "warranty": "3 months", "time": "Up to 60 minutes" },

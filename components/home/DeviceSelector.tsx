@@ -16,9 +16,12 @@ interface DeviceSelectorProps {
 
 export default function DeviceSelector({ category }: DeviceSelectorProps = {} as DeviceSelectorProps) {
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
-  
-  // Get filtered brands based on category
-  const brands: Brand[] = category ? getBrandsByCategory(category) : brandsData.brands as Brand[];
+
+  // Get filtered brands based on category and hide OnePlus (home selector should only show core brands)
+  const allBrands: Brand[] = category ? getBrandsByCategory(category) : (brandsData.brands as Brand[]);
+  const brands: Brand[] = allBrands.filter((brand) =>
+    ["apple", "samsung", "google"].includes(brand.id)
+  );
 
   return (
     <div className="max-w-4xl mx-auto">
