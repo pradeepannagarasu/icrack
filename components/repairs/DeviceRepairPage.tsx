@@ -370,7 +370,7 @@ export default function DeviceRepairPage({
               {showSubOptions && selectedCategory === "screen" && (
                 <div>
                   <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">
-                    {device.id.includes("z-flip") ? `${device.name} Screen Replacement` : (brand.id === "samsung" || brand.id === "google") ? `${device.name} Screen Replacement` : `Genuine ${device.name} Screen Replacement`}
+                    {`${device.name} Screen Replacement`}
                   </h3>
                   <p className="text-sm text-neutral-600 mb-6">
                     {(brand.id === "samsung" || brand.id === "google") && !device.id.includes("z-flip") ? "Select to book your screen repair." : "Choose your screen option below."}
@@ -393,11 +393,11 @@ export default function DeviceRepairPage({
                           : [
                               {
                                 subType: "original" as const,
-                                label: device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max" ? "Non-Original OLED" : "Genuine / Original Screen",
+                                label: "Original Screen",
                               },
                               {
                                 subType: "regular" as const,
-                                label: device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max" ? "Non-Original (LCD)" : "Standard Screen",
+                                label: "Non-Original Screen",
                               },
                             ];
                       return screenOptions.map(({ subType, label }) => {
