@@ -51,6 +51,13 @@ export default function DeviceRepairPage({
   const isMacBook = device.id.includes("macbook") || device.id.includes("mac");
   const isTablet = device.id.toLowerCase().includes("ipad") || device.id.toLowerCase().includes("tab");
   const isApplePhone = brand.id === "apple" && !isMacBook && !isTablet;
+  // iPhones with a physical home button (only these should show Home Button repairs)
+  const hasHomeButton =
+    isApplePhone &&
+    (device.id.startsWith("iphone-6") ||
+      device.id.startsWith("iphone-7") ||
+      device.id.startsWith("iphone-8") ||
+      device.id.startsWith("iphone-se"));
   const screenVariantKeys = getScreenVariantKeys(device.id);
 
   // Use pricing.json to determine which repair types actually exist for this model
@@ -64,7 +71,9 @@ export default function DeviceRepairPage({
     ? (repairs || []).filter((repair) => repair?.id === "battery")
     : (repairs || []);
   const otherRepairIds = isApplePhone
-    ? ["earpiece", "home-button"]
+    ? hasHomeButton
+      ? ["earpiece", "home-button"]
+      : ["earpiece"]
     : ["water-damage", "speaker", "earpiece", "home-button"];
   const otherRepairs = filteredRepairs
     .filter((r) => r?.id && otherRepairIds.includes(r.id))
