@@ -7,11 +7,38 @@ import Link from "next/link";
 import Image from "next/image";
 import { getBrandImage, getModelImage } from "@/lib/deviceImages";
 import { DeviceCategory, getBrandsByCategory, getModelsByCategory, isModelInCategory } from "@/lib/categoryFilters";
-import { Brand } from "@/types";
+import { Brand, Model } from "@/types";
 import brandsData from "@/data/brands.json";
 
 interface DeviceSelectorProps {
   category?: DeviceCategory;
+}
+
+// For Apple MacBooks on the home selector, we only want to show
+// the main generations (Pro 16/15/14/13, Air 15/13/11, MacBook 12),
+// not every individual A-number variant. This mirrors the /repairs/laptops page.
+function getHomeMacBookModels(models: Model[], brandId: string | null, category?: DeviceCategory): Model[] {
+  if (brandId !== "apple" || category !== "laptops") return models;
+
+  const byId = new Map<string, string>();
+  const displayNames: Record<string, string> = {
+    "macbook-pro-16": "MacBook Pro 16\"",
+    "macbook-pro-15": "MacBook Pro 15\"",
+    "macbook-pro-14": "MacBook Pro 14\"",
+    "macbook-pro-13": "MacBook Pro 13\"",
+    "macbook-air-15": "MacBook Air 15\"",
+    "macbook-air-13": "MacBook Air 13\"",
+    "macbook-air-11": "MacBook Air 11\"",
+    "macbook-12": "MacBook 12\"",
+  };
+
+  models.forEach((m) => {
+    if (!byId.has(m.id)) {
+      byId.set(m.id, displayNames[m.id] || m.name);
+    }
+  });
+
+  return Array.from(byId.entries()).map(([id, name]) => ({ id, name } as Model));
 }
 
 export default function DeviceSelector({ category }: DeviceSelectorProps = {} as DeviceSelectorProps) {
@@ -105,9 +132,12 @@ export default function DeviceSelector({ category }: DeviceSelectorProps = {} as
                 <span className="font-medium">Back to brands</span>
               </button>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {(category 
-                  ? getModelsByCategory(selectedBrand || "", category)
-                  : brands.find((b) => b.id === selectedBrand)?.models || []
+                {getHomeMacBookModels(
+                  category
+                    ? getModelsByCategory(selectedBrand || "", category)
+                    : (brands.find((b) => b.id === selectedBrand)?.models as Model[]) || [],
+                  selectedBrand,
+                  category
                 ).map((model, index) => (
                     <Link
                       key={model.id}
