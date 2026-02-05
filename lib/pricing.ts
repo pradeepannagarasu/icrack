@@ -212,8 +212,8 @@ export function getRepairDescription(repairType: string, deviceName: string, sub
 export function getRepairTitle(repairType: string, deviceName: string, subType?: string): string {
   const titles: Record<string, string> = {
     screen: `${deviceName} Screen Replacement`,
-    "screen-original": `${deviceName} Original Screen`,
-    "screen-regular": `${deviceName} Non-Original Screen`,
+    "screen-original": `${deviceName} Screen Replacement`,
+    "screen-regular": `${deviceName} Screen Replacement`,
     "back-cover": `${deviceName} Back Glass & Housing`,
     "back-cover-glass": `${deviceName} Back Glass Replacement`,
     "back-cover-housing": `${deviceName} Back Glass & Housing Replacement`,

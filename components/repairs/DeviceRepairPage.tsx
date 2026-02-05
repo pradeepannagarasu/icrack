@@ -377,32 +377,19 @@ export default function DeviceRepairPage({
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {(() => {
-                      const isSamsungOrGoogleSingle =
-                        (brand.id === "samsung" || brand.id === "google") && !device.id.includes("z-flip");
-                      const hasAppleScreenVariants =
-                        isApplePhone && (screenVariantKeys.includes("original") || screenVariantKeys.includes("regular"));
-                      const isSingleScreenOption =
-                        isSamsungOrGoogleSingle || isTablet || (isApplePhone && !hasAppleScreenVariants);
                       const screenOptions = device.id.includes("z-flip")
                         ? [
                             { subType: "inner" as const, label: "Inner Screen Replacement" },
                             { subType: "outer" as const, label: "Outer Screen Replacement" },
                           ]
-                        : isSingleScreenOption
-                          ? [{ subType: "regular" as const, label: "Screen Replacement" }]
-                          : [
-                              {
-                                subType: "original" as const,
-                                label: "Original Screen",
-                              },
-                              {
-                                subType: "regular" as const,
-                                label: "Non-Original Screen",
-                              },
-                            ];
+                        : [
+                            {
+                              subType: "regular" as const,
+                              label: `${device.name} Screen Replacement`,
+                            },
+                          ];
                       return screenOptions.map(({ subType, label }) => {
                         const pricing = getRepairPricing(device.id, "screen", subType as any);
-                        const is14ProStyle = device.id === "iphone-14-pro" || device.id === "iphone-14-pro-max";
                         return (
                           <motion.button
                             key={subType}
@@ -413,10 +400,9 @@ export default function DeviceRepairPage({
                             className="rounded-2xl border-2 border-primary-200 bg-white p-6 text-left hover:border-primary-500 hover:shadow-lg transition-all"
                           >
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-xs font-semibold uppercase tracking-wide text-primary-600">{label}</span>
-                              {is14ProStyle && subType === "original" && (
-                                <span className="text-xs font-semibold text-white bg-primary-500 px-2 py-0.5 rounded">Most Popular</span>
-                              )}
+                              <span className="text-xs font-semibold uppercase tracking-wide text-primary-600">
+                                {label}
+                              </span>
                             </div>
                             <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-2 mt-1">£{pricing?.price ?? "—"}</div>
                             <p className="text-sm text-neutral-600">Select & book →</p>
