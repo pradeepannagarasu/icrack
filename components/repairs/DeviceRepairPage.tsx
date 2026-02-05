@@ -382,7 +382,7 @@ export default function DeviceRepairPage({
                       const hasAppleScreenVariants =
                         isApplePhone && (screenVariantKeys.includes("original") || screenVariantKeys.includes("regular"));
                       const isSingleScreenOption =
-                        isSamsungOrGoogleSingle || (isApplePhone && !hasAppleScreenVariants);
+                        isSamsungOrGoogleSingle || isTablet || (isApplePhone && !hasAppleScreenVariants);
                       const screenOptions = device.id.includes("z-flip")
                         ? [
                             { subType: "inner" as const, label: "Inner Screen Replacement" },

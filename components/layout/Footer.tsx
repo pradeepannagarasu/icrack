@@ -174,10 +174,10 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
               <div className="flex-1">
                 <p className="text-white/60 text-sm mb-2">
-                  Copyright © {new Date().getFullYear()} All rights reserved
+                  Copyright © {new Date().getFullYear()} PHONES N MACS LTD. All rights reserved.
                 </p>
                 <p className="text-white/50 text-xs">
-                  iCrack (UK) Trading Limited registered in England and Wales under the company registration number 09347088. Registered office address: Holborn Gate, 330 High Holborn, London, England, WC1V 7PP
+                  PHONES N MACS LTD, company registration number 15345207, 40a Notting Hill Gate, London W11 3HX
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
