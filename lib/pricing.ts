@@ -127,7 +127,8 @@ export function getRepairPricing(
     (deviceId.startsWith("galaxy-") ||
       deviceId.startsWith("iphone-") ||
       deviceId.startsWith("pixel-") ||
-      deviceId.startsWith("ipad-")) &&
+      deviceId.startsWith("ipad-") ||
+      deviceId.startsWith("macbook-")) &&
     defaultDevice != null;
 
   const devicePricing = useDefaultPricing ? defaultDevice : repair.devices[deviceId];
