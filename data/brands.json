@@ -95,11 +95,16 @@
         { "id": "macbook-air-13", "name": "MacBook Air Retina 13\" (Late 2018–2019) A1932" },
         { "id": "macbook-air-13", "name": "MacBook Air Retina 13\" (Early 2020) A2179" },
         { "id": "macbook-pro-16", "name": "MacBook Pro 16\"" },
+        { "id": "macbook-pro-16", "name": "MacBook Pro 16\" (Apple Silicon)" },
         { "id": "macbook-pro-15", "name": "MacBook Pro 15\"" },
         { "id": "macbook-pro-14", "name": "MacBook Pro 14\"" },
+        { "id": "macbook-pro-14", "name": "MacBook Pro 14\" (Apple Silicon)" },
         { "id": "macbook-pro-13", "name": "MacBook Pro 13\"" },
+        { "id": "macbook-pro-13", "name": "MacBook Pro 13\" (Apple Silicon)" },
         { "id": "macbook-air-15", "name": "MacBook Air 15\"" },
+        { "id": "macbook-air-15", "name": "MacBook Air 15\" (Apple Silicon)" },
         { "id": "macbook-air-13", "name": "MacBook Air 13\"" },
+        { "id": "macbook-air-13", "name": "MacBook Air 13\" (Apple Silicon)" },
         { "id": "macbook-air-11", "name": "MacBook Air 11\"" },
         { "id": "macbook-12", "name": "MacBook 12\"" }
       ]
