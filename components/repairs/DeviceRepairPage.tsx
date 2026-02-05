@@ -448,37 +448,57 @@ export default function DeviceRepairPage({
                   <h3 className="text-lg sm:text-xl font-display font-semibold text-primary-600 mb-1">Battery & Charging</h3>
                   <p className="text-sm text-neutral-600 mb-6">Choose one option below.</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {([
-                      { repair: "battery", subType: "original" as const, label: "Battery Replacement" },
-                      { repair: "charging-port", subType: "port" as const, label: "Charging Port" },
-                      { repair: "charging-port", subType: "dock" as const, label: "Charging Dock" },
-                    ] as { repair: "battery" | "charging-port"; subType: "original" | "port" | "dock"; label: string }[])
-                      // Only show options that are valid for this specific model
-                      .filter((opt) => {
-                        if (opt.repair === "battery") {
-                          return deviceHasRepair(device.id, "battery");
+                    {(() => {
+                      const hasBatteryVariants =
+                        device.id.startsWith("iphone-15") ||
+                        device.id.startsWith("iphone-14") ||
+                        device.id.startsWith("iphone-13") ||
+                        device.id.startsWith("iphone-12");
+
+                      const options: {
+                        repair: "battery" | "charging-port";
+                        subType: "original" | "regular" | "port" | "dock";
+                        label: string;
+                      }[] = [];
+
+                      if (deviceHasRepair(device.id, "battery")) {
+                        if (hasBatteryVariants) {
+                          options.push(
+                            { repair: "battery", subType: "original", label: "Original Battery Replacement" },
+                            { repair: "battery", subType: "regular", label: "Standard Battery Replacement" },
+                          );
+                        } else {
+                          options.push({ repair: "battery", subType: "original", label: "Battery Replacement" });
                         }
-                        if (opt.repair === "charging-port") {
-                          return deviceHasRepair(device.id, "charging-port");
-                        }
-                        return false;
-                      })
-                      .map((opt) => {
-                      const pricing = getRepairPricing(device.id, opt.repair, opt.subType);
-                      return (
-                        <motion.button
-                          key={`${opt.repair}-${opt.subType}`}
-                          type="button"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => { setSelectedRepair(opt.repair); setSelectedSubType(opt.subType); }}
-                          className="rounded-2xl border-2 border-primary-200 bg-white p-5 text-left hover:border-primary-500 hover:shadow-lg transition-all"
-                        >
-                          <div className="font-semibold text-neutral-900 text-sm mb-1">{opt.label}</div>
-                          <div className="text-xl font-bold text-primary-600">£{pricing?.price ?? "—"}</div>
-                        </motion.button>
-                      );
-                    })}
+                      }
+
+                      if (deviceHasRepair(device.id, "charging-port")) {
+                        options.push(
+                          { repair: "charging-port", subType: "port", label: "Charging Port" },
+                          { repair: "charging-port", subType: "dock", label: "Charging Dock" },
+                        );
+                      }
+
+                      return options.map((opt) => {
+                        const pricing = getRepairPricing(device.id, opt.repair, opt.subType as any);
+                        return (
+                          <motion.button
+                            key={`${opt.repair}-${opt.subType}`}
+                            type="button"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => {
+                              setSelectedRepair(opt.repair);
+                              setSelectedSubType(opt.subType as any);
+                            }}
+                            className="rounded-2xl border-2 border-primary-200 bg-white p-5 text-left hover:border-primary-500 hover:shadow-lg transition-all"
+                          >
+                            <div className="font-semibold text-neutral-900 text-sm mb-1">{opt.label}</div>
+                            <div className="text-xl font-bold text-primary-600">£{pricing?.price ?? "—"}</div>
+                          </motion.button>
+                        );
+                      });
+                    })()}
                   </div>
                 </div>
               )}
